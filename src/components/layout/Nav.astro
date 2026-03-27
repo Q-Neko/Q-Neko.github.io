@@ -1,0 +1,22 @@
+---
+import qnekoLogo from "../../assets/qneko_nobg_notext.png";
+import { NavMobile } from "./NavMobile.jsx";
+---
+
+<nav>
+    <div class="nav-logo">
+        <a href="/">
+        <img src={qnekoLogo.src} alt="Q-Neko" />
+        </a>
+    </div>
+    <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/mission">Mission</a></li>
+        <li><a href="/consortium">Consortium</a></li>
+        <li><a href="/quantum-computers">Quantum Computers</a></li>
+        <li><a href="/hpc">HPC</a></li>
+        <li><a href="/posts">Posts</a></li>
+    </ul>
+    <NavMobile client:load/>
+    <!-- <a href="#consortium" class="nav-cta">Join the Network</a> -->
+</nav>

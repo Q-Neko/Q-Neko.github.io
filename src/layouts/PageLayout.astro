@@ -1,0 +1,12 @@
+---
+import Layout from "./Layout.astro"
+import Banner from "../components/layout/Banner.astro";
+
+const { title } = Astro.props;
+---
+
+<Layout>
+    <Banner title={title} />
+    <slot />
+</Layout>
+

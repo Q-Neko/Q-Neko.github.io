@@ -1,0 +1,100 @@
+{
+    "partners": [
+        {
+            "country": "Finland",
+            "region": "EU",
+            "name": "CSC",
+            "long_name": "CSC - IT Center for Science"
+        },
+        {
+            "country": "Finland",
+            "region": "EU",
+            "name": "IQM",
+            "long_name": "IQM Quantum Computers."
+        },
+        {
+            "country": "Germany",
+            "region": "EU",
+            "name": "Forschungszentrum Jülich",
+            "long_name": "JSC - Forschungszentrum Jülich"
+        },
+        {
+            "country": "Germany",
+            "region": "EU",
+            "name": "DLR",
+            "long_name": "The German Aerospace Center."
+        },
+        {
+            "country": "France",
+            "region": "EU",
+            "name": "CEA",
+            "long_name": "Commissariat à l'énergie atomique et aux énergies alternatives."
+        },
+        {
+            "country": "France",
+            "region": "EU",
+            "name": "Thales",
+            "long_name": "Thales"
+        },
+        {
+            "country": "Japan",
+            "region": "JP",
+            "name": "Jij",
+            "long_name": "Jij Japan"
+        },
+        {
+            "country": "France",
+            "region": "EU",
+            "name": "LNE",
+            "long_name": "The French National Laboratory of Metrology and Testing"
+        },
+        {
+            "country": "Czech Republic",
+            "region": "EU",
+            "name": "IT4I@VSB",
+            "long_name": "VSB - Technical University of Ostrava, IT4Innovations National Supercomputing Center"
+        },
+        {
+            "country": "Japan",
+            "region": "JP",
+            "name": "QunaSys",
+            "long_name": "QunaSys Japan"
+        },
+        {
+            "country": "Finland",
+            "region": "EU",
+            "name": "Aalto University",
+            "long_name": "Aalto University"
+        },
+        {
+            "country": "Japan",
+            "region": "JP",
+            "name": "AIST",
+            "long_name": "Japan's National Institute of Advanced Industrial Science and Technology"
+        },
+        {
+            "country": "Japan",
+            "region": "JP",
+            "name": "Chodai",
+            "long_name": "Chodai Co."
+        },
+        {
+            "country": "Japan",
+            "region": "JP",
+            "name": "KDDI ",
+            "long_name": "KDDI Research, Inc."
+        },
+        {
+            "country": "United Kingdom",
+            "region": "EU",
+            "name": "Jij",
+            "long_name": "Jij Europe"
+        },
+        {
+            "country": "Denmark",
+            "region": "EU",
+            "name": "QunaSys",
+            "long_name": "QunaSys Denmark"
+        }
+    ]
+}

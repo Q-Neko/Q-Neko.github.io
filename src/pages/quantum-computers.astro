@@ -1,0 +1,40 @@
+---
+import { getCollection } from "astro:content";
+
+import PageLayout from "../layouts/PageLayout.astro";
+
+import QPUCard from "../components/qpus/QPUCard.astro";
+
+const qpus_collection = await getCollection("qpus");
+
+type QPU = {
+    name: string;
+    topology: string;
+    qubits: number;
+    type: string;
+    host: string;
+};
+
+const qpus: QPU[] = qpus_collection[0].data.qpus;
+
+const maxQubits = Math.max(...qpus.map(qpu => qpu.qubits));
+---
+
+<PageLayout title="Quantum Computers">
+    <div class="qpus-bg">
+        <div class="qpus">
+            <div class="qpu-grid">
+                {
+                    qpus.map((qpu: QPU, idx: number) => (
+                        <QPUCard
+                            qpu={qpu}
+                            maxQubits={maxQubits}
+                            class="animate-popIn"
+                            style={`animation-delay: ${0.1 * idx}s`}
+                        />
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</PageLayout>

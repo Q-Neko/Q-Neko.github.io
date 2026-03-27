@@ -1,0 +1,35 @@
+---
+import PartnerCard from "../ui/PartnerCard.astro";
+
+import { getCollection } from "astro:content";
+const partners = await getCollection("partners");
+
+const partners_list = partners[0].data.partners;
+---
+
+<section class="consortium-bg" id="consortium">
+    <div class="consortium">
+        <div class="consortium-header reveal">
+            <div>
+                <div class="section-label">Partners</div>
+                <h2 class="section-h2">
+                    16 Partners.<br />Two Continents.<br />One Vision.
+                </h2>
+            </div>
+            <div class="consortium-count">16</div>
+        </div>
+        <div class="partner-grid reveal">
+            {
+                partners_list.map((partner: { name: string; country: string; region: string; long_name: string; }) => (
+                    <PartnerCard
+                        key={partner.name}
+                        country={partner.country}
+                        region={partner.region}
+                        name={partner.name}
+                        long_name={partner?.long_name || partner.name}
+                    />
+                ))
+            }
+        </div>
+    </div>
+</section>

@@ -1,0 +1,9 @@
+---
+const { country, region, name, long_name } = Astro.props;
+---
+
+<div class="partner-card">
+    <span class=`partner-region ${region.toLowerCase()}`>{region} - {country}</span>
+    <div class="partner-name">{name}</div>
+    <div class="partner-type">{long_name}</div>
+</div>

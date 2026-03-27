@@ -1,0 +1,16 @@
+---
+const { post } = Astro.props;
+
+import { render } from "astro:content";
+
+const { Content } = await render(post);
+---
+
+<div class="posts-bg">
+    <div class="post-content">
+        <div class="flex flex-row gap-4 mb-4">
+            {post.data.tags.map((tag: String) => <div class="pill bg-crimson">{tag}</div>)}
+        </div>
+        <Content />
+    </div>
+</div>
