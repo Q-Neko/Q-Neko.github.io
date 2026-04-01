@@ -45,9 +45,9 @@ const { page } = Astro.props as { page: Page<{
                         </div>
                         <div class="pagination">
                             {page.url.first ? (
-                                <a href={page.url.first + "/#posts"}>First</a>
+                                <a class="max-[400px]:hidden" href={page.url.first + "/#posts"}>First</a>
                             ) : (
-                                <a class="disabled">First</a>
+                                <a class="disabled max-[400px]:hidden">First</a>
                             )}
                             {page.url.prev ? (
                                 <a href={page.url.prev + "/#posts"}>Previous</a>
@@ -63,9 +63,9 @@ const { page } = Astro.props as { page: Page<{
                                 <a class="disabled">Next</a>
                             )}
                             {page.url.last ? (
-                                <a href={page.url.last + "/#posts"}>Last</a>
+                                <a class="max-[400px]:hidden" href={page.url.last + "/#posts"}>Last</a>
                             ) : (
-                                <a class="disabled">Last</a>
+                                <a class="disabled max-[400px]:hidden">Last</a>
                             )}
                         </div>
                     </div>

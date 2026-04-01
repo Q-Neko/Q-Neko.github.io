@@ -796,6 +796,7 @@
     .qpu-grid { @apply grid-cols-1; }
     .post-grid { @apply grid-cols-1; }
     .consortium-count { @apply text-[4rem];}
+    .partner-type { @apply hidden; }
   }
 
   @media (max-width: 300px){
