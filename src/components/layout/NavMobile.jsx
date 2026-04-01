@@ -26,12 +26,12 @@ export const NavMobile = () => {
             </button>
             {isOpen && (
                 <div className="nav-menu overflow-auto max-h-[85vh]">
-                    <a href="/">Home</a>
                     <a href="/mission">Mission</a>
                     <a href="/consortium">Consortium</a>
                     <a href="/quantum-computers">Quantum Computers</a>
                     <a href="/hpc">HPC</a>
                     <a href="/posts">Posts</a>
+                    <a href="/search">Search</a>
                 </div>
             )}
         </div>
