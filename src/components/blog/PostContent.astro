@@ -4,12 +4,27 @@ const { post } = Astro.props;
 import { render } from "astro:content";
 
 const { Content } = await render(post);
+
+const dateStr = post.data.date
+    ? new Date(post.data.date).toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric" })
+    : null;
+
+const searchBase = (post.data.lang ?? "en") === "ja" ? "/ja/search" : "/search";
 ---
 
 <div class="posts-bg">
     <div class="post-content">
-        <div class="flex flex-row gap-4 mb-4">
-            {post.data.tags.map((tag: String) => <div class="pill bg-crimson">{tag}</div>)}
+        <div class="post-meta">
+            <div class="post-meta-tags">
+                {post.data.tags.map((tag: String) => (
+                    <a href={`${searchBase}?q=${encodeURIComponent(String(tag))}`} class="post-tag">{tag}</a>
+                ))}
+            </div>
+            <div class="post-meta-info">
+                {dateStr && <span class="post-meta-date">{dateStr}</span>}
+                {post.data.author && <span class="post-meta-sep">|</span>}
+                {post.data.author && <span class="post-meta-author">{post.data.author}</span>}
+            </div>
         </div>
         <Content />
     </div>

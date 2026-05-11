@@ -497,7 +497,7 @@
   }
   
   .post-grid {
-    @apply grid grid-cols-4 gap-6 pt-8;
+    @apply grid grid-cols-6 gap-6 pt-8;
   }
 
   .post-card-tags {
@@ -514,68 +514,134 @@
     @apply text-lg text-ink/80;
   }
 
+  .post-meta {
+    @apply pt-10 pb-6 flex flex-wrap items-center justify-between gap-4;
+  }
+
+  .post-meta-tags {
+    @apply flex flex-wrap gap-2;
+  }
+
+  .post-meta-info {
+    @apply flex items-center gap-2 font-mono text-[0.78rem] tracking-[0.12em] uppercase text-ink/50;
+  }
+
+  .post-meta-sep {
+    @apply text-ink/30;
+  }
+
+  .post-tag {
+    @apply font-mono text-[0.72rem] tracking-[0.14em] uppercase no-underline
+           px-2.5 py-1
+           text-blue bg-blue-lt
+           transition-[background,color] duration-150;
+  }
+  .post-tag:hover {
+    @apply bg-blue/20 text-blue;
+  }
+
   .post-content {
-    @apply mt-4 font-sans text-[0.9rem] leading-[1.8] text-ink max-w-[3000px] mx-auto px-16 ;
+    @apply max-w-[720px] mx-auto px-16 pb-24 font-sans text-[1.05rem] leading-[1.85] text-ink;
   }
 
   .post-content h1 {
-    @apply font-serif-en text-5xl text-ink mt-8 mb-4;
+    @apply font-serif-en leading-[1.1] text-ink mt-10 mb-3;
+    font-size: clamp(2rem, 4vw, 3rem);
+    border-bottom: 2px solid var(--color-blue-lt);
+    padding-bottom: 0.5rem;
   }
 
   .post-content h2 {
-    @apply font-serif-en text-3xl text-ink mt-6 mb-3;
+    @apply font-serif-en text-[1.7rem] text-ink mt-10 mb-3 pl-4;
+    border-left: 3px solid var(--color-crimson);
   }
 
   .post-content h3 {
-    @apply font-serif-en text-2xl text-ink mt-4 mb-2;
+    @apply font-serif-en text-[1.3rem] text-ink mt-8 mb-2 font-bold;
   }
 
   .post-content h4 {
-    @apply font-serif-en text-xl text-ink mt-3 mb-1;
+    @apply font-sans text-[0.85rem] text-ink mt-6 mb-1 font-bold uppercase tracking-widest;
   }
 
   .post-content p {
-    @apply mb-4;
+    @apply mb-5;
   }
 
   .post-content p:first-of-type {
-    @apply italic text-[rgba(0,0,0,0.8)] mb-6;
+    @apply text-[1.15rem] leading-[1.9] text-ink/75 mb-6 not-italic;
   }
 
-  .post-content pre /*code bloc*/ {
-    @apply bg-off-white p-4 rounded overflow-x-auto mb-4;
+  .post-content blockquote {
+    @apply my-8 pl-6 border-l-4 border-blue/40 text-ink/70 italic;
   }
 
-  .post-content ul {
-    @apply list-disc pl-6 mb-4;
-  }
-
-  .post-content ol {
-    @apply list-decimal pl-6 mb-4;
-  }
-
-  .post-content a {
-    @apply text-blue underline;
-  }
-
-  .post-content a:hover {
-    @apply text-blue-mid;
-  }
-
-  .post-content li{
+  .post-content blockquote p {
     @apply mb-2;
   }
 
-  .post-content table {
-    @apply w-full border-collapse mb-4;
+  .post-content hr {
+    @apply my-10 border-0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--color-blue-lt), transparent);
   }
 
-  .post-content th, .post-content td {
-    @apply border border-[rgba(0,0,0,0.1)] p-2 text-left;
+  .post-content pre {
+    @apply bg-ink text-cream p-5 overflow-x-auto mb-6 text-[0.875rem] leading-[1.7];
+    border-left: 3px solid var(--color-crimson);
+  }
+
+  .post-content code:not(pre code) {
+    @apply bg-off-white text-crimson px-1.5 py-0.5 text-[0.875em];
+  }
+
+  .post-content ul {
+    @apply list-none pl-0 mb-5 space-y-2;
+  }
+
+  .post-content ul li {
+    @apply pl-5 relative;
+  }
+
+  .post-content ul li::before {
+    content: '—';
+    @apply absolute left-0 text-crimson/60 font-mono;
+  }
+
+  .post-content ol {
+    @apply list-decimal pl-6 mb-5 space-y-2;
+  }
+
+  .post-content a {
+    @apply text-blue underline decoration-blue/30 underline-offset-2 transition-colors duration-150;
+  }
+
+  .post-content a:hover {
+    @apply text-crimson decoration-crimson/50;
+  }
+
+  .post-content li {
+    @apply mb-2;
+  }
+
+  .post-content img {
+    @apply w-full my-8;
+  }
+
+  .post-content table {
+    @apply w-full border-collapse mb-6 text-[0.95rem];
   }
 
   .post-content th {
-    @apply bg-[rgba(0,0,0,0.05)] font-bold;
+    @apply bg-blue text-white font-mono text-[0.78rem] tracking-[0.1em] uppercase p-3 text-left;
+  }
+
+  .post-content td {
+    @apply border-b border-[rgba(13,43,110,0.08)] p-3 text-left;
+  }
+
+  .post-content tr:nth-child(even) td {
+    @apply bg-blue-lt/30;
   }
 
   .pagination {
@@ -752,10 +818,19 @@
     @apply opacity-100 translate-y-0;
   }
 
+  @media (max-width: 2000px) {
+    .post-grid        { @apply grid-cols-4; }
+  }
+
+  @media (max-width: 1200px) {
+    .post-grid        { @apply grid-cols-3; }
+  }
+
   @media (max-width: 1000px) {
     nav               { @apply px-6; }
     .nav-links        { @apply hidden; }
     .nav-mobile       { @apply block; }
+    .post-grid        { @apply grid-cols-3; }
   }
 
   /* RESPONSIVE - max-width: 900px */
@@ -776,6 +851,7 @@
     .footer-bottom    { @apply px-6 flex-col gap-3 text-center; }
     .post-grid        { @apply grid-cols-2; }
     .posts             { @apply px-6 py-16; }
+    .post-content      { @apply px-6; }
     .default              { @apply px-6 py-16; }
     .newsletter        { @apply px-6 py-16; }
     .banner            { @apply px-6 pt-32 pb-16; }
