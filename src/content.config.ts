@@ -22,6 +22,7 @@ const news = defineCollection({
     author: z.string(),
     tags: z.array(z.string()),
     lang: z.enum(["en", "ja"]).default("en"),
+    image: z.string().optional(),
   }),
 });
 

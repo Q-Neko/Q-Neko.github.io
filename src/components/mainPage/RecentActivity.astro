@@ -27,6 +27,7 @@ type Entry = {
   href: string;
   meta: string;
   tags: string[];
+  image?: string;
   source: "news" | "events" | "results";
 };
 
@@ -42,6 +43,7 @@ if ((ENABLED_SOURCES as ReadonlyArray<string>).includes("news")) {
       href: `${base}/news/${p.data.slug}`,
       meta: p.data.type,
       tags: p.data.tags ?? [],
+      image: p.data.image,
       source: "news",
     });
   }
@@ -93,6 +95,7 @@ const sourceViewAllHref: Record<"news" | "events" | "results", string> = {
             href={item.href}
             meta={item.meta}
             tags={item.tags}
+            image={item.image}
             class="animate-popIn"
             style={`animation-delay: ${0.1 * idx}s`}
           />

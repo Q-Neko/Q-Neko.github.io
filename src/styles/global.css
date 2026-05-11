@@ -650,30 +650,50 @@
   }
 
   .base-card {
-    @apply relative bg-white p-8
+    @apply relative bg-white p-7
            border border-[rgba(13,43,110,0.08)]
-           flex flex-col gap-3 opacity-0
+           flex flex-col gap-3 opacity-0 overflow-hidden
            transition-[box-shadow,transform,border-color] duration-300;
   }
   .base-card::before {
     content: '';
-    @apply absolute top-0 left-0 right-0 h-[3px] bg-blue
+    @apply absolute top-0 left-0 right-0 h-[3px] bg-blue z-10
            scale-x-0 origin-left transition-transform duration-300;
   }
   .base-card:hover {
-    @apply shadow-[0_8px_32px_rgba(13,43,110,0.1)] -translate-y-[3px]
-           border-[rgba(13,43,110,0.15)];
+    @apply shadow-[0_12px_40px_rgba(13,43,110,0.13)] -translate-y-[4px]
+           border-[rgba(13,43,110,0.18)];
   }
   .base-card:hover::before {
     @apply scale-x-100;
   }
 
   .base-card h2 {
-    @apply font-serif-en text-[1.4rem] text-ink leading-tight;
+    @apply font-serif-en text-[1.25rem] text-ink leading-tight;
   }
 
   .entry-card {
-    @apply no-underline;
+    @apply no-underline p-0 gap-0;
+  }
+
+  .entry-card-body {
+    @apply flex flex-col gap-3 p-7;
+  }
+
+  .entry-card-image {
+    @apply relative w-full overflow-hidden;
+    aspect-ratio: 16 / 9;
+  }
+  .entry-card-image img {
+    @apply w-full h-full object-cover transition-transform duration-500;
+  }
+  .base-card:hover .entry-card-image img {
+    @apply scale-105;
+  }
+  .entry-card-image-badge {
+    @apply absolute bottom-3 left-3
+           font-mono text-[0.72rem] tracking-[0.15em] uppercase
+           bg-blue text-white px-3 py-1;
   }
 
   .entry-card-meta {
@@ -685,7 +705,7 @@
   }
 
   .entry-card-empty {
-    @apply font-sans text-base text-ink/40 italic;
+    @apply font-sans text-base text-ink/40 italic p-8;
   }
 
   .recent-header {

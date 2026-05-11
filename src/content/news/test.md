@@ -7,6 +7,7 @@ author: "Q-Neko"
 type: "News"
 tags: ["test", "blog", "markdown"]
 lang: "en"
+image: "/placeholder-news.svg"
 ---
 
 # Test Blog Post

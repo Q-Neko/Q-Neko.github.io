@@ -37,6 +37,7 @@ const isEmpty = posts.length === 0;
                             href={`${base}/news/${post.props.post.data.slug}`}
                             tags={post.props.post.data.tags}
                             meta={post.props.post.data.type}
+                            image={post.props.post.data.image}
                             class="animate-popIn"
                             style={`animation-delay: ${0.1 * idx}s`}
                         />
