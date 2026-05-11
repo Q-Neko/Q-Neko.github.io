@@ -8,6 +8,9 @@ import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
 // 4. Define a `loader` and `schema` for each collection
+
+//TODO: Right now language decided by the lang field in frontmatter. However maybe would be smarter to separate content 
+// by language into different folders (e.g. news/en, news/ja) and decide language based on that instead? 
 const news = defineCollection({
   loader: glob({ base: './src/content/news', pattern: '**/*.{md,mdx}' }),
   schema: z.object({
