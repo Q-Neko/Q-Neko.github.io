@@ -1,0 +1,45 @@
+---
+import EntryCard from "../ui/EntryCard.astro";
+import { useTranslations } from "../../i18n/index";
+
+interface Props {
+  lang: string;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+// TODO: Replace with real data when available
+const events: { title: string; description: string; meta: string; href: string }[] = [];
+---
+
+<!-- TODO: add filtering/sorting options -->
+
+<!-- TODO: maybe split into past and upcoming events sections on the same page? -->
+<div class="default-bg">
+    <div class="default">
+        <div class="reveal">
+            <div class="section-label">{t.pageContent.events.sectionLabel}</div>
+            <h2 class="section-h2">{t.pageContent.events.heading}</h2>
+            <p class="max-w-2xl text-ink/80 leading-relaxed mb-12">{t.pageContent.events.intro}</p>
+        </div>
+
+        {events.length === 0 ? (
+            <div class="reveal base-card opacity-0 animate-fadeUp1 max-w-2xl">
+                <p class="entry-card-empty">{t.pageContent.events.comingSoon}</p>
+            </div>
+        ) : (
+            <div class="post-grid reveal">
+                {events.map((event, idx) => (
+                    <EntryCard
+                        title={event.title}
+                        description={event.description}
+                        href={event.href}
+                        meta={event.meta}
+                        class="animate-popIn"
+                        style={`animation-delay: ${0.1 * idx}s`}
+                    />
+                ))}
+            </div>
+        )}
+    </div>
+</div>

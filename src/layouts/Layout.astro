@@ -2,29 +2,31 @@
 import "../styles/global.css";
 import Footer from "../components/layout/Footer.astro";
 import Nav from "../components/layout/Nav.astro";
+
+const lang = Astro.currentLocale ?? "en";
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang={lang} class="scroll-smooth">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/svg+xml" href="/qneko_notext_logo_only.png" />
 		<link rel="icon" href="/favicon.ico" />
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 		 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css">
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>Q-Neko</title>
 	</head>
 	<body class="flex flex-col min-h-screen min-w-creen">
 		<div class="grid-bg"></div>
-		<Nav />
+		<Nav lang={lang} />
 		<main class="grow z-1 flex flex-col">
 			<slot />
 		</main>
-		<Footer />
+		<Footer lang={lang} />
 		<script>
 			// Scroll reveal
 			const observer = new IntersectionObserver(
@@ -41,7 +43,7 @@ import Nav from "../components/layout/Nav.astro";
 			document
 				.querySelectorAll(".reveal")
 				.forEach((el) => observer.observe(el));
-			
+
 		</script>
 	</body>
 </html>

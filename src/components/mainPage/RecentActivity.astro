@@ -1,0 +1,103 @@
+---
+import EntryCard from "../ui/EntryCard.astro";
+import { getCollection } from "astro:content";
+import { useTranslations } from "../../i18n/index";
+
+interface Props {
+  lang: string;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const base = lang === "ja" ? "/ja" : "";
+
+// List which sources feed this section. Remove an entry to hide it.
+// When events/results become content collections, add them here.
+const ENABLED_SOURCES = [
+  "news",
+  // "events",
+  // "results",
+] as const satisfies ReadonlyArray<"news" | "events" | "results">;
+
+const MAX_ITEMS = 4;
+
+type Entry = {
+  title: string;
+  description: string;
+  date: Date;
+  href: string;
+  meta: string;
+  tags: string[];
+  source: "news" | "events" | "results";
+};
+
+const all: Entry[] = [];
+
+if ((ENABLED_SOURCES as ReadonlyArray<string>).includes("news")) {
+  const posts = await getCollection("news");
+  for (const p of posts.filter(p => (p.data.lang ?? "en") === lang)) {
+    all.push({
+      title: p.data.title,
+      description: p.data.description,
+      date: p.data.date,
+      href: `${base}/news/${p.data.slug}`,
+      meta: p.data.type,
+      tags: p.data.tags ?? [],
+      source: "news",
+    });
+  }
+}
+
+// When events becomes a content collection, add a block like:
+// if ((ENABLED_SOURCES as ReadonlyArray<string>).includes("events")) {
+//   const items = await getCollection("events");
+//   for (const e of items.filter(e => (e.data.lang ?? "en") === lang)) {
+//     all.push({ title: e.data.title, description: e.data.description,
+//       date: e.data.date, href: `${base}/events/${e.data.slug}`,
+//       meta: e.data.type, tags: e.data.tags ?? [], source: "events" });
+//   }
+// }
+
+const recent = all
+  .sort((a, b) => b.date.getTime() - a.date.getTime())
+  .slice(0, MAX_ITEMS);
+
+const sourceViewAllHref: Record<"news" | "events" | "results", string> = {
+  news: `${base}/news`,
+  events: `${base}/events`,
+  results: `${base}/results`,
+};
+---
+
+{recent.length > 0 && (
+  <section class="default-bg">
+    <div class="default">
+      <div class="reveal recent-header">
+        <div>
+          <div class="section-label">{t.recentActivity.sectionLabel}</div>
+          <h2 class="section-h2">{t.recentActivity.heading}</h2>
+          <p class="max-w-2xl text-ink/80 leading-relaxed">{t.recentActivity.intro}</p>
+        </div>
+        <div class="recent-view-all-links">
+          {ENABLED_SOURCES.map(src => (
+            <a href={sourceViewAllHref[src]} class="recent-view-all">
+              {t.nav[src]} →
+            </a>
+          ))}
+        </div>
+      </div>
+      <div class="post-grid reveal mt-10">
+        {recent.map((item, idx) => (
+          <EntryCard
+            title={item.title}
+            description={item.description}
+            href={item.href}
+            meta={item.meta}
+            tags={item.tags}
+            class="animate-popIn"
+            style={`animation-delay: ${0.1 * idx}s`}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+)}

@@ -1,50 +1,55 @@
 ---
 import qnekoLogo from '../../assets/qneko_notext.png';
+import { useTranslations } from "../../i18n/index";
+
+interface Props {
+  lang: string;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const base = lang === "ja" ? "/ja" : "";
 ---
 
+ <!-- TODO: replace with actual content and add eurohpc etc acknowledgements etc -->
 <div>
 <footer>
     <div class="footer-content">
     <div class="footer-brand">
         <img src={qnekoLogo.src} alt="Q-Neko" />
-        <p>
-            The Nippon-Europe Quantum Koraborēshon - advancing
-            quantum-accelerated computing for a better society through trusted
-            EU-Japan collaboration.
-        </p>
+        <p>{t.footer.tagline}</p>
     </div>
     <div class="footer-col">
-        <h4>Project</h4>
+        <h4>{t.footer.projectCol}</h4>
         <ul>
-            <li><a href="#mission">Mission</a></li>
-            <li><a href="#applications">Applications</a></li>
-            <li><a href="#consortium">Consortium</a></li>
-            <li><a href="#timeline">Timeline</a></li>
+            <li><a href={`${base}/#mission`}>{t.footer.links.mission}</a></li>
+            <li><a href={`${base}/#applications`}>{t.footer.links.applications}</a></li>
+            <li><a href={`${base}/#consortium`}>{t.footer.links.consortium}</a></li>
+            <li><a href={`${base}/#timeline`}>{t.footer.links.timeline}</a></li>
         </ul>
     </div>
     <div class="footer-col">
-        <h4>Funding</h4>
+        <h4>{t.footer.fundingCol}</h4>
         <ul>
-            <li><a href="#">Horizon Europe</a></li>
-            <li><a href="#">EuroHPC JU</a></li>
-            <li><a href="#">Japan SIP</a></li>
-            <li><a href="#">EU-Japan Partnership</a></li>
+            <li><a href="#">{t.footer.links.horizonEurope}</a></li>
+            <li><a href="#">{t.footer.links.euroHPC}</a></li>
+            <li><a href="#">{t.footer.links.japanSIP}</a></li>
+            <li><a href="#">{t.footer.links.partnership}</a></li>
         </ul>
     </div>
     <div class="footer-col">
-        <h4>Contact</h4>
+        <h4>{t.footer.contactCol}</h4>
         <ul>
-            <li><a href="#">CSC Finland</a></li>
-            <li><a href="#">Media Inquiries</a></li>
-            <li><a href="#">Join the Network</a></li>
-            <li><a href="#">Newsletter</a></li>
+            <li><a href="#">{t.footer.links.csc}</a></li>
+            <li><a href="#">{t.footer.links.media}</a></li>
+            <li><a href="#">{t.footer.links.joinNetwork}</a></li>
+            <li><a href="#">{t.footer.links.newsletter}</a></li>
         </ul>
     </div>
     </div>
 </footer>
 <div class="footer-bottom">
-    <p>© 2026 Q-Neko Consortium · Nippon-Europe Quantum Koraborēshon</p>
+    <p>{t.footer.copyright}</p>
     <div class="footer-flags">🇪🇺 🇯🇵</div>
-    <p>Coordinated by CSC - IT Center for Science, Finland</p>
+    <p>{t.footer.coordinatedBy}</p>
 </div>
 <div/>

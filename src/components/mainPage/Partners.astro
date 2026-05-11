@@ -1,9 +1,15 @@
 ---
 import PartnerCard from "../ui/PartnerCard.astro";
-
 import { getCollection } from "astro:content";
-const partners = await getCollection("partners");
+import { useTranslations } from "../../i18n/index";
 
+interface Props {
+  lang: string;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const partners = await getCollection("partners");
 const partners_list = partners[0].data.partners;
 ---
 
@@ -11,9 +17,11 @@ const partners_list = partners[0].data.partners;
     <div class="consortium">
         <div class="consortium-header reveal">
             <div>
-                <div class="section-label">Partners</div>
+                <div class="section-label">{t.partners.sectionLabel}</div>
                 <h2 class="section-h2">
-                    16 Partners.<br />Two Continents.<br />One Vision.
+                    {t.partners.heading.split("\n").map((line, i, arr) => (
+                        <>{line}{i < arr.length - 1 && <br />}</>
+                    ))}
                 </h2>
             </div>
             <div class="consortium-count">16</div>

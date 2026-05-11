@@ -1,0 +1,12 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+import MediaPage from "../../components/pages/MediaPage.astro";
+import { useTranslations } from "../../i18n/index";
+
+const lang = Astro.currentLocale ?? "ja";
+const t = useTranslations(lang);
+---
+
+<PageLayout title={t.pages.media}>
+    <MediaPage lang={lang} />
+</PageLayout>

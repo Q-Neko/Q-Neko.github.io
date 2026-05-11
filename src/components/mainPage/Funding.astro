@@ -1,24 +1,24 @@
 ---
+import { useTranslations } from "../../i18n/index";
 
+interface Props {
+  lang: string;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <section class="funding-bg" id="funding">
     <div class="funding">
         <div class="funding-text reveal">
-            <div class="section-label">Funding &amp; Governance</div>
-            <h3>Open by Design.</h3>
-            <p>
-                Q-Neko is co-funded under Horizon Europe and the EuroHPC Joint
-                Undertaking on the European side, and Japan's Cross-ministerial
-                Strategic Innovation Promotion Program (SIP). It is the first
-                concrete outcome of the EU-Japan Letter of Intent on Quantum
-                Science and Technology, signed in May 2025.
-            </p>
+            <div class="section-label">{t.funding.sectionLabel}</div>
+            <h3>{t.funding.heading}</h3>
+            <p>{t.funding.body}</p>
         </div>
         <div class="funding-pills reveal">
-            <div class="pill">Horizon Europe</div>
-            <div class="pill">EuroHPC JU</div>
-            <div class="pill">Japan SIP</div>
+            <div class="pill">{t.funding.pill1}</div>
+            <div class="pill">{t.funding.pill2}</div>
+            <div class="pill">{t.funding.pill3}</div>
         </div>
     </div>
 </section>

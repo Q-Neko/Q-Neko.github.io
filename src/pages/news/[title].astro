@@ -4,9 +4,10 @@ import PageLayout from '../../layouts/PageLayout.astro';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('posts');
-  return posts.map(post => ({
-    params: { title: post.data.slug }, // or use post.slug if available
+  const posts = await getCollection('news');
+  const enPosts = posts.filter(p => (p.data.lang ?? "en") === "en");
+  return enPosts.map(post => ({
+    params: { title: post.data.slug },
     props: { post }
   }));
 }

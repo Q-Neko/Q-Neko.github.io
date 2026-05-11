@@ -1,0 +1,12 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import NewsletterPage from "../components/pages/NewsletterPage.astro";
+import { useTranslations } from "../i18n/index";
+
+const lang = Astro.currentLocale ?? "en";
+const t = useTranslations(lang);
+---
+
+<PageLayout title={t.pages.newsletter}>
+    <NewsletterPage lang={lang} />
+</PageLayout>

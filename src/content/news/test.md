@@ -6,6 +6,7 @@ description: "A test blog"
 author: "Q-Neko"
 type: "News"
 tags: ["test", "blog", "markdown"]
+lang: "en"
 ---
 
 # Test Blog Post
