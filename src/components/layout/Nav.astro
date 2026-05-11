@@ -1,22 +1,54 @@
 ---
 import qnekoLogo from "../../assets/qneko_nobg_notext.png";
 import { NavMobile } from "./NavMobile.jsx";
+import LanguageSwitcher from "./LanguageSwitcher.astro";
+import { useTranslations } from "../../i18n/index";
+
+interface Props {
+    lang: string;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const base = lang === "ja" ? "/ja" : "";
+
+const navLinks = [
+    { label: t.nav.results, href: `${base}/results` },
+    { label: t.nav.news, href: `${base}/news` },
+    { label: t.nav.events, href: `${base}/events` },
+    { label: t.nav.media, href: `${base}/media` },
+    { label: t.nav.newsletter, href: `${base}/newsletter` },
+    { label: t.nav.contact, href: `${base}/contact` },
+    { label: t.nav.search, href: `${base}/search` },
+];
+
+const currentPath = Astro.url.pathname;
+const isJa = currentPath.startsWith("/ja");
+const langSwitchHref = isJa
+    ? currentPath.replace(/^\/ja/, "") || "/"
+    : "/ja" + currentPath;
+const langSwitchLabel = t.langSwitch.label;
 ---
 
 <nav>
     <div class="nav-logo">
-        <a href="/">
-        <img src={qnekoLogo.src} alt="Q-Neko" />
+        <a href={`${base}/`}>
+            <img src={qnekoLogo.src} alt="Q-Neko" />
         </a>
     </div>
     <ul class="nav-links">
-        <li><a href="/mission">Mission</a></li>
-        <li><a href="/consortium">Consortium</a></li>
-        <li><a href="/quantum-computers">Quantum Computers</a></li>
-        <li><a href="/hpc">HPC</a></li>
-        <li><a href="/posts">Posts</a></li>
-        <li><a href="/search">Search</a></li>
+        {
+            navLinks.map(({ label, href }) => (
+                <li>
+                    <a href={href}>{label}</a>
+                </li>
+            ))
+        }
     </ul>
-    <NavMobile client:load/>
-    <!-- <a href="#consortium" class="nav-cta">Join the Network</a> -->
+    <span class="max-[1000px]:hidden"><LanguageSwitcher /></span>
+    <NavMobile
+        client:load
+        navLinks={navLinks}
+        langSwitchHref={langSwitchHref}
+        langSwitchLabel={langSwitchLabel}
+    />
 </nav>

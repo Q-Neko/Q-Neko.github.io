@@ -1,0 +1,27 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+import PostListPage from "../../components/pages/PostListPage.astro";
+import { getCollection } from "astro:content";
+import { useTranslations } from "../../i18n/index";
+
+export async function getStaticPaths({ paginate }: any) {
+    const posts = await getCollection("news");
+    const enPosts = posts.filter(p => (p.data.lang ?? "en") === "en");
+    return paginate(
+        enPosts.map((post) => ({
+            params: { title: post.data.slug },
+            props: { post },
+        })),
+        { pageSize: 2 },
+    );
+}
+
+import type { Page } from "astro";
+const { page } = Astro.props as { page: Page<{ [x: string]: any; post: any }> };
+const lang = Astro.currentLocale ?? "en";
+const t = useTranslations(lang);
+---
+
+<PageLayout title={t.pages.news}>
+    <PostListPage lang={lang} page={page} />
+</PageLayout>

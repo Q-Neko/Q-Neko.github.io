@@ -1,0 +1,12 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+import ResultsPage from "../../components/pages/ResultsPage.astro";
+import { useTranslations } from "../../i18n/index";
+
+const lang = Astro.currentLocale ?? "ja";
+const t = useTranslations(lang);
+---
+
+<PageLayout title={t.pages.results}>
+    <ResultsPage lang={lang} />
+</PageLayout>

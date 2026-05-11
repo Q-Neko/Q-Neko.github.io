@@ -629,16 +629,24 @@
   }
 
   /* QUANTUM COMPUTERS */
-  .qpus-bg {
+  .default-bg {
     @apply w-full bg-cream z-1 grow;
   }
 
-  .qpus {
+  .default {
     @apply max-w-[3000px] mx-auto px-16 py-28 pt-8;
   }
 
   .qpu-grid {
     @apply grid grid-cols-4 gap-6 pt-8;
+  }
+
+  .newsletter {
+    @apply max-w-[3000px] mx-auto px-16 py-28 pt-8;
+  }
+
+  .newsletter-input {
+    @apply opacity-0 animate-fadeUp1 flex gap-3 max-w-lg 
   }
 
   .base-card {
@@ -662,6 +670,32 @@
 
   .base-card h2 {
     @apply font-serif-en text-[1.4rem] text-ink leading-tight;
+  }
+
+  .entry-card {
+    @apply no-underline;
+  }
+
+  .entry-card-meta {
+    @apply font-mono text-[0.78rem] tracking-[0.18em] uppercase text-blue flex items-center gap-2;
+  }
+  .entry-card-meta::before {
+    content: '';
+    @apply w-4 h-px bg-blue shrink-0;
+  }
+
+  .entry-card-empty {
+    @apply font-sans text-base text-ink/40 italic;
+  }
+
+  .recent-header {
+    @apply flex flex-wrap items-end justify-between gap-6;
+  }
+  .recent-view-all-links {
+    @apply flex gap-6 pb-1;
+  }
+  .recent-view-all {
+    @apply font-mono text-sm tracking-wide text-blue no-underline opacity-70 hover:opacity-100 transition-opacity;
   }
 
   .base-card .partner-region {
@@ -779,13 +813,15 @@
     .qpu-grid         { @apply grid-cols-3; }
     .post-grid        { @apply grid-cols-2; }
     .posts             { @apply px-6 py-16; }
-    .qpus              { @apply px-6 py-16; }
+    .default              { @apply px-6 py-16; }
+    .newsletter        { @apply px-6 py-16; }
     .banner            { @apply px-6 pt-32 pb-16; }
   }
 
   @media (max-width: 600px) {
     .qpu-grid { @apply grid-cols-2; }
     .post-grid { @apply grid-cols-1; }
+    .newsletter-input { @apply flex flex-col }
   }
 
   @media (max-width: 400px) {

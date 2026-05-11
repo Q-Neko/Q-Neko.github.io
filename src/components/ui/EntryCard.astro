@@ -1,0 +1,40 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  href?: string;
+  tags?: string[];
+  meta?: string;
+  class?: string;
+  style?: string;
+}
+
+const {
+  title,
+  description,
+  href,
+  tags,
+  meta,
+  class: className = "",
+  style = "",
+} = Astro.props;
+
+const Tag = href ? "a" : "div";
+---
+
+<!-- TODO: Add an image field support to cards and display at the top of the card if available? For now, all cards will just be text-based. -->
+
+<!-- TODO: either a file prop that allows giving a pdf in which case clicking the card opens/downloads the pdf, or a link to a news md file that the opens the relevant page. -->
+<!-- TODO: could also split into multiple components, probably even should -->
+<Tag href={href} class={`base-card entry-card opacity-0 ${className}`} style={style}>
+    {meta && <div class="entry-card-meta">{meta}</div>}
+    <h2>{title}</h2>
+    {tags && tags.length > 0 && (
+        <div class="post-card-tags">
+            {tags.map((tag: string) => (
+                <span>{tag}</span>
+            ))}
+        </div>
+    )}
+    <p class="post-description">{description}</p>
+</Tag>

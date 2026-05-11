@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 
-export const NavMobile = () => {
+export const NavMobile = ({ navLinks, langSwitchHref, langSwitchLabel }) => {
     const [isOpen, setIsOpen] = useState(false);
     const navRef = useRef(null);
 
@@ -26,12 +26,10 @@ export const NavMobile = () => {
             </button>
             {isOpen && (
                 <div className="nav-menu overflow-auto max-h-[85vh]">
-                    <a href="/mission">Mission</a>
-                    <a href="/consortium">Consortium</a>
-                    <a href="/quantum-computers">Quantum Computers</a>
-                    <a href="/hpc">HPC</a>
-                    <a href="/posts">Posts</a>
-                    <a href="/search">Search</a>
+                    {navLinks.map(({ label, href }) => (
+                        <a key={href} href={href}>{label}</a>
+                    ))}
+                    <a href={langSwitchHref} className="lang-switch">{langSwitchLabel}</a>
                 </div>
             )}
         </div>

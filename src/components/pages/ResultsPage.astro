@@ -1,0 +1,45 @@
+---
+import EntryCard from "../ui/EntryCard.astro";
+import { useTranslations } from "../../i18n/index";
+
+interface Props {
+  lang: string;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+// TODO: replace with actual results data
+const results: { title: string; description: string; meta: string; href: string }[] = [];
+---
+
+<!-- TODO: maybe split into deliverables, publications, software, etc. sections on the same page? -->
+
+<!-- TODO: add filtering/sorting options -->
+<div class="default-bg">
+    <div class="default">
+        <div class="reveal">
+            <div class="section-label">{t.pageContent.results.sectionLabel}</div>
+            <h2 class="section-h2">{t.pageContent.results.heading}</h2>
+            <p class="max-w-2xl text-ink/80 leading-relaxed mb-12">{t.pageContent.results.intro}</p>
+        </div>
+
+        {results.length === 0 ? (
+            <div class="reveal base-card opacity-0 animate-fadeUp1 max-w-2xl">
+                <p class="entry-card-empty">{t.pageContent.results.comingSoon}</p>
+            </div>
+        ) : (
+            <div class="post-grid reveal">
+                {results.map((result, idx) => (
+                    <EntryCard
+                        title={result.title}
+                        description={result.description}
+                        href={result.href}
+                        meta={result.meta}
+                        class="animate-popIn"
+                        style={`animation-delay: ${0.1 * idx}s`}
+                    />
+                ))}
+            </div>
+        )}
+    </div>
+</div>

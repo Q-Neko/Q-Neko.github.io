@@ -1,0 +1,71 @@
+---
+import EntryCard from "../ui/EntryCard.astro";
+import { useTranslations } from "../../i18n/index";
+import type { Page } from "astro";
+
+interface Props {
+  lang: string;
+  page: Page<{ [x: string]: any; post: any }>;
+}
+const { lang, page } = Astro.props;
+const t = useTranslations(lang);
+const base = lang === "ja" ? "/ja" : "";
+
+const posts = page?.data ?? [];
+const isEmpty = posts.length === 0;
+---
+
+<div class="default-bg">
+    <div class="default" id="news">
+        <div class="reveal">
+            <div class="section-label">{t.news.sectionLabel}</div>
+            <h2 class="section-h2">{t.news.heading}</h2>
+            <p class="max-w-2xl text-ink/80 leading-relaxed mb-12">{t.news.pageIntro}</p>
+        </div>
+
+        {isEmpty ? (
+            <div class="reveal base-card opacity-0 animate-fadeUp1 max-w-2xl">
+                <p class="entry-card-empty">{t.news.comingSoon}</p>
+            </div>
+        ) : (
+            <div>
+                <div class="post-grid reveal">
+                    {posts.map((post, idx) => (
+                        <EntryCard
+                            title={post.props.post.data.title}
+                            description={post.props.post.data.description}
+                            href={`${base}/news/${post.props.post.data.slug}`}
+                            tags={post.props.post.data.tags}
+                            meta={post.props.post.data.type}
+                            class="animate-popIn"
+                            style={`animation-delay: ${0.1 * idx}s`}
+                        />
+                    ))}
+                </div>
+                <div class="pagination">
+                    {page.url.first ? (
+                        <a class="max-[400px]:hidden" href={page.url.first + "/#news"}>{t.news.pagination.first}</a>
+                    ) : (
+                        <a class="disabled max-[400px]:hidden">{t.news.pagination.first}</a>
+                    )}
+                    {page.url.prev ? (
+                        <a href={page.url.prev + "/#news"}>{t.news.pagination.previous}</a>
+                    ) : (
+                        <a class="disabled">{t.news.pagination.previous}</a>
+                    )}
+                    <p>Page {page.currentPage} of {page.lastPage}</p>
+                    {page.url.next ? (
+                        <a href={page.url.next + "/#news"}>{t.news.pagination.next}</a>
+                    ) : (
+                        <a class="disabled">{t.news.pagination.next}</a>
+                    )}
+                    {page.url.last ? (
+                        <a class="max-[400px]:hidden" href={page.url.last + "/#news"}>{t.news.pagination.last}</a>
+                    ) : (
+                        <a class="disabled max-[400px]:hidden">{t.news.pagination.last}</a>
+                    )}
+                </div>
+            </div>
+        )}
+    </div>
+</div>

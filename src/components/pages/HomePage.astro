@@ -1,0 +1,20 @@
+---
+import Hero from "../mainPage/Hero.astro";
+import Mission from "../mainPage/Mission.astro";
+import Partners from "../mainPage/Partners.astro";
+import Funding from "../mainPage/Funding.astro";
+import RecentActivity from "../mainPage/RecentActivity.astro";
+import Newsletter from "../layout/Newsletter.astro";
+
+interface Props {
+  lang: string;
+}
+const { lang } = Astro.props;
+---
+
+<Hero lang={lang} />
+<RecentActivity lang={lang} />
+<Mission lang={lang} />
+<Partners lang={lang} />
+<Funding lang={lang} />
+<Newsletter lang={lang} />

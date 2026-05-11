@@ -1,0 +1,20 @@
+---
+import { useTranslations } from "../../i18n/index";
+
+const lang = Astro.currentLocale ?? "en";
+const t = useTranslations(lang);
+
+const currentPath = Astro.url.pathname;
+const isJa = currentPath.startsWith("/ja");
+
+let alternatePath: string;
+if (isJa) {
+  alternatePath = currentPath.replace(/^\/ja/, "") || "/";
+} else {
+  alternatePath = "/ja" + currentPath;
+}
+---
+
+<a href={alternatePath} class="lang-switch" aria-label="Switch language">
+  {t.langSwitch.label}
+</a>
