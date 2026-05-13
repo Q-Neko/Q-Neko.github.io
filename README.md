@@ -5,6 +5,9 @@
 
 The public website for the Q-Neko project (Nippon-Europe Quantum Koraborēshon) — a Horizon Europe / EuroHPC JU / Japan SIP funded collaboration advancing hybrid HPC+AI+QC.
 
+<img width="1200" height="691" alt="image" src="https://github.com/user-attachments/assets/417c8a25-227c-4c6d-9da9-d38f52ab664f" />
+
+
 Built with [Astro 6](https://astro.build), Tailwind CSS v4, React, and Pagefind for static search.
 
 ## Quick start
