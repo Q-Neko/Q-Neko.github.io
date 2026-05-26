@@ -6,6 +6,13 @@ interface Props {
 }
 const { lang } = Astro.props;
 const t = useTranslations(lang);
+
+const tabs = [
+    { key: "communication_materials", label: t.pageContent.media.tabs.communicationMaterials },
+    { key: "press_releases", label: t.pageContent.media.tabs.pressReleases },
+    { key: "clipping", label: t.pageContent.media.tabs.clipping },
+] as const;
+
 ---
 
 <div class="default-bg">
@@ -13,13 +20,64 @@ const t = useTranslations(lang);
         <div class="reveal">
             <div class="section-label">{t.pageContent.media.sectionLabel}</div>
             <h2 class="section-h2">{t.pageContent.media.heading}</h2>
-            <p class="max-w-2xl text-ink/80 leading-relaxed mb-12">{t.pageContent.media.intro}</p>
+            <p class="max-w-2xl text-ink/80 leading-relaxed mb-6">{t.pageContent.media.intro}</p>
         </div>
-        <div class="reveal base-card opacity-0 animate-fadeUp1 max-w-sm">
+
+        <div class="reveal base-card opacity-0 animate-fadeUp1 max-w-sm mb-12">
             <div class="section-label">{t.pageContent.media.pressLabel}</div>
             <a href={`mailto:${t.pageContent.media.pressEmail}`} class="font-mono text-blue hover:underline">
                 {t.pageContent.media.pressEmail}
             </a>
         </div>
+        
+        <div class="events-tabs reveal" data-tabs role="tablist">
+            {tabs.map((tab, i) => (
+                <button
+                    class={`events-tab ${i === 0 ? "active" : ""}`}
+                    data-tab-target={tab.key}
+                    role="tab"
+                    aria-selected={i === 0 ? "true" : "false"}
+                    type="button"
+                >
+                    {tab.label}
+                </button>
+            ))}
+        </div>
+
+        <section data-tab="communication_materials" role="tabpanel">
+            <div class="reveal base-card opacity-0 animate-fadeUp1 max-w-2xl">
+                <p class="entry-card-empty">{t.pageContent.media.comingSoonCommunicationMaterials}</p>
+            </div>
+        </section>
+
+        <section data-tab="press_releases" class="pagination-hidden" role="tabpanel">
+            <div class="reveal base-card opacity-0 animate-fadeUp1 max-w-2xl">
+                <p class="entry-card-empty">{t.pageContent.media.comingSoonPressReleases}</p>
+            </div>
+        </section>
+
+        <section data-tab="clipping" class="pagination-hidden" role="tabpanel">
+            <div class="reveal base-card opacity-0 animate-fadeUp1 max-w-2xl">
+                <p class="entry-card-empty">{t.pageContent.media.comingSoonClipping}</p>
+            </div>
+        </section>
     </div>
 </div>
+
+<script>
+    document.querySelectorAll<HTMLElement>("[data-tabs]").forEach(tabsEl => {
+        tabsEl.addEventListener("click", (e) => {
+            const btn = (e.target as HTMLElement).closest<HTMLElement>("[data-tab-target]");
+            if (!btn) return;
+            const target = btn.dataset.tabTarget!;
+            tabsEl.querySelectorAll<HTMLElement>("[data-tab-target]").forEach(b => {
+                const active = b.dataset.tabTarget === target;
+                b.classList.toggle("active", active);
+                b.setAttribute("aria-selected", active ? "true" : "false");
+            });
+            document.querySelectorAll<HTMLElement>("[data-tab]").forEach(s => {
+                s.classList.toggle("pagination-hidden", s.dataset.tab !== target);
+            });
+        });
+    });
+</script>

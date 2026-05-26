@@ -148,11 +148,19 @@ export const ja: Translations = {
       },
     },
     media: {
-      sectionLabel: "Media",
-      heading: "News & Press",
-      intro: "Press releases, news articles, and media coverage related to Q-Neko. For media inquiries, please contact our communications team.",
+      sectionLabel: "Media Corner",
+      heading: "Media Corner",
+      intro: "Welcome to the Q-Neko Media Corner. Here you can find official communication materials, press releases, and media coverage related to the Q-Neko project.",
       pressLabel: "Press contact",
       pressEmail: "communications@q-neko.eu", //TODO: replace with actual email address
+      tabs: {
+        communicationMaterials: "広報資料",
+        pressReleases: "プレスリリース",
+        clipping: "メディア掲載",
+      },
+      comingSoonCommunicationMaterials: "広報資料は準備が整い次第こちらに掲載されます。",
+      comingSoonPressReleases: "プレスリリースは準備が整い次第こちらに掲載されます。",
+      comingSoonClipping: "メディア掲載は準備が整い次第こちらに掲載されます。",
     },
     newsletter: {
       sectionLabel: "Newsletter",

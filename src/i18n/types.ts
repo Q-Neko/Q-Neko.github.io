@@ -125,6 +125,14 @@ export interface Translations {
       intro: string;
       pressLabel: string;
       pressEmail: string;
+      tabs: {
+        communicationMaterials: string;
+        pressReleases: string;
+        clipping: string;
+      };
+      comingSoonCommunicationMaterials: string;
+      comingSoonPressReleases: string;
+      comingSoonClipping: string;
     };
     newsletter: {
       sectionLabel: string;
