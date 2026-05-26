@@ -3,7 +3,7 @@ import { useTranslations } from "../../i18n/index";
 import { NewsletterFormCard } from "../ui/NewsletterFormCard";
 
 interface Props {
-  lang: string;
+    lang: string;
 }
 const { lang } = Astro.props;
 const t = useTranslations(lang);
@@ -13,12 +13,24 @@ const t = useTranslations(lang);
 <div class="default-bg">
     <div class="newsletter">
         <div class="">
-            <div class="section-label">{t.pageContent.newsletter.sectionLabel}</div>
+            <div class="section-label">
+                {t.pageContent.newsletter.sectionLabel}
+            </div>
             <h2 class="section-h2">{t.pageContent.newsletter.heading}</h2>
-            <p class="max-w-2xl text-ink/80 leading-relaxed mb-12">{t.pageContent.newsletter.intro}</p>
+            <p class="max-w-2xl text-ink/80 leading-relaxed mb-12">
+                {t.pageContent.newsletter.intro}
+            </p>
         </div>
-        
-            <NewsletterFormCard t={t} client:load />
 
+        <NewsletterFormCard t={t} client:load />
+
+        <div class="mt-12">
+            <h3 class="h3-label">Previous Newsletters</h3>
+            <div class="reveal base-card opacity-0 animate-fadeUp1 max-w-2xl">
+            <p class="entry-card-empty">
+                Previous newsletters will appera here as they become available.
+            </p>
+        </div>
     </div>
+        </div>
 </div>

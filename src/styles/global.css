@@ -477,6 +477,10 @@
            wrap-anywhere;
   }
 
+  .h3-label {
+    @apply font-serif-en text-[2.2rem] text-ink mb-3;
+  }
+
   /* BANNER */
   .banner-bg {
     @apply w-full bg-transparent 
@@ -726,7 +730,7 @@
   }
 
   .form-input {
-    @apply w-full grow px-4 py-3 border border-ink/20 rounded-lg bg-white font-mono text-sm;
+    @apply w-full grow px-4 py-3 border border-ink/20  bg-white font-mono text-sm;
   }
 
   .form-input:focus {
