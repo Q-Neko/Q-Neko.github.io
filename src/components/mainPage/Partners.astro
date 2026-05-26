@@ -28,13 +28,14 @@ const partners_list = partners[0].data.partners;
         </div>
         <div class="partner-grid reveal">
             {
-                partners_list.map((partner: { name: string; country: string; region: string; long_name: string; }) => (
+                partners_list.map((partner: { name: string; country: string; region: string; long_name: string; logo?: string; }) => (
                     <PartnerCard
                         key={partner.name}
                         country={partner.country}
                         region={partner.region}
                         name={partner.name}
                         long_name={partner?.long_name || partner.name}
+                        logo={partner.logo}
                     />
                 ))
             }

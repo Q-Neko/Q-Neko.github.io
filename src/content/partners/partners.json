@@ -4,97 +4,113 @@
             "country": "Finland",
             "region": "EU",
             "name": "CSC",
-            "long_name": "CSC - IT Center for Science"
+            "long_name": "CSC - IT Center for Science",
+            "logo": "/logos/Roll-up-logos/csc_se.svg"
         },
         {
             "country": "Finland",
             "region": "EU",
             "name": "IQM",
-            "long_name": "IQM Quantum Computers."
+            "long_name": "IQM Quantum Computers.",
+            "logo": "/logos/Roll-up-logos/IQM.svg"
         },
         {
             "country": "Germany",
             "region": "EU",
             "name": "Forschungszentrum Jülich",
-            "long_name": "JSC - Forschungszentrum Jülich"
+            "long_name": "JSC - Forschungszentrum Jülich",
+            "logo": "/logos/Roll-up-logos/Logo_FZJ_se.svg"
         },
         {
             "country": "Germany",
             "region": "EU",
             "name": "DLR",
-            "long_name": "The German Aerospace Center."
+            "long_name": "The German Aerospace Center.",
+            "logo": "/logos/Roll-up-logos/DLR.svg"
         },
         {
             "country": "France",
             "region": "EU",
             "name": "CEA",
-            "long_name": "Commissariat à l'énergie atomique et aux énergies alternatives."
+            "long_name": "Commissariat à l'énergie atomique et aux énergies alternatives.",
+            "logo": "/logos/Roll-up-logos/CEA.svg"
         },
         {
             "country": "France",
             "region": "EU",
             "name": "Thales",
-            "long_name": "Thales"
+            "long_name": "Thales",
+            "logo": "/logos/Roll-up-logos/Thales.svg"
         },
         {
             "country": "Japan",
             "region": "JP",
             "name": "Jij",
-            "long_name": "Jij Japan"
+            "long_name": "Jij Japan",
+            "logo": "/logos/Roll-up-logos/JIJ_ol-01se.svg"
         },
         {
             "country": "France",
             "region": "EU",
             "name": "LNE",
-            "long_name": "The French National Laboratory of Metrology and Testing"
+            "long_name": "The French National Laboratory of Metrology and Testing",
+            "logo": "/logos/Roll-up-logos/LNE_se.svg"
         },
         {
             "country": "Czech Republic",
             "region": "EU",
             "name": "IT4I@VSB",
-            "long_name": "VSB - Technical University of Ostrava, IT4Innovations National Supercomputing Center"
+            "long_name": "VSB - Technical University of Ostrava, IT4Innovations National Supercomputing Center",
+            "logo": "/logos/Roll-up-logos/IT4I_logo.svg"
         },
         {
             "country": "Japan",
             "region": "JP",
             "name": "QunaSys",
-            "long_name": "QunaSys Japan"
+            "long_name": "QunaSys Japan",
+            "logo": "/logos/Roll-up-logos/QunaSys_light.svg"
         },
         {
             "country": "Finland",
             "region": "EU",
             "name": "Aalto University",
-            "long_name": "Aalto University"
+            "long_name": "Aalto University",
+            "logo": "/logos/Roll-up-logos/Aalto_se.svg"
         },
         {
             "country": "Japan",
             "region": "JP",
             "name": "AIST",
-            "long_name": "Japan's National Institute of Advanced Industrial Science and Technology"
+            "long_name": "Japan's National Institute of Advanced Industrial Science and Technology",
+            "logo": "/logos/Roll-up-logos/aist_logo_en_t_se.svg"
         },
         {
             "country": "Japan",
             "region": "JP",
             "name": "Chodai",
-            "long_name": "Chodai Co."
+            "long_name": "Chodai Co.",
+            "logo": "/logos/Roll-up-logos/Chodai.svg"
         },
         {
             "country": "Japan",
             "region": "JP",
             "name": "KDDI ",
-            "long_name": "KDDI Research, Inc."
+            "long_name": "KDDI Research, Inc.",
+            "logo": "/logos/Roll-up-logos/KDDI.svg"
         },
         {
             "country": "United Kingdom",
             "region": "EU",
             "name": "Jij",
-            "long_name": "Jij Europe"
+            "long_name": "Jij Europe",
+            "logo": "/logos/Roll-up-logos/JIJ_ol-01se.svg"
         },
         {
             "country": "Denmark",
             "region": "EU",
             "name": "QunaSys",
-            "long_name": "QunaSys Denmark"
+            "long_name": "QunaSys Denmark",
+            "logo": "/logos/Roll-up-logos/QunaSys_light.svg"
         }
     ]
 }
