@@ -1,18 +1,20 @@
 ---
 import EntryCard from "../ui/EntryCard.astro";
+import Pagination from "../ui/Pagination.astro";
 import { useTranslations } from "../../i18n/index";
-import type { Page } from "astro";
+import type { CollectionEntry } from "astro:content";
 
 interface Props {
   lang: string;
-  page: Page<{ [x: string]: any; post: any }>;
+  posts: CollectionEntry<"news">[];
 }
-const { lang, page } = Astro.props;
+const { lang, posts } = Astro.props;
 const t = useTranslations(lang);
 const base = lang === "ja" ? "/ja" : "";
 
-const posts = page?.data ?? [];
+const PAGE_SIZE = 6;
 const isEmpty = posts.length === 0;
+const gridId = "news-grid";
 ---
 
 <div class="default-bg">
@@ -29,43 +31,29 @@ const isEmpty = posts.length === 0;
             </div>
         ) : (
             <div>
-                <div class="post-grid reveal">
+                <div id={gridId} class="post-grid reveal">
                     {posts.map((post, idx) => (
                         <EntryCard
-                            title={post.props.post.data.title}
-                            description={post.props.post.data.description}
-                            href={`${base}/news/${post.props.post.data.slug}`}
-                            tags={post.props.post.data.tags}
-                            meta={post.props.post.data.type}
-                            image={post.props.post.data.image}
+                            title={post.data.title}
+                            description={post.data.description}
+                            href={`${base}/news/${post.data.slug}`}
+                            tags={post.data.tags}
+                            meta={post.data.type}
+                            image={post.data.image}
+                            date={post.data.date}
                             class="animate-popIn"
-                            style={`animation-delay: ${0.1 * idx}s`}
+                            style={`animation-delay: ${0.1 * (idx % PAGE_SIZE)}s`}
                         />
                     ))}
                 </div>
-                <div class="pagination">
-                    {page.url.first ? (
-                        <a class="max-[400px]:hidden" href={page.url.first + "/#news"}>{t.news.pagination.first}</a>
-                    ) : (
-                        <a class="disabled max-[400px]:hidden">{t.news.pagination.first}</a>
-                    )}
-                    {page.url.prev ? (
-                        <a href={page.url.prev + "/#news"}>{t.news.pagination.previous}</a>
-                    ) : (
-                        <a class="disabled">{t.news.pagination.previous}</a>
-                    )}
-                    <p>Page {page.currentPage} of {page.lastPage}</p>
-                    {page.url.next ? (
-                        <a href={page.url.next + "/#news"}>{t.news.pagination.next}</a>
-                    ) : (
-                        <a class="disabled">{t.news.pagination.next}</a>
-                    )}
-                    {page.url.last ? (
-                        <a class="max-[400px]:hidden" href={page.url.last + "/#news"}>{t.news.pagination.last}</a>
-                    ) : (
-                        <a class="disabled max-[400px]:hidden">{t.news.pagination.last}</a>
-                    )}
-                </div>
+                {posts.length > PAGE_SIZE && (
+                    <Pagination
+                        containerId={gridId}
+                        paginationId="news"
+                        pageSize={PAGE_SIZE}
+                        labels={{ ...t.pagination }}
+                    />
+                )}
             </div>
         )}
     </div>

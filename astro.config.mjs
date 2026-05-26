@@ -36,11 +36,6 @@ export default defineConfig({
     },
   },
 
-  redirects: {
-    "/news": "/news/1",
-    "/ja/news": "/ja/news/1",
-  },
-
   vite: {
     plugins: [tailwindcss()]
   }

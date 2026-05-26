@@ -23,7 +23,7 @@ export const ja: Translations = {
       "Q-Neko unites Europe and Japan's leading research and industry partners to develop the next generation of quantum-enhanced computing solutions - bridging supercomputing with quantum acceleration for real societal impact.",
     exploreCta: "Explore the Project",
     partnersCta: "Our Partners",
-    postsCta: "News",
+    postsCta: "Recents",
   },
   mission: {
     sectionLabel: "Our Mission",
@@ -96,12 +96,13 @@ export const ja: Translations = {
     pageIntro:
       "Updates on our research, insights into quantum computing, and news from the Q-Neko consortium. Stay tuned for the latest developments.",
     comingSoon: "News will appear here as the project advances.",
-    pagination: {
-      first: "First",
-      previous: "Previous",
-      next: "Next",
-      last: "Last",
-    },
+  },
+  pagination: {
+    first: "First",
+    previous: "Previous",
+    next: "Next",
+    last: "Last",
+    pageOf: "Page {current} of {last}",
   },
   pages: {
     quantumComputers: "Quantum Computers",
@@ -133,8 +134,18 @@ export const ja: Translations = {
     results: {
       sectionLabel: "Results",
       heading: "Publications & Deliverables",
-      intro: "Scientific publications, project deliverables, and open datasets produced by the Q-Neko consortium will be listed here as the project progresses.",
+      intro: "Here you can find project deliverables, publications, reports, presentations, and other public materials produced throughout the project lifecycle.",
       comingSoon: "Results will be published here as the project advances.",
+      filterLabel: "Filter by type",
+      filters: {
+        all: "All",
+        deliverable: "Deliverable",
+        milestone: "Milestone",
+        publication: "Publication",
+        software: "Software",
+        presentation: "Presentation",
+        poster: "Poster",
+      },
     },
     media: {
       sectionLabel: "Media",
@@ -157,12 +168,27 @@ export const ja: Translations = {
       coordinator: "CSC – IT Center for Science, Finland",
       emailLabel: "Email",
       email: "info@q-neko.eu", //TODO: replace with actual email address
+      form: {
+        nameLabel: "名前",
+        emailLabel: "メールアドレス",
+        messageLabel: "メッセージ",
+        submitCta: "メッセージを送信",
+        privacyPolicyLabel: "プライバシーポリシー",
+        privacyPolicyLink: "/privacy-policy",
+        privacyPolicyText: "私は同意します",
+        privacyPolicyLinkText: "プライバシーポリシー",
+      },
     },
     events: {
       sectionLabel: "Events",
       heading: "Workshops & Conferences",
-      intro: "Q-Neko organises and participates in workshops, conferences, and community events to foster collaboration between European and Japanese quantum communities. Upcoming and past events will be listed here.",
-      comingSoon: "Upcoming events will appear here.",
+      intro: "Q-Neko organises and participates in workshops, conferences, and community events to foster collaboration between European and Japanese quantum communities.",
+      comingSoonUpcoming: "Upcoming events will appear here.",
+      comingSoonPast: "Past events will appear here.",
+      tabs: {
+        upcoming: "Upcoming",
+        past: "Past",
+      },
     },
   },
 };

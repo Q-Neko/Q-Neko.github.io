@@ -11,10 +11,9 @@ const t = useTranslations(lang);
 const base = lang === "ja" ? "/ja" : "";
 
 // List which sources feed this section. Remove an entry to hide it.
-// When events/results become content collections, add them here.
 const ENABLED_SOURCES = [
   "news",
-  // "events",
+  "events",
   // "results",
 ] as const satisfies ReadonlyArray<"news" | "events" | "results">;
 
@@ -24,6 +23,7 @@ type Entry = {
   title: string;
   description: string;
   date: Date;
+  endDate?: Date;
   href: string;
   meta: string;
   tags: string[];
@@ -33,9 +33,11 @@ type Entry = {
 
 const all: Entry[] = [];
 
+const langPrefix = `${lang}/`;
+
 if ((ENABLED_SOURCES as ReadonlyArray<string>).includes("news")) {
   const posts = await getCollection("news");
-  for (const p of posts.filter(p => (p.data.lang ?? "en") === lang)) {
+  for (const p of posts.filter(p => p.id.startsWith(langPrefix))) {
     all.push({
       title: p.data.title,
       description: p.data.description,
@@ -49,15 +51,22 @@ if ((ENABLED_SOURCES as ReadonlyArray<string>).includes("news")) {
   }
 }
 
-// When events becomes a content collection, add a block like:
-// if ((ENABLED_SOURCES as ReadonlyArray<string>).includes("events")) {
-//   const items = await getCollection("events");
-//   for (const e of items.filter(e => (e.data.lang ?? "en") === lang)) {
-//     all.push({ title: e.data.title, description: e.data.description,
-//       date: e.data.date, href: `${base}/events/${e.data.slug}`,
-//       meta: e.data.type, tags: e.data.tags ?? [], source: "events" });
-//   }
-// }
+if ((ENABLED_SOURCES as ReadonlyArray<string>).includes("events")) {
+  const events = await getCollection("events");
+  for (const e of events.filter(e => e.id.startsWith(langPrefix))) {
+    all.push({
+      title: e.data.title,
+      description: e.data.description,
+      date: e.data.startDate,
+      endDate: e.data.endDate,
+      href: `${base}/events/${e.data.slug}`,
+      meta: e.data.location ?? "",
+      tags: [],
+      image: e.data.image,
+      source: "events",
+    });
+  }
+}
 
 const recent = all
   .sort((a, b) => b.date.getTime() - a.date.getTime())
@@ -71,7 +80,7 @@ const sourceViewAllHref: Record<"news" | "events" | "results", string> = {
 ---
 
 {recent.length > 0 && (
-  <section class="default-bg">
+  <section id="recent-activity" class="default-bg">
     <div class="default">
       <div class="reveal recent-header">
         <div>
@@ -81,8 +90,8 @@ const sourceViewAllHref: Record<"news" | "events" | "results", string> = {
         </div>
         <div class="recent-view-all-links">
           {ENABLED_SOURCES.map(src => (
-            <a href={sourceViewAllHref[src]} class="recent-view-all">
-              {t.nav[src]} →
+            <a href={sourceViewAllHref[src]} class="btn-secondary recent-view-all">
+              {t.nav[src]} <span aria-hidden="true"></span>
             </a>
           ))}
         </div>
@@ -96,6 +105,8 @@ const sourceViewAllHref: Record<"news" | "events" | "results", string> = {
             meta={item.meta}
             tags={item.tags}
             image={item.image}
+            date={item.date}
+            endDate={item.endDate}
             class="animate-popIn"
             style={`animation-delay: ${0.1 * idx}s`}
           />

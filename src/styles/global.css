@@ -541,7 +541,7 @@
   }
 
   .post-content {
-    @apply max-w-[720px] mx-auto px-16 pb-24 font-sans text-[1.05rem] leading-[1.85] text-ink;
+    @apply max-w-[1500px] mx-auto px-16 pb-24 font-sans text-[1.05rem] leading-[1.85] text-ink;
   }
 
   .post-content h1 {
@@ -644,8 +644,57 @@
     @apply bg-blue-lt/30;
   }
 
+  .results-filters {
+    @apply flex flex-wrap items-center gap-x-6 gap-y-3 mb-10;
+  }
+  .results-filters-label {
+    @apply font-mono text-[0.75rem] tracking-[0.18em] uppercase text-ink/60;
+  }
+  .results-filters-chips {
+    @apply flex flex-wrap gap-2;
+  }
+  .chip {
+    @apply font-mono text-[0.75rem] tracking-[0.15em] uppercase text-ink/70
+           px-3 py-1.5 border border-blue/20 rounded-full
+           bg-transparent cursor-pointer appearance-none
+           transition-colors;
+  }
+  .chip:hover {
+    @apply border-blue/40 text-blue;
+  }
+  .chip.active {
+    @apply bg-crimson text-white border-crimson;
+  }
+
+  .results-empty-state {
+    @apply font-sans text-base text-ink/40 italic p-8 text-center;
+  }
+
+  .events-tabs {
+    @apply flex gap-2 mb-10 border-b border-blue/15;
+  }
+
+  .events-tab {
+    @apply font-mono text-[0.8rem] tracking-[0.15em] uppercase text-ink/60 no-underline
+           px-4 py-3 border-b-2 border-transparent -mb-px transition-colors
+           bg-transparent cursor-pointer appearance-none;
+  }
+
+  .events-tab:hover {
+    @apply text-blue;
+  }
+
+  .events-tab.active {
+    @apply text-crimson border-crimson;
+  }
+
   .pagination {
     @apply mt-12 flex justify-center gap-6;
+  }
+
+  .pagination-hidden,
+  .filter-hidden {
+    display: none !important;
   }
 
   .pagination p {
@@ -669,6 +718,27 @@
 
   .default {
     @apply max-w-[3000px] mx-auto px-16 py-28 pt-8;
+  }
+
+  .form-label {
+    @apply font-mono text-[0.88rem] tracking-[0.2em] uppercase text-crimson
+           flex items-center gap-3 mb-2;
+  }
+
+  .form-input {
+    @apply w-full grow px-4 py-3 border border-ink/20 rounded-lg bg-white font-mono text-sm;
+  }
+
+  .form-input:focus {
+    @apply border-blue;
+  }
+
+  .form-checkbox {
+    @apply w-5 h-5 text-blue border-ink/20 rounded-lg focus:ring-blue focus:ring-2;
+  }
+
+  .fomr-error {
+    @apply text-crimson text-sm mt-1;
   }
 
   .newsletter {
@@ -742,10 +812,16 @@
     @apply flex flex-wrap items-end justify-between gap-6;
   }
   .recent-view-all-links {
-    @apply flex gap-6 pb-1;
+    @apply flex flex-wrap gap-3;
   }
   .recent-view-all {
-    @apply font-mono text-sm tracking-wide text-blue no-underline opacity-70 hover:opacity-100 transition-opacity;
+    @apply inline-flex items-center gap-2;
+  }
+  .recent-view-all span {
+    @apply transition-transform duration-200;
+  }
+  .recent-view-all:hover span {
+    @apply translate-x-1;
   }
 
   .base-card .partner-region {

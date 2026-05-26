@@ -68,12 +68,13 @@ export interface Translations {
     heading: string;
     pageIntro: string;
     comingSoon: string;
-    pagination: {
-      first: string;
-      previous: string;
-      next: string;
-      last: string;
-    };
+  };
+  pagination: {
+    first: string;
+    previous: string;
+    next: string;
+    last: string;
+    pageOf: string;
   };
   pages: {
     quantumComputers: string;
@@ -107,6 +108,16 @@ export interface Translations {
       heading: string;
       intro: string;
       comingSoon: string;
+      filterLabel: string;
+      filters: {
+        all: string;
+        deliverable: string;
+        milestone: string;
+        publication: string;
+        software: string;
+        presentation: string;
+        poster: string;
+      };
     };
     media: {
       sectionLabel: string;
@@ -129,12 +140,27 @@ export interface Translations {
       coordinator: string;
       emailLabel: string;
       email: string;
+      form: {
+        nameLabel: string;
+        emailLabel: string;
+        messageLabel: string;
+        submitCta: string;
+        privacyPolicyLabel: string;
+        privacyPolicyLink: string;
+        privacyPolicyLinkText: string;
+        privacyPolicyText: string;
+      };
     };
     events: {
       sectionLabel: string;
       heading: string;
       intro: string;
-      comingSoon: string;
+      comingSoonUpcoming: string;
+      comingSoonPast: string;
+      tabs: {
+        upcoming: string;
+        past: string;
+      };
     };
   };
 }

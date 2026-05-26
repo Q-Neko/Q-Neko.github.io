@@ -1,0 +1,29 @@
+---
+const { event } = Astro.props;
+
+import { render } from "astro:content";
+
+const { Content } = await render(event);
+
+const fmt = (d: string | Date) =>
+    new Date(d).toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric" });
+
+const dateStr = event.data.startDate
+    ? event.data.endDate && new Date(event.data.endDate).getTime() !== new Date(event.data.startDate).getTime()
+        ? `${fmt(event.data.startDate)} – ${fmt(event.data.endDate)}`
+        : fmt(event.data.startDate)
+    : null;
+---
+
+<div class="posts-bg">
+    <div class="post-content">
+        <div class="post-meta">
+            <div class="post-meta-info">
+                {dateStr && <span class="post-meta-date">{dateStr}</span>}
+                {event.data.location && <span class="post-meta-sep">|</span>}
+                {event.data.location && <span class="post-meta-author">{event.data.location}</span>}
+            </div>
+        </div>
+        <Content />
+    </div>
+</div>

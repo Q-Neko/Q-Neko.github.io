@@ -8,11 +8,17 @@ import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
 // 4. Define a `loader` and `schema` for each collection
+//
+// Language is encoded in the directory: each collection has `en/` and `ja/`
+// subdirectories, e.g. `src/content/news/en/foo.md`. Routes filter entries by
+// `entry.id` starting with `"en/"` or `"ja/"` — no `lang` frontmatter needed.
 
-//TODO: Right now language decided by the lang field in frontmatter. However maybe would be smarter to separate content 
-// by language into different folders (e.g. news/en, news/ja) and decide language based on that instead? 
 const news = defineCollection({
-  loader: glob({ base: './src/content/news', pattern: '**/*.{md,mdx}' }),
+  loader: glob({
+    base: './src/content/news',
+    pattern: '{en,ja}/**/*.{md,mdx}',
+    generateId: ({ entry }) => entry.replace(/\.[^./]+$/, ""),
+  }),
   schema: z.object({
     title: z.string(),
     type: z.string(),
@@ -21,7 +27,39 @@ const news = defineCollection({
     slug: z.string(),
     author: z.string(),
     tags: z.array(z.string()),
-    lang: z.enum(["en", "ja"]).default("en"),
+    image: z.string().optional(),
+  }),
+});
+
+const events = defineCollection({
+  loader: glob({
+    base: './src/content/events',
+    pattern: '{en,ja}/**/*.{md,mdx}',
+    generateId: ({ entry }) => entry.replace(/\.[^./]+$/, ""),
+  }),
+  schema: z.object({
+    title: z.string(),
+    slug: z.string(),
+    description: z.string(),
+    startDate: z.date(),
+    endDate: z.date(),
+    location: z.string().optional(),
+    image: z.string().optional(),
+  }),
+});
+
+const RESULT_TYPES = ["deliverable", "milestone", "publication", "software", "presentation", "poster"] as const;
+
+const results = defineCollection({
+  loader: glob({
+    base: './src/content/results',
+    pattern: '{en,ja}/**/*.json',
+    generateId: ({ entry }) => entry.replace(/\.[^./]+$/, ""),
+  }),
+  schema: z.object({
+    title: z.string(),
+    type: z.enum(RESULT_TYPES),
+    pdf: z.string(),
     image: z.string().optional(),
   }),
 });
@@ -31,4 +69,4 @@ const partners = defineCollection({
 });
 
 // 5. Export a single `collections` object to register your collection(s)
-export const collections = { news, partners };
+export const collections = { news, events, results, partners };

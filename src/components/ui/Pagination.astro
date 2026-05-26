@@ -1,0 +1,168 @@
+---
+interface Props {
+  containerId: string;
+  paginationId?: string;
+  pageSize: number;
+  labels: {
+    first: string;
+    previous: string;
+    next: string;
+    last: string;
+    pageOf: string;
+  };
+}
+const { containerId, paginationId, pageSize, labels } = Astro.props;
+const pid = paginationId ?? containerId;
+---
+
+<div
+    class="pagination"
+    data-pagination
+    data-container-id={containerId}
+    data-pagination-id={pid}
+    data-page-size={pageSize}
+    data-page-of={labels.pageOf}
+>
+    <a class="page-first max-[400px]:hidden" data-action="first" href="#">{labels.first}</a>
+    <a class="page-prev" data-action="prev" href="#">{labels.previous}</a>
+    <p class="page-status"></p>
+    <a class="page-next" data-action="next" href="#">{labels.next}</a>
+    <a class="page-last max-[400px]:hidden" data-action="last" href="#">{labels.last}</a>
+</div>
+
+<script>
+    type Inst = {
+        el: HTMLElement;
+        container: HTMLElement;
+        pageSize: number;
+        urlParam: string;
+        pageOf: string;
+        getItems: () => HTMLElement[];
+        getLastPage: () => number;
+        render: (page: number) => void;
+        refresh: (opts?: { resetPage?: boolean }) => void;
+    };
+
+    function readPage(urlParam: string, lastPage: number): number {
+        const v = Number(new URL(window.location.href).searchParams.get(urlParam)) || 1;
+        return Math.min(Math.max(v, 1), lastPage);
+    }
+
+    function setPageInUrl(urlParam: string, page: number) {
+        const url = new URL(window.location.href);
+        if (page === 1) url.searchParams.delete(urlParam);
+        else url.searchParams.set(urlParam, String(page));
+        history.pushState({}, "", url);
+    }
+
+    function init(el: HTMLElement): Inst | null {
+        if (el.dataset.initialized) return null;
+        el.dataset.initialized = "1";
+
+        const containerId = el.dataset.containerId!;
+        const container = document.getElementById(containerId);
+        if (!container) return null;
+
+        const pageSize = Number(el.dataset.pageSize);
+        const pageOf = el.dataset.pageOf || "Page {current} of {last}";
+        const urlParam = `${el.dataset.paginationId}Page`;
+
+        // Items NOT excluded by an external filter (e.g. ".filter-hidden").
+        const getItems = () =>
+            Array.from(container.children).filter(
+                (c): c is HTMLElement =>
+                    c instanceof HTMLElement && !c.classList.contains("filter-hidden"),
+            );
+        const getLastPage = () => Math.max(1, Math.ceil(getItems().length / pageSize));
+
+        // Force final visible state on items beyond page 1 so they appear
+        // correctly when shown later (the entry animation may not run while
+        // they're display:none).
+        getItems().forEach((item, i) => {
+            if (i >= pageSize) {
+                item.style.opacity = "1";
+                item.style.transform = "none";
+                item.style.filter = "none";
+            }
+        });
+
+        const render = (page: number) => {
+            const items = getItems();
+            const lastPage = Math.max(1, Math.ceil(items.length / pageSize));
+            page = Math.min(Math.max(page, 1), lastPage);
+
+            // Reset all children, then hide only those outside the current page
+            // among non-filtered items.
+            Array.from(container.children).forEach((c) =>
+                (c as HTMLElement).classList.remove("pagination-hidden"),
+            );
+            items.forEach((item, i) => {
+                const visible = i >= (page - 1) * pageSize && i < page * pageSize;
+                if (!visible) item.classList.add("pagination-hidden");
+            });
+            const status = el.querySelector(".page-status");
+            if (status) {
+                status.textContent = pageOf
+                    .replace("{current}", String(page))
+                    .replace("{last}", String(lastPage));
+            }
+            const toggle = (sel: string, disabled: boolean) => {
+                el.querySelector(sel)?.classList.toggle("disabled", disabled);
+            };
+            toggle(".page-first", page === 1);
+            toggle(".page-prev", page === 1);
+            toggle(".page-next", page === lastPage);
+            toggle(".page-last", page === lastPage);
+
+            // Hide controls entirely when only one page of filtered results.
+            el.classList.toggle("pagination-hidden", lastPage <= 1);
+        };
+
+        const refresh = (opts?: { resetPage?: boolean }) => {
+            if (opts?.resetPage) setPageInUrl(urlParam, 1);
+            render(readPage(urlParam, getLastPage()));
+        };
+
+        const inst: Inst = {
+            el, container, pageSize, urlParam, pageOf,
+            getItems, getLastPage, render, refresh,
+        };
+
+        el.addEventListener("click", (e) => {
+            const target = (e.target as HTMLElement).closest<HTMLElement>("[data-action]");
+            if (!target) return;
+            e.preventDefault();
+            if (target.classList.contains("disabled")) return;
+            const lastPage = getLastPage();
+            const current = readPage(urlParam, lastPage);
+            let next = current;
+            switch (target.dataset.action) {
+                case "first": next = 1; break;
+                case "prev": next = current - 1; break;
+                case "next": next = current + 1; break;
+                case "last": next = lastPage; break;
+            }
+            next = Math.min(Math.max(next, 1), lastPage);
+            setPageInUrl(urlParam, next);
+            render(next);
+            container.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+
+        container.addEventListener("pagination:refresh", ((e: CustomEvent) => {
+            refresh({ resetPage: e.detail?.resetPage });
+        }) as EventListener);
+
+        render(readPage(urlParam, getLastPage()));
+        return inst;
+    }
+
+    const instances: Inst[] = [];
+    document.querySelectorAll<HTMLElement>("[data-pagination]").forEach((el) => {
+        const inst = init(el);
+        if (inst) instances.push(inst);
+    });
+
+    window.addEventListener("popstate", () => {
+        instances.forEach((inst) => inst.render(readPage(inst.urlParam, inst.getLastPage())));
+    });
+</script>

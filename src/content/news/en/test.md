@@ -1,12 +1,11 @@
 ---
 title: "Test Blog Post"
 slug: "test"
-date: 2026-03-18
+date: 2026-03-16
 description: "A test blog"
 author: "Q-Neko"
 type: "News"
 tags: ["test", "blog", "markdown"]
-lang: "en"
 image: "/placeholder-news.svg"
 ---
 
@@ -22,7 +21,7 @@ This section introduces the purpose of the test post.
 
 ### Link test
 
-[Here is a link](www.google.fi)
+[Here is a link](https://google.fi)
 
 ## Section 2: Code Example
 

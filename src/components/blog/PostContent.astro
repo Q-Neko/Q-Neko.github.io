@@ -9,7 +9,7 @@ const dateStr = post.data.date
     ? new Date(post.data.date).toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric" })
     : null;
 
-const searchBase = (post.data.lang ?? "en") === "ja" ? "/ja/search" : "/search";
+const searchBase = post.id.startsWith("ja/") ? "/ja/search" : "/search";
 ---
 
 <div class="posts-bg">

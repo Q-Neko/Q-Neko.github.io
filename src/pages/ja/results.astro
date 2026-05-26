@@ -1,12 +1,16 @@
 ---
 import PageLayout from "../../layouts/PageLayout.astro";
 import ResultsPage from "../../components/pages/ResultsPage.astro";
+import { getCollection } from "astro:content";
 import { useTranslations } from "../../i18n/index";
 
 const lang = Astro.currentLocale ?? "ja";
 const t = useTranslations(lang);
+
+const results = (await getCollection("results"))
+    .filter(r => r.id.startsWith("ja/"));
 ---
 
 <PageLayout title={t.pages.results}>
-    <ResultsPage lang={lang} />
+    <ResultsPage lang={lang} results={results} />
 </PageLayout>

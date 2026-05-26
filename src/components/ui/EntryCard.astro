@@ -1,38 +1,58 @@
 ---
 interface Props {
   title: string;
-  description: string;
+  description?: string;
   href?: string;
+  target?: string;
   tags?: string[];
   meta?: string;
   image?: string;
+  date?: string | Date;
+  endDate?: string | Date;
   class?: string;
   style?: string;
+  dataAttrs?: Record<string, string>;
 }
 
 const {
   title,
   description,
   href,
+  target,
   tags,
   meta,
   image,
+  date,
+  endDate,
   class: className = "",
   style = "",
+  dataAttrs = {},
 } = Astro.props;
 
 const Tag = href ? "a" : "div";
+const rel = target === "_blank" ? "noopener noreferrer" : undefined;
+
+const fmt = (d: string | Date) =>
+    new Date(d).toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric" });
+
+const dateStr = date
+    ? endDate
+        ? `${fmt(date)} – ${fmt(endDate)}`
+        : fmt(date)
+    : null;
+
+const imagePath = image ? image : "/placeholder-news.svg";
 ---
 
-<Tag href={href} class={`base-card entry-card opacity-0 ${image ? "has-image" : ""} ${className}`} style={style}>
-    {image && (
+<Tag href={href} target={target} rel={rel} class={`base-card entry-card opacity-0 hasImage ${className}`} style={style} {...dataAttrs}>
+    {imagePath && (
         <div class="entry-card-image">
-            <img src={image} alt={title} loading="lazy" />
+            <img src={imagePath} alt={title} loading="lazy" />
             {meta && <span class="entry-card-image-badge">{meta}</span>}
         </div>
     )}
     <div class="entry-card-body">
-        {!image && meta && <div class="entry-card-meta">{meta}</div>}
+        {!imagePath && meta && <div class="entry-card-meta">{meta}</div>}
         <h2>{title}</h2>
         {tags && tags.length > 0 && (
             <div class="post-card-tags">
@@ -41,6 +61,7 @@ const Tag = href ? "a" : "div";
                 ))}
             </div>
         )}
+        <p class="">{dateStr}</p>
         <p class="post-description">{description}</p>
     </div>
 </Tag>

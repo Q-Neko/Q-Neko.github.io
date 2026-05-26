@@ -1,45 +1,133 @@
 ---
 import EntryCard from "../ui/EntryCard.astro";
+import Pagination from "../ui/Pagination.astro";
 import { useTranslations } from "../../i18n/index";
+import type { CollectionEntry } from "astro:content";
 
 interface Props {
   lang: string;
+  events: CollectionEntry<"events">[];
 }
-const { lang } = Astro.props;
+const { lang, events } = Astro.props;
 const t = useTranslations(lang);
+const base = lang === "ja" ? "/ja" : "";
 
-// TODO: Replace with real data when available
-const events: { title: string; description: string; meta: string; href: string }[] = [];
+const PAGE_SIZE = 6;
+const now = Date.now();
+
+const upcoming = events
+    .filter(e => new Date(e.data.endDate).getTime() >= now)
+    .sort((a, b) => new Date(a.data.startDate).getTime() - new Date(b.data.startDate).getTime());
+
+const past = events
+    .filter(e => new Date(e.data.endDate).getTime() < now)
+    .sort((a, b) => new Date(b.data.endDate).getTime() - new Date(a.data.endDate).getTime());
+
+const tabs = [
+    { key: "upcoming", label: t.pageContent.events.tabs.upcoming, empty: t.pageContent.events.comingSoonUpcoming, items: upcoming, gridId: "upcoming-events-grid" },
+    { key: "past", label: t.pageContent.events.tabs.past, empty: t.pageContent.events.comingSoonPast, items: past, gridId: "past-events-grid" },
+] as const;
 ---
 
-<!-- TODO: add filtering/sorting options -->
-
-<!-- TODO: maybe split into past and upcoming events sections on the same page? -->
 <div class="default-bg">
-    <div class="default">
+    <div class="default" id="events">
         <div class="reveal">
             <div class="section-label">{t.pageContent.events.sectionLabel}</div>
             <h2 class="section-h2">{t.pageContent.events.heading}</h2>
-            <p class="max-w-2xl text-ink/80 leading-relaxed mb-12">{t.pageContent.events.intro}</p>
+            <p class="max-w-2xl text-ink/80 leading-relaxed mb-8">{t.pageContent.events.intro}</p>
         </div>
 
-        {events.length === 0 ? (
-            <div class="reveal base-card opacity-0 animate-fadeUp1 max-w-2xl">
-                <p class="entry-card-empty">{t.pageContent.events.comingSoon}</p>
-            </div>
-        ) : (
-            <div class="post-grid reveal">
-                {events.map((event, idx) => (
-                    <EntryCard
-                        title={event.title}
-                        description={event.description}
-                        href={event.href}
-                        meta={event.meta}
-                        class="animate-popIn"
-                        style={`animation-delay: ${0.1 * idx}s`}
-                    />
-                ))}
-            </div>
-        )}
+        <div class="events-tabs reveal" data-tabs role="tablist">
+            {tabs.map((tab, i) => (
+                <button
+                    class={`events-tab ${i === 0 ? "active" : ""}`}
+                    data-tab-target={tab.key}
+                    role="tab"
+                    aria-selected={i === 0 ? "true" : "false"}
+                    type="button"
+                >
+                    {tab.label}
+                </button>
+            ))}
+        </div>
+
+        {tabs.map((tab, i) => (
+            <section
+                data-tab={tab.key}
+                class={i === 0 ? "" : "pagination-hidden"}
+                role="tabpanel"
+            >
+                {tab.items.length === 0 ? (
+                    <div class="reveal base-card opacity-0 animate-fadeUp1 max-w-2xl">
+                        <p class="entry-card-empty">{tab.empty}</p>
+                    </div>
+                ) : (
+                    <>
+                        <div id={tab.gridId} class="post-grid reveal">
+                            {tab.items.map((event, idx) => (
+                                <EntryCard
+                                    title={event.data.title}
+                                    description={event.data.description}
+                                    href={`${base}/events/${event.data.slug}`}
+                                    meta={event.data.location}
+                                    image={event.data.image}
+                                    date={event.data.startDate}
+                                    endDate={event.data.endDate}
+                                    class="animate-popIn"
+                                    style={`animation-delay: ${0.1 * (idx % PAGE_SIZE)}s`}
+                                />
+                            ))}
+                        </div>
+                        {tab.items.length > PAGE_SIZE && (
+                            <Pagination
+                                containerId={tab.gridId}
+                                paginationId={tab.key}
+                                pageSize={PAGE_SIZE}
+                                labels={{ ...t.pagination }}
+                            />
+                        )}
+                    </>
+                )}
+            </section>
+        ))}
     </div>
 </div>
+
+<script>
+    const TAB_PARAM = "tab";
+
+    function activate(tabsEl: HTMLElement, target: string) {
+        const buttons = tabsEl.querySelectorAll<HTMLElement>("[data-tab-target]");
+        buttons.forEach(b => {
+            const active = b.dataset.tabTarget === target;
+            b.classList.toggle("active", active);
+            b.setAttribute("aria-selected", active ? "true" : "false");
+        });
+        document.querySelectorAll<HTMLElement>("[data-tab]").forEach(s => {
+            s.classList.toggle("pagination-hidden", s.dataset.tab !== target);
+        });
+    }
+
+    document.querySelectorAll<HTMLElement>("[data-tabs]").forEach(tabsEl => {
+        const defaultTarget =
+            tabsEl.querySelector<HTMLElement>("[data-tab-target]")?.dataset.tabTarget ?? "";
+        const initial = new URL(window.location.href).searchParams.get(TAB_PARAM) || defaultTarget;
+        if (initial !== defaultTarget) activate(tabsEl, initial);
+
+        tabsEl.addEventListener("click", (e) => {
+            const btn = (e.target as HTMLElement).closest<HTMLElement>("[data-tab-target]");
+            if (!btn) return;
+            const target = btn.dataset.tabTarget!;
+            activate(tabsEl, target);
+            const url = new URL(window.location.href);
+            if (target === defaultTarget) url.searchParams.delete(TAB_PARAM);
+            else url.searchParams.set(TAB_PARAM, target);
+            history.pushState({}, "", url);
+        });
+
+        window.addEventListener("popstate", () => {
+            const tab = new URL(window.location.href).searchParams.get(TAB_PARAM) || defaultTarget;
+            activate(tabsEl, tab);
+        });
+    });
+</script>

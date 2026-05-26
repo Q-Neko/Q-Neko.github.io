@@ -1,45 +1,147 @@
 ---
 import EntryCard from "../ui/EntryCard.astro";
+import Pagination from "../ui/Pagination.astro";
 import { useTranslations } from "../../i18n/index";
+import type { CollectionEntry } from "astro:content";
 
 interface Props {
   lang: string;
+  results: CollectionEntry<"results">[];
 }
-const { lang } = Astro.props;
+const { lang, results } = Astro.props;
 const t = useTranslations(lang);
 
-// TODO: replace with actual results data
-const results: { title: string; description: string; meta: string; href: string }[] = [];
+const PAGE_SIZE = 6;
+const PDF_BASE = "/files/results/";
+const gridId = "results-grid";
+const isEmpty = results.length === 0;
+
+const FILTER_KEYS = ["all", "deliverable", "milestone", "publication", "software", "presentation", "poster"] as const;
+type FilterKey = typeof FILTER_KEYS[number];
+const filters: { key: FilterKey; label: string }[] = FILTER_KEYS.map(k => ({
+    key: k,
+    label: t.pageContent.results.filters[k],
+}));
 ---
 
-<!-- TODO: maybe split into deliverables, publications, software, etc. sections on the same page? -->
-
-<!-- TODO: add filtering/sorting options -->
 <div class="default-bg">
-    <div class="default">
+    <div class="default" id="results">
         <div class="reveal">
             <div class="section-label">{t.pageContent.results.sectionLabel}</div>
             <h2 class="section-h2">{t.pageContent.results.heading}</h2>
-            <p class="max-w-2xl text-ink/80 leading-relaxed mb-12">{t.pageContent.results.intro}</p>
+            <p class="max-w-2xl text-ink/80 leading-relaxed mb-8">{t.pageContent.results.intro}</p>
         </div>
 
-        {results.length === 0 ? (
+        {isEmpty ? (
             <div class="reveal base-card opacity-0 animate-fadeUp1 max-w-2xl">
                 <p class="entry-card-empty">{t.pageContent.results.comingSoon}</p>
             </div>
         ) : (
-            <div class="post-grid reveal">
-                {results.map((result, idx) => (
-                    <EntryCard
-                        title={result.title}
-                        description={result.description}
-                        href={result.href}
-                        meta={result.meta}
-                        class="animate-popIn"
-                        style={`animation-delay: ${0.1 * idx}s`}
-                    />
-                ))}
+            <div>
+                <div class="results-filters reveal" data-result-filters>
+                    <span class="results-filters-label">{t.pageContent.results.filterLabel}</span>
+                    <div class="results-filters-chips">
+                        {filters.map((f, i) => (
+                            <button
+                                type="button"
+                                class={`chip ${i === 0 ? "active" : ""}`}
+                                data-filter-value={f.key}
+                            >
+                                {f.label}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+
+                <div id={gridId} class="post-grid reveal">
+                    {results.map((entry, idx) => (
+                        <EntryCard
+                            title={entry.data.title}
+                            href={`${PDF_BASE}${entry.data.pdf}`}
+                            target="_blank"
+                            meta={t.pageContent.results.filters[entry.data.type]}
+                            image={entry.data.image}
+                            class="animate-popIn"
+                            style={`animation-delay: ${0.1 * (idx % PAGE_SIZE)}s`}
+                            dataAttrs={{ "data-result-type": entry.data.type }}
+                        />
+                    ))}
+                </div>
+
+                <p class="results-empty-state pagination-hidden" data-results-empty>
+                    {t.pageContent.results.comingSoon}
+                </p>
+
+                <Pagination
+                    containerId={gridId}
+                    paginationId="results"
+                    pageSize={PAGE_SIZE}
+                    labels={{ ...t.pagination }}
+                />
             </div>
         )}
     </div>
 </div>
+
+<script>
+    const FILTER_PARAM = "type";
+
+    function applyFilter(grid: HTMLElement, value: string) {
+        const items = Array.from(grid.children) as HTMLElement[];
+        items.forEach(item => {
+            const type = item.dataset.resultType;
+            const match = value === "all" || type === value;
+            item.classList.toggle("filter-hidden", !match);
+        });
+
+        const visibleCount = items.filter(i => !i.classList.contains("filter-hidden")).length;
+        const emptyState = grid.parentElement?.querySelector<HTMLElement>("[data-results-empty]");
+        if (emptyState) emptyState.classList.toggle("pagination-hidden", visibleCount > 0);
+
+        grid.dispatchEvent(new CustomEvent("pagination:refresh", { detail: { resetPage: true } }));
+    }
+
+    function setActiveChip(container: HTMLElement, value: string) {
+        container.querySelectorAll<HTMLElement>("[data-filter-value]").forEach(c => {
+            c.classList.toggle("active", c.dataset.filterValue === value);
+        });
+    }
+
+    function setFilterInUrl(value: string) {
+        const url = new URL(window.location.href);
+        if (value === "all") url.searchParams.delete(FILTER_PARAM);
+        else url.searchParams.set(FILTER_PARAM, value);
+        history.pushState({}, "", url);
+    }
+
+    document.querySelectorAll<HTMLElement>("[data-result-filters]").forEach(filtersEl => {
+        const grid = document.getElementById("results-grid");
+        if (!grid) return;
+
+        const validValues = new Set(
+            Array.from(filtersEl.querySelectorAll<HTMLElement>("[data-filter-value]"))
+                .map(c => c.dataset.filterValue!)
+        );
+        const initial = new URL(window.location.href).searchParams.get(FILTER_PARAM) || "all";
+        const start = validValues.has(initial) ? initial : "all";
+
+        setActiveChip(filtersEl, start);
+        applyFilter(grid, start);
+
+        filtersEl.addEventListener("click", (e) => {
+            const chip = (e.target as HTMLElement).closest<HTMLElement>("[data-filter-value]");
+            if (!chip) return;
+            const value = chip.dataset.filterValue!;
+            setActiveChip(filtersEl, value);
+            setFilterInUrl(value);
+            applyFilter(grid, value);
+        });
+
+        window.addEventListener("popstate", () => {
+            const value = new URL(window.location.href).searchParams.get(FILTER_PARAM) || "all";
+            const safe = validValues.has(value) ? value : "all";
+            setActiveChip(filtersEl, safe);
+            applyFilter(grid, safe);
+        });
+    });
+</script>
