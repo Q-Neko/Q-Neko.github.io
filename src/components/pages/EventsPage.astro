@@ -63,7 +63,7 @@ const tabs = [
                     </div>
                 ) : (
                     <>
-                        <div id={tab.gridId} class="post-grid reveal">
+                        <div id={tab.gridId} data-pagefind-ignore="all" class="post-grid reveal">
                             {tab.items.map((event, idx) => (
                                 <EntryCard
                                     title={event.data.title}

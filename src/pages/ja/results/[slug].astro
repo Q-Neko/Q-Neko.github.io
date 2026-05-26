@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const all = await getCollection('results');
+  return all
+    .filter(r => r.id.startsWith('ja/'))
+    .map(entry => ({
+      params: { slug: entry.id.replace(/^ja\//, '') },
+      props: { entry },
+    }));
+}
+
+const { entry } = Astro.props;
+const pdfUrl = `/files/results/${entry.data.pdf}`;
+---
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="robots" content="noindex" />
+  <title>{entry.data.title}</title>
+  <meta http-equiv="refresh" content={`0; url=${pdfUrl}`} />
+  <link rel="canonical" href={pdfUrl} />
+</head>
+<body>
+  <main data-pagefind-meta={`type:${entry.data.type}`}>
+    <h1>{entry.data.title}</h1>
+    <p><a href={pdfUrl}>{entry.data.title}</a></p>
+  </main>
+</body>
+</html>

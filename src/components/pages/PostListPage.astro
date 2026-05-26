@@ -31,7 +31,7 @@ const gridId = "news-grid";
             </div>
         ) : (
             <div>
-                <div id={gridId} class="post-grid reveal">
+                <div id={gridId} data-pagefind-ignore="all" class="post-grid reveal">
                     {posts.map((post, idx) => (
                         <EntryCard
                             title={post.data.title}

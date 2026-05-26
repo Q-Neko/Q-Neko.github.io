@@ -15,9 +15,16 @@ const dateStr = event.data.startDate
     : null;
 ---
 
-<div class="posts-bg">
+<div class="posts-bg" data-pagefind-meta={`title:${event.data.title}`}>
+    {event.data.image && <span hidden data-pagefind-meta={`image:${event.data.image}`}></span>}
+    <span hidden data-pagefind-meta="type:Event"></span>
+    {dateStr && <span hidden data-pagefind-meta={`date:${dateStr}`}></span>}
+    {event.data.location && <span hidden data-pagefind-meta={`location:${event.data.location}`}></span>}
+    <span class="sr-only">
+        {event.data.title}. {event.data.description} {event.data.location}
+    </span>
     <div class="post-content">
-        <div class="post-meta">
+        <div class="post-meta" data-pagefind-ignore="all">
             <div class="post-meta-info">
                 {dateStr && <span class="post-meta-date">{dateStr}</span>}
                 {event.data.location && <span class="post-meta-sep">|</span>}

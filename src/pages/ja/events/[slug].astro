@@ -15,6 +15,6 @@ export async function getStaticPaths() {
 const { event } = Astro.props;
 ---
 
-<PageLayout title={event.data.title}>
+<PageLayout title={event.data.title} pagefindIgnoreBanner>
     <EventContent event={event} />
 </PageLayout>

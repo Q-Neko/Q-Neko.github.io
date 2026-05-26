@@ -53,7 +53,7 @@ const filters: { key: FilterKey; label: string }[] = FILTER_KEYS.map(k => ({
                     </div>
                 </div>
 
-                <div id={gridId} class="post-grid reveal">
+                <div id={gridId} class="post-grid reveal" data-pagefind-ignore="all">
                     {results.map((entry, idx) => (
                         <EntryCard
                             title={entry.data.title}

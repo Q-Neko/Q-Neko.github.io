@@ -2,11 +2,11 @@
 import Layout from "./Layout.astro"
 import Banner from "../components/layout/Banner.astro";
 
-const { title } = Astro.props;
+const { title, pagefindIgnoreBanner = false } = Astro.props;
 ---
 
 <Layout>
-    <Banner title={title} />
+    <Banner title={title} pagefindIgnore={pagefindIgnoreBanner} />
     <slot />
 </Layout>
 
