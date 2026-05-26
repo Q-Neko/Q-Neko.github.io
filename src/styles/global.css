@@ -514,6 +514,7 @@
     @apply grid grid-cols-6 gap-6 pt-8;
   }
 
+
   .post-card-tags {
     @apply font-mono text-sm uppercase flex gap-3;
   }
@@ -914,6 +915,7 @@
 
   @media (max-width: 1200px) {
     .post-grid        { @apply grid-cols-3; }
+    .post-grid-recent > :nth-child(n+4) { @apply hidden; }
   }
 
   @media (max-width: 1000px) {
@@ -940,6 +942,7 @@
     .footer-content            { @apply grid-cols-2 px-6 py-12; }
     .footer-bottom    { @apply px-6 flex-col gap-3 text-center; }
     .post-grid        { @apply grid-cols-2; }
+    .post-grid-recent > :nth-child(n+4) { @apply block; }
     .posts             { @apply px-6 py-16; }
     .post-content      { @apply px-6; }
     .default              { @apply px-6 py-16; }
@@ -949,6 +952,7 @@
 
   @media (max-width: 600px) {
     .post-grid { @apply grid-cols-1; }
+    .post-grid-recent > :nth-child(n+4) { @apply hidden; }
     .newsletter-input { @apply flex flex-col }
   }
 

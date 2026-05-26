@@ -14,17 +14,19 @@ const base = lang === "ja" ? "/ja" : "";
 const ENABLED_SOURCES = [
   "news",
   "events",
-  // "results",
+  "results",
 ] as const satisfies ReadonlyArray<"news" | "events" | "results">;
 
 const MAX_ITEMS = 4;
+const PDF_BASE = "/files/results/";
 
 type Entry = {
   title: string;
-  description: string;
+  description?: string;
   date: Date;
   endDate?: Date;
   href: string;
+  target?: string;
   meta: string;
   tags: string[];
   image?: string;
@@ -68,6 +70,22 @@ if ((ENABLED_SOURCES as ReadonlyArray<string>).includes("events")) {
   }
 }
 
+if ((ENABLED_SOURCES as ReadonlyArray<string>).includes("results")) {
+  const results = await getCollection("results");
+  for (const r of results.filter(r => r.id.startsWith(langPrefix))) {
+    all.push({
+      title: r.data.title,
+      date: r.data.date,
+      href: `${PDF_BASE}${r.data.pdf}`,
+      target: "_blank",
+      meta: t.pageContent.results.filters[r.data.type],
+      tags: [],
+      image: r.data.image,
+      source: "results",
+    });
+  }
+}
+
 const recent = all
   .sort((a, b) => b.date.getTime() - a.date.getTime())
   .slice(0, MAX_ITEMS);
@@ -96,12 +114,13 @@ const sourceViewAllHref: Record<"news" | "events" | "results", string> = {
           ))}
         </div>
       </div>
-      <div class="post-grid reveal mt-10">
+      <div class="post-grid post-grid-recent reveal mt-10">
         {recent.map((item, idx) => (
           <EntryCard
             title={item.title}
             description={item.description}
             href={item.href}
+            target={item.target}
             meta={item.meta}
             tags={item.tags}
             image={item.image}

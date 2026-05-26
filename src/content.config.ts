@@ -59,6 +59,7 @@ const results = defineCollection({
   schema: z.object({
     title: z.string(),
     type: z.enum(RESULT_TYPES),
+    date: z.coerce.date(),
     pdf: z.string(),
     image: z.string().optional(),
   }),
