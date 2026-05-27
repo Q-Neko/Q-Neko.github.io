@@ -21,31 +21,52 @@ const base = lang === "ja" ? "/ja" : "";
     <div class="footer-col">
         <h4>{t.footer.projectCol}</h4>
         <ul>
-            <li><a href={`${base}/#mission`}>{t.footer.links.mission}</a></li>
-            <li><a href={`${base}/#applications`}>{t.footer.links.applications}</a></li>
-            <li><a href={`${base}/#consortium`}>{t.footer.links.consortium}</a></li>
-            <li><a href={`${base}/#timeline`}>{t.footer.links.timeline}</a></li>
+            <li><a href={t.footer.links.mission.href}>{t.footer.links.mission.label}</a></li>
+            <li><a href={t.footer.links.consortium.href}>{t.footer.links.consortium.label}</a></li>
+            <li><a href={t.footer.links.news.href}>{t.footer.links.news.label}</a></li>
+            <li><a href={t.footer.links.results.href}>{t.footer.links.results.label}</a></li>
+            <li><a href={t.footer.links.events.href}>{t.footer.links.events.label}</a></li>
         </ul>
     </div>
     <div class="footer-col">
         <h4>{t.footer.fundingCol}</h4>
         <ul>
-            <li><a href="#">{t.footer.links.horizonEurope}</a></li>
-            <li><a href="#">{t.footer.links.euroHPC}</a></li>
-            <li><a href="#">{t.footer.links.japanSIP}</a></li>
-            <li><a href="#">{t.footer.links.partnership}</a></li>
+            <li><a href={t.footer.links.horizonEurope.href}>{t.footer.links.horizonEurope.label}</a></li>
+            <li><a href={t.footer.links.euroHPC.href}>{t.footer.links.euroHPC.label}</a></li>
+            <li><a href={t.footer.links.japanSIP.href}>{t.footer.links.japanSIP.label}</a></li>
+            <li><a href={t.footer.links.partnership.href}>{t.footer.links.partnership.label}</a></li>
         </ul>
     </div>
     <div class="footer-col">
         <h4>{t.footer.contactCol}</h4>
         <ul>
-            <li><a href="#">{t.footer.links.csc}</a></li>
-            <li><a href="#">{t.footer.links.media}</a></li>
-            <li><a href="#">{t.footer.links.joinNetwork}</a></li>
-            <li><a href="#">{t.footer.links.newsletter}</a></li>
+            <li><a href={t.footer.links.contacts.href}>{t.footer.links.contacts.label}</a></li>
+            <li><a href={t.footer.links.media.href}>{t.footer.links.media.label}</a></li>
+            <li><a href={t.footer.links.newsletter.href}>{t.footer.links.newsletter.label}</a></li>
+            <li><a href={t.footer.links.linkedIn.href}>{t.footer.links.linkedIn.label}</a></li>
         </ul>
     </div>
     </div>
+</footer>
+<footer class="footer-middle">
+    <img src="/logos/funders/funded_by_eu.png" alt="Funded by the European Union" />
+    <img src="/logos/funders/eurohpc.png" alt="EuroHPC" />
+
+    <p>
+        This project received funding from the European High Performance Computing Joint Undertaking (EuroHPC JU) under the European Union's Horizon Europe framework program for research and innovation and Grant Agreement No. TODO.
+    </p>
+
+    <p>
+        Views and opinions expressed are, however, those of the author(s) only and do not necessarily reflect those of the European Union or EuroHPC Joint Undertaking. Neither the European Union nor the granting authority can be held responsible for them.
+    </p>
+
+    <div class="footer-col">
+        <p>Developed By Q-Neko</p>
+        <p>Copyright © Q-Neko 2026</p>
+        <p><a href={t.footer.links.privacyPolicy.href}>{t.footer.links.privacyPolicy.label}</a></p>
+        <p><a href={t.footer.links.codeOfConduct.href}>{t.footer.links.codeOfConduct.label}</a></p>
+    </div>
+
 </footer>
 <div class="footer-bottom">
     <p>{t.footer.copyright}</p>

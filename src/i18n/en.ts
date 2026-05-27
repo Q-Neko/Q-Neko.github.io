@@ -76,18 +76,66 @@ export const en: Translations = {
     copyright: "© 2026 Q-Neko Consortium · Nippon-Europe Quantum Koraborēshon",
     coordinatedBy: "Coordinated by CSC - IT Center for Science, Finland",
     links: {
-      mission: "Mission",
-      applications: "Applications",
-      consortium: "Consortium",
-      timeline: "Timeline",
-      horizonEurope: "Horizon Europe",
-      euroHPC: "EuroHPC JU",
-      japanSIP: "Japan SIP",
-      partnership: "EU-Japan Partnership",
-      csc: "CSC Finland",
-      media: "Media Inquiries",
-      joinNetwork: "Join the Network",
-      newsletter: "Newsletter",
+      mission: {
+        label: "Mission",
+        href: "/#mission",
+      },
+      consortium: {
+        label: "Consortium",
+        href: "/#consortium",
+      },
+      news: {
+        label: "News",
+        href: "/news",
+      },
+      results: {
+        label: "Results",
+        href: "/results",
+      },
+      events: {
+        label: "Events",
+        href: "/events",
+      },
+      horizonEurope: {
+        label: "Horizon Europe",
+        href: "https://ec.europa.eu/horizonEurope/",
+      },
+      euroHPC: {
+        label: "EuroHPC JU",
+        href: "https://www.eurohpc-ju.eu/",
+      },
+      japanSIP: {
+        label: "Japan SIP",
+        href: "https://www.mext.go.jp/en/a_top/strategic_innovation.htm",
+      },
+      partnership: {
+        label: "EU-Japan Partnership",
+        href: "https://www.eujapan.org/",
+      },
+      contacts: {
+        label: "Contacts",
+        href: "/contact",
+      },
+      media: {
+        label: "Media Corner",
+        href: "/media",
+      },
+      newsletter: {
+        label: "Newsletter",
+        href: "/newsletter",
+      },
+      linkedIn: {
+        label: "LinkedIn",
+        href: "https://www.linkedin.com/company/q-neko/",
+      },
+      privacyPolicy: {
+        label: "Privacy Policy",
+        href: "/privacy-policy",
+      },
+      codeOfConduct: {
+        label: "Code of Conduct",
+        href: "/code-of-conduct",
+      },
     },
   },
   news: {

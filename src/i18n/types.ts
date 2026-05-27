@@ -49,18 +49,21 @@ export interface Translations {
     copyright: string;
     coordinatedBy: string;
     links: {
-      mission: string;
-      applications: string;
-      consortium: string;
-      timeline: string;
-      horizonEurope: string;
-      euroHPC: string;
-      japanSIP: string;
-      partnership: string;
-      csc: string;
-      media: string;
-      joinNetwork: string;
-      newsletter: string;
+      mission: { label: string; href: string };
+      news: { label: string; href: string };
+      results: { label: string; href: string };
+      events: { label: string; href: string };
+      consortium: { label: string; href: string };
+      horizonEurope: { label: string; href: string };
+      euroHPC: { label: string; href: string };
+      japanSIP: { label: string; href: string };
+      partnership: { label: string; href: string };
+      contacts: { label: string; href: string };
+      media: { label: string; href: string };
+      newsletter: { label: string; href: string };
+      linkedIn: { label: string; href: string };
+      privacyPolicy: { label: string; href: string };
+      codeOfConduct: { label: string; href: string };
     };
   };
   news: {

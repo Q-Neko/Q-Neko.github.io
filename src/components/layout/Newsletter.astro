@@ -1,11 +1,13 @@
 ---
 import { useTranslations } from "../../i18n/index";
 import { NewsletterFormCard } from "../ui/NewsletterFormCard";
+import PreviousNewsletters from "../ui/PreviousNewsletters.astro";
 
 interface Props {
     lang: string;
+    showPreviousNewsletters?: boolean;
 }
-const { lang } = Astro.props;
+const { lang, showPreviousNewsletters } = Astro.props;
 const t = useTranslations(lang);
 ---
 
@@ -24,13 +26,6 @@ const t = useTranslations(lang);
 
         <NewsletterFormCard t={t} client:load />
 
-        <div class="mt-12">
-            <h3 class="h3-label">Previous Newsletters</h3>
-            <div class="reveal base-card opacity-0 animate-fadeUp1 max-w-2xl">
-            <p class="entry-card-empty">
-                Previous newsletters will appera here as they become available.
-            </p>
-        </div>
+        {showPreviousNewsletters && <PreviousNewsletters t={t} />}
     </div>
-        </div>
 </div>
