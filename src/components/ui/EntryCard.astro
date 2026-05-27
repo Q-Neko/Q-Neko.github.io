@@ -41,6 +41,11 @@ const dateStr = date
         : fmt(date)
     : null;
 
+const DESCRIPTION_MAX = 100;
+const descriptionShort = description && description.length > DESCRIPTION_MAX
+    ? `${description.slice(0, DESCRIPTION_MAX).trimEnd()}…`
+    : description;
+
 const imagePath = image ? image : "/placeholder-news.svg";
 ---
 
@@ -62,6 +67,6 @@ const imagePath = image ? image : "/placeholder-news.svg";
             </div>
         )}
         <p class="">{dateStr}</p>
-        <p class="post-description">{description}</p>
+        <p class="post-description">{descriptionShort}</p>
     </div>
 </Tag>
