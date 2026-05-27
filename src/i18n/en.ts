@@ -171,11 +171,14 @@ export const en: Translations = {
     contact: {
       sectionLabel: "Contact",
       heading: "Get in Touch",
-      intro: "For general inquiries about the Q-Neko project, partnerships, or collaboration opportunities, please reach out to us through this form.",
+      intro: "For general inquiries about the Q-Neko project, partnerships, or collaboration opportunities, please reach out to us through these channels.",
       coordinatorLabel: "Project Coordinator",
-      coordinator: "CSC – IT Center for Science, Finland",
+      coordinator: "CSC – IT Center for Science, Finland", //TODO: replace with coordinator's name
       emailLabel: "Email",
       email: "info@q-neko.eu", //TODO: replace with actual email address
+      pmoLabel: "Project Management Office",
+      pmo: "PMO Contact", //TODO: replace with PMO contact's name
+      pmoEmail: "pmo@q-neko.eu", //TODO: replace with actual PMO email address
       form: {
         nameLabel: "Name",
         emailLabel: "Email",

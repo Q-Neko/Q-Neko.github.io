@@ -1,12 +1,24 @@
 ---
 import { useTranslations } from "../../i18n/index";
-import { ContactFormCard } from "../ui/ContactFormCard";
 
 interface Props {
   lang: string;
 }
 const { lang } = Astro.props;
 const t = useTranslations(lang);
+
+const contacts = [
+  {
+    label: t.pageContent.contact.coordinatorLabel,
+    name: t.pageContent.contact.coordinator,
+    email: t.pageContent.contact.email,
+  },
+  {
+    label: t.pageContent.contact.pmoLabel,
+    name: t.pageContent.contact.pmo,
+    email: t.pageContent.contact.pmoEmail,
+  },
+];
 ---
 
 <div class="default-bg">
@@ -16,7 +28,17 @@ const t = useTranslations(lang);
             <h2 class="section-h2">{t.pageContent.contact.heading}</h2>
             <p class="max-w-2xl text-ink/80 leading-relaxed mb-6">{t.pageContent.contact.intro}</p>
         </div>
-        <ContactFormCard t={t} client:load />
-        
+        <div class="flex flex-wrap gap-6">
+            {contacts.map((c) => (
+                <div class="base-card opacity-0 animate-fadeUp1 flex-1 min-w-[280px] max-w-md">
+                    <div class="entry-card-meta">{c.label}</div>
+                    <h2>{c.name}</h2>
+                    <div class="flex flex-col gap-1">
+                        <span class="form-label">{t.pageContent.contact.emailLabel}</span>
+                        <a href={`mailto:${c.email}`} class="text-blue hover:underline break-all">{c.email}</a>
+                    </div>
+                </div>
+            ))}
+        </div>
     </div>
 </div>

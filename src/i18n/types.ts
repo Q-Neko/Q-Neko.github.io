@@ -148,6 +148,9 @@ export interface Translations {
       coordinator: string;
       emailLabel: string;
       email: string;
+      pmoLabel: string;
+      pmo: string;
+      pmoEmail: string;
       form: {
         nameLabel: string;
         emailLabel: string;
