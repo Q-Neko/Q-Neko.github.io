@@ -109,7 +109,7 @@ const sourceViewAllHref: Record<"news" | "events" | "results", string> = {
         <div class="recent-view-all-links">
           {ENABLED_SOURCES.map(src => (
             <a href={sourceViewAllHref[src]} class="btn-secondary recent-view-all">
-              {t.nav[src]} <span aria-hidden="true"></span>
+              {t.nav[src]}
             </a>
           ))}
         </div>

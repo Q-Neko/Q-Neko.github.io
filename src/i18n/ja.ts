@@ -11,6 +11,7 @@ export const ja: Translations = {
     contact: "Contact",
     news: "News",
     search: "Search",
+    logoAlt: "Q-Neko",
   },
   hero: {
     label: "Q-Neko",
@@ -24,6 +25,7 @@ export const ja: Translations = {
     exploreCta: "Explore the Project",
     partnersCta: "Our Partners",
     postsCta: "Recents",
+    logoAlt: "Q-Neko ロゴ",
   },
   mission: {
     sectionLabel: "Our Mission",
@@ -75,6 +77,15 @@ export const ja: Translations = {
     contactCol: "Contact",
     copyright: "© 2026 Q-Neko Consortium · Nippon-Europe Quantum Koraborēshon",
     coordinatedBy: "Coordinated by CSC - IT Center for Science, Finland",
+    fundingStatement:
+      "This project received funding from the European High Performance Computing Joint Undertaking (EuroHPC JU) under the European Union's Horizon Europe framework program for research and innovation and Grant Agreement No. TODO.",
+    disclaimer:
+      "Views and opinions expressed are, however, those of the author(s) only and do not necessarily reflect those of the European Union or EuroHPC Joint Undertaking. Neither the European Union nor the granting authority can be held responsible for them.",
+    developedBy: "Developed By Q-Neko",
+    developedCopyright: "Copyright © Q-Neko 2026",
+    logoAlt: "Q-Neko",
+    fundedByEuAlt: "欧州連合により資金提供",
+    eurohpcAlt: "EuroHPC",
     links: {
       mission: {
         label: "Mission",
@@ -172,6 +183,7 @@ export const ja: Translations = {
   },
   langSwitch: {
     label: "English",
+    ariaLabel: "言語を切り替える",
   },
   pageContent: {
     consortium: {
@@ -215,6 +227,13 @@ export const ja: Translations = {
       heading: "Stay in the Loop",
       intro: "Subscribe to the Q-Neko newsletter to receive updates on our research progress, upcoming events, and consortium news directly in your inbox.",
       subscribeCta: "Subscribe",
+      emailLabel: "メールアドレス",
+      emailPlaceholder: "your@email.com",
+      submitSuccess: "メッセージを送信しました。",
+      emailRequired: "メールアドレスは必須です",
+      emailInvalid: "メールアドレスが正しくありません",
+      previousHeading: "過去のニュースレター",
+      previousComingSoon: "過去のニュースレターは準備が整い次第こちらに掲載されます。",
     },
     contact: {
       sectionLabel: "Contact",
@@ -236,6 +255,14 @@ export const ja: Translations = {
         privacyPolicyLink: "/privacy-policy",
         privacyPolicyText: "私は同意します",
         privacyPolicyLinkText: "プライバシーポリシー",
+        submitSuccess: "メッセージを送信しました。",
+        errors: {
+          nameRequired: "名前は必須です",
+          emailRequired: "メールアドレスは必須です",
+          emailInvalid: "メールアドレスが正しくありません",
+          messageRequired: "メッセージは必須です",
+          privacyRequired: "プライバシーポリシーに同意してください",
+        },
       },
     },
     events: {

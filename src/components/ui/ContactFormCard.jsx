@@ -30,23 +30,24 @@ export const ContactFormCard = ({ t }) => {
     const validateForm = () => {
         //TODO: this is very basic validation, consider using a library for more complex forms
         const errors = {};
+        const e = t.pageContent.contact.form.errors;
 
         if (!formData.name.trim()) {
-            errors.name = 'Name is required';
+            errors.name = e.nameRequired;
         }
 
         if (!formData.email.trim()) {
-            errors.email = 'Email is required';
+            errors.email = e.emailRequired;
         } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-            errors.email = 'Email is invalid';
+            errors.email = e.emailInvalid;
         }
 
         if (!formData.message.trim()) {
-            errors.message = 'Message is required';
+            errors.message = e.messageRequired;
         }
 
         if (!formData.privacyPolicyAccepted) {
-            errors.privacyPolicyAccepted = 'You must accept the privacy policy';
+            errors.privacyPolicyAccepted = e.privacyRequired;
         }
 
         setFormErrors(errors);
@@ -114,7 +115,7 @@ export const ContactFormCard = ({ t }) => {
                 </div>
 
                 <button type="submit" className="btn-primary self-start">{t.pageContent.contact.form.submitCta}</button>
-                {submittedNotification && <p className="text-green-600 mt-2">Message sent successfully!</p>}
+                {submittedNotification && <p className="text-green-600 mt-2">{t.pageContent.contact.form.submitSuccess}</p>}
             </form>
         </div>
     )

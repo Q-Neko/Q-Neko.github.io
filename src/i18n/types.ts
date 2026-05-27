@@ -8,6 +8,7 @@ export interface Translations {
     contact: string;
     news: string;
     search: string;
+    logoAlt: string;
   };
   hero: {
     label: string;
@@ -20,6 +21,7 @@ export interface Translations {
     exploreCta: string;
     partnersCta: string;
     postsCta: string;
+    logoAlt: string;
   };
   mission: {
     sectionLabel: string;
@@ -48,6 +50,13 @@ export interface Translations {
     contactCol: string;
     copyright: string;
     coordinatedBy: string;
+    fundingStatement: string;
+    disclaimer: string;
+    developedBy: string;
+    developedCopyright: string;
+    logoAlt: string;
+    fundedByEuAlt: string;
+    eurohpcAlt: string;
     links: {
       mission: { label: string; href: string };
       news: { label: string; href: string };
@@ -99,6 +108,7 @@ export interface Translations {
   };
   langSwitch: {
     label: string;
+    ariaLabel: string;
   };
   pageContent: {
     consortium: {
@@ -142,6 +152,13 @@ export interface Translations {
       heading: string;
       intro: string;
       subscribeCta: string;
+      emailLabel: string;
+      emailPlaceholder: string;
+      submitSuccess: string;
+      emailRequired: string;
+      emailInvalid: string;
+      previousHeading: string;
+      previousComingSoon: string;
     };
     contact: {
       sectionLabel: string;
@@ -163,6 +180,14 @@ export interface Translations {
         privacyPolicyLink: string;
         privacyPolicyLinkText: string;
         privacyPolicyText: string;
+        submitSuccess: string;
+        errors: {
+          nameRequired: string;
+          emailRequired: string;
+          emailInvalid: string;
+          messageRequired: string;
+          privacyRequired: string;
+        };
       };
     };
     events: {

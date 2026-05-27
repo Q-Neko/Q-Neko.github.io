@@ -15,7 +15,7 @@ const base = lang === "ja" ? "/ja" : "";
 <footer>
     <div class="footer-content">
     <div class="footer-brand">
-        <img src={qnekoLogo.src} alt="Q-Neko" />
+        <img src={qnekoLogo.src} alt={t.footer.logoAlt} />
         <p>{t.footer.tagline}</p>
     </div>
     <div class="footer-col">
@@ -49,20 +49,16 @@ const base = lang === "ja" ? "/ja" : "";
     </div>
 </footer>
 <footer class="footer-middle">
-    <img src="/logos/funders/funded_by_eu.png" alt="Funded by the European Union" />
-    <img src="/logos/funders/eurohpc.png" alt="EuroHPC" />
+    <img src="/logos/funders/funded_by_eu.png" alt={t.footer.fundedByEuAlt} />
+    <img src="/logos/funders/eurohpc.png" alt={t.footer.eurohpcAlt} />
 
-    <p>
-        This project received funding from the European High Performance Computing Joint Undertaking (EuroHPC JU) under the European Union's Horizon Europe framework program for research and innovation and Grant Agreement No. TODO.
-    </p>
+    <p>{t.footer.fundingStatement}</p>
 
-    <p>
-        Views and opinions expressed are, however, those of the author(s) only and do not necessarily reflect those of the European Union or EuroHPC Joint Undertaking. Neither the European Union nor the granting authority can be held responsible for them.
-    </p>
+    <p>{t.footer.disclaimer}</p>
 
     <div class="footer-col">
-        <p>Developed By Q-Neko</p>
-        <p>Copyright © Q-Neko 2026</p>
+        <p>{t.footer.developedBy}</p>
+        <p>{t.footer.developedCopyright}</p>
         <p><a href={t.footer.links.privacyPolicy.href}>{t.footer.links.privacyPolicy.label}</a></p>
         <p><a href={t.footer.links.codeOfConduct.href}>{t.footer.links.codeOfConduct.label}</a></p>
     </div>

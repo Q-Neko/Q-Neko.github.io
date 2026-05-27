@@ -11,6 +11,7 @@ export const en: Translations = {
     contact: "Contact",
     news: "News",
     search: "Search",
+    logoAlt: "Q-Neko",
   },
   hero: {
     label: "Q-Neko",
@@ -24,6 +25,7 @@ export const en: Translations = {
     exploreCta: "Explore the Project",
     partnersCta: "Our Partners",
     postsCta: "Recents",
+    logoAlt: "Q-Neko Logo",
   },
   mission: {
     sectionLabel: "Our Mission",
@@ -75,6 +77,15 @@ export const en: Translations = {
     contactCol: "Contact",
     copyright: "© 2026 Q-Neko Consortium · Nippon-Europe Quantum Koraborēshon",
     coordinatedBy: "Coordinated by CSC - IT Center for Science, Finland",
+    fundingStatement:
+      "This project received funding from the European High Performance Computing Joint Undertaking (EuroHPC JU) under the European Union's Horizon Europe framework program for research and innovation and Grant Agreement No. TODO.",
+    disclaimer:
+      "Views and opinions expressed are, however, those of the author(s) only and do not necessarily reflect those of the European Union or EuroHPC Joint Undertaking. Neither the European Union nor the granting authority can be held responsible for them.",
+    developedBy: "Developed By Q-Neko",
+    developedCopyright: "Copyright © Q-Neko 2026",
+    logoAlt: "Q-Neko",
+    fundedByEuAlt: "Funded by the European Union",
+    eurohpcAlt: "EuroHPC",
     links: {
       mission: {
         label: "Mission",
@@ -172,6 +183,7 @@ export const en: Translations = {
   },
   langSwitch: {
     label: "日本語",
+    ariaLabel: "Switch language",
   },
   pageContent: {
     consortium: {
@@ -215,6 +227,13 @@ export const en: Translations = {
       heading: "Stay in the Loop",
       intro: "Subscribe to the Q-Neko newsletter to receive updates on our research progress, upcoming events, and consortium news directly in your inbox.",
       subscribeCta: "Subscribe",
+      emailLabel: "Email",
+      emailPlaceholder: "your@email.com",
+      submitSuccess: "Message sent successfully!",
+      emailRequired: "Email is required",
+      emailInvalid: "Email is invalid",
+      previousHeading: "Previous Newsletters",
+      previousComingSoon: "Previous newsletters will appear here as they become available.",
     },
     contact: {
       sectionLabel: "Contact",
@@ -236,6 +255,14 @@ export const en: Translations = {
         privacyPolicyLink: "/privacy-policy",
         privacyPolicyLinkText: "Privacy policy",
         privacyPolicyText: "I accept the",
+        submitSuccess: "Message sent successfully!",
+        errors: {
+          nameRequired: "Name is required",
+          emailRequired: "Email is required",
+          emailInvalid: "Email is invalid",
+          messageRequired: "Message is required",
+          privacyRequired: "You must accept the privacy policy",
+        },
       },
     },
     events: {

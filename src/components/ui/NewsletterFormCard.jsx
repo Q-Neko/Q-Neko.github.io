@@ -26,9 +26,9 @@ export const NewsletterFormCard = ({ t }) => {
         const errors = {};
 
         if (!formData.email.trim()) {
-            errors.email = 'Email is required';
+            errors.email = t.pageContent.newsletter.emailRequired;
         } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-            errors.email = 'Email is invalid';
+            errors.email = t.pageContent.newsletter.emailInvalid;
         }
 
         setFormErrors(errors);
@@ -64,10 +64,10 @@ export const NewsletterFormCard = ({ t }) => {
 
             <form className='flex flex-col gap-6' onSubmit={handleSubmit}>
                 <div>
-                    <label className="form-label">Email</label>
+                    <label className="form-label">{t.pageContent.newsletter.emailLabel}</label>
                     <input
                         type="text"
-                        placeholder="your@email.com"
+                        placeholder={t.pageContent.newsletter.emailPlaceholder}
                         className="form-input"
                         value={formData.email}
                         onChange={(e) => handleFormDataChange('email', e.target.value)}
@@ -76,7 +76,7 @@ export const NewsletterFormCard = ({ t }) => {
                 </div>
 
                 <button className="btn-primary self-start">{t.pageContent.newsletter.subscribeCta}</button>
-                {submittedNotification && <p className="text-green-600 mt-2">Message sent successfully!</p>}
+                {submittedNotification && <p className="text-green-600 mt-2">{t.pageContent.newsletter.submitSuccess}</p>}
             </form>
         </div>
     )
