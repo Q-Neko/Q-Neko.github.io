@@ -178,6 +178,40 @@ const ENABLED_SOURCES = [
 
 Entries from all enabled sources are merged, sorted by date (descending), and the top `MAX_ITEMS` (default 4) are rendered. Each enabled source also gets its own "view all" button linking to the corresponding listing page.
 
+## Images and static assets
+
+There are two places to put images, and the right one depends on how you'll reference it.
+
+### [public/](public/) — referenced by URL path
+
+Files under `public/` are served as-is at the same path (e.g. `public/news/foo/cover.jpg` → `/news/foo/cover.jpg`). Use this for anything referenced by a **string path**, including all content collection `image:` fields and any `<img src="/...">` in Markdown bodies or page components.
+
+Conventions in use:
+
+| Content                     | Location                       | Example                                          |
+| --------------------------- | ------------------------------ | ------------------------------------------------ |
+| News post images            | `public/news/<slug>/`          | `image: "/news/introducing-q-neko/staytuned.jpg"` |
+| Event images                | `public/events/<slug>/`        | `image: "/events/kickoff-workshop-2026/cover.jpg"` |
+| Result PDFs                 | `public/files/results/`        | `"pdf": "d1.1-collaboration-plan.pdf"` (prefixed with `/files/results/` automatically) |
+| Result images (optional)    | `public/files/results/`        | `"image": "/files/results/kickoff-poster.jpg"`   |
+| Partner / funder logos      | `public/logos/`, `public/logos/funders/` | —                                      |
+| Generic card fallback       | `public/placeholder-news.svg`  | use when no real image is available              |
+
+Files under `public/` are **not** processed or optimized — pre-size and pre-compress them before committing. Prefer `.jpg` for photos, `.svg` for logos/icons.
+
+### [src/assets/](src/assets/) — imported into components
+
+Use `src/assets/` for images you `import` into an `.astro` or `.tsx` file. Astro processes these (hashing, optimization, responsive variants when used with `<Image>`). Current usage is the project logo across [Hero.astro](src/components/mainPage/Hero.astro), [Nav.astro](src/components/layout/Nav.astro), and [Footer.astro](src/components/layout/Footer.astro):
+
+```astro
+---
+import qnekoLogo from "../../assets/qneko_nobg_notext.png";
+---
+<img src={qnekoLogo.src} alt="Q-Neko" />
+```
+
+Rule of thumb: if the image is referenced from a content collection entry or a string path, put it in `public/`. If it's imported by a component, put it in `src/assets/`.
+
 ## Adding a new page
 
 1. Create `src/components/pages/MyPage.astro` with `lang` prop and your content
