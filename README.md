@@ -21,42 +21,65 @@ nvm install 24
 nvm use 24
 ```
 
-Then clone this repository and navigate to it and run:
+Then clone this repository. If you have not done so already set up an ssh key for github: [generate key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent?platform=windows), [add to account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
+
+```sh
+git clone git@github.com:Q-Neko/Q-Neko.github.io.git
+```
+
+and navigate to the directory
+
+```sh
+cd Q-Neko.github.io
+```
+
+and run:
 
 ```sh
 npm install
-npm run dev        # dev server at localhost:4321
-npm run build      # production build to ./dist/
-npm run preview    # preview the production build locally
+npm run dev        # dev server at localhost:4321 to preview and see live changes
+npm run build      # production build to ./dist/. Builds production readu assets
+npm run preview    # preview the production build locally, no live changes
 ```
 
 ## Project structure
 
 ```
 src/
+├── assets/            # Images and static assets imported by components
 ├── components/
-│   ├── layout/        # Nav, Footer, LanguageSwitcher, NavMobile (React)
+│   ├── layout/        # Nav, NavMobile (React), Footer, LanguageSwitcher, Banner, Newsletter
 │   ├── mainPage/      # Hero, Mission, Partners, Funding, RecentActivity
 │   ├── pages/         # Shared page-body components (used by both EN and JA routes)
-│   ├── blog/          # PostContent (renders a single news post)
-│   └── ui/            # EntryCard (reusable card for news, events, results)
+│   ├── blog/          # PostContent, EventContent (render a single news post / event)
+│   └── ui/            # EntryCard, PartnerCard, Pagination, ContactFormCard, NewsletterFormCard, PreviousNewsletters
 ├── content/
-│   └── news/          # Markdown news posts (.md / .mdx)
+│   ├── news/          # Markdown news posts, split by locale (en/, ja/)
+│   ├── events/        # Markdown event entries, split by locale (en/, ja/)
+│   ├── results/       # Markdown results entries, split by locale (en/, ja/)
+│   └── partners/      # partners.json
+├── content.config.ts  # Astro content collection schemas
 ├── i18n/
 │   ├── types.ts       # Translations interface - add keys here first
 │   ├── en.ts          # English strings
 │   ├── ja.ts          # Japanese strings (placeholders until translated)
 │   └── index.ts       # useTranslations(locale) helper
 ├── layouts/           # Layout.astro, PageLayout.astro
+├── styles/            # Global Tailwind / CSS
 ├── pages/             # English routes (no prefix)
 │   ├── index.astro
-│   ├── news/[page].astro
+│   ├── 404.astro
+│   ├── news.astro
 │   ├── news/[title].astro
 │   ├── events.astro
+│   ├── events/[slug].astro
 │   ├── results.astro
+│   ├── results/[slug].astro
 │   ├── media.astro
 │   ├── newsletter.astro
 │   ├── contact.astro
+│   ├── privacy-policy.astro
+│   ├── code-of-conduct.astro
 │   └── search/
 └── pages/ja/          # Japanese routes (/ja/...)
     └── (mirrors pages/ structure)
