@@ -12,7 +12,7 @@ Built with [Astro 6](https://astro.build), Tailwind CSS v4, React, and Pagefind 
 
 ## Quick start
 
-Requires Node.js ≥ 22.12.0. It is recommended to use [nvm](https://github.com/nvm-sh/nvm#installing-and-updating) to install node.
+Requires Node.js ≥ 22.12.0. It is recommended to use [nvm linux/mac](https://github.com/nvm-sh/nvm#installing-and-updating) or [nvm windows](https://www.freecodecamp.org/news/node-version-manager-nvm-install-guide/) to install node.
 
 Once nvm is installed run:
 
