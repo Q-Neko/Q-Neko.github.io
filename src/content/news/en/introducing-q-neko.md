@@ -6,7 +6,7 @@ description: "Q-Neko is an EU–Japan collaboration advancing quantum-enhanced h
 author: "Q-Neko"
 type: "News"
 tags: ["EU-JAPAN", "Q-Neko", "Quantum Computing"]
-image: "/news/introducing-q-neko/staytuned.png"
+image: "/news/introducing-q-neko/staytuned.jpg"
 ---
 
 How do we turn today's quantum promise into real-world impact?
