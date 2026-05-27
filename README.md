@@ -114,7 +114,11 @@ const base = lang === "ja" ? "/ja" : "";
 
 ## Content collections
 
-News posts live in `src/content/news/` as Markdown files. Required frontmatter:
+There are three content collections — `news`, `events`, and `results` — defined in [src/content.config.ts](src/content.config.ts). Each one is split into `en/` and `ja/` subdirectories; **language is determined by the directory**, not by frontmatter. Each language's paginated listing only shows entries from its own subdirectory.
+
+### News
+
+Markdown files in `src/content/news/{en,ja}/`. Frontmatter:
 
 ```yaml
 ---
@@ -123,25 +127,56 @@ slug: "url-slug"
 date: 2026-01-01
 description: "Short description shown in cards"
 author: "Author name"
-type: "News"          # displayed as the card meta label
+type: "News"                 # displayed as the card meta label
 tags: ["tag1", "tag2"]
-lang: en              # en or ja
+image: "/news/foo/cover.jpg" # optional
 ---
 ```
 
-English posts use `lang: en`, Japanese posts use `lang: ja`. Each language's paginated listing only shows posts matching its language.
+### Events
+
+Markdown files in `src/content/events/{en,ja}/`. Frontmatter:
+
+```yaml
+---
+title: "Event title"
+slug: "url-slug"
+description: "Short description shown in cards"
+startDate: 2026-01-20
+endDate: 2026-01-22
+location: "Tokyo, Japan"     # optional, shown as the card meta label
+image: "/placeholder-news.svg" # optional
+---
+```
+
+### Results
+
+JSON files in `src/content/results/{en,ja}/`. Each entry points at a PDF that lives under `public/files/results/`:
+
+```json
+{
+  "title": "D1.1 — Collaboration Plan",
+  "type": "deliverable",
+  "date": "2028-02-15",
+  "pdf": "d1.1-collaboration-plan.pdf"
+}
+```
+
+`type` must be one of: `deliverable`, `milestone`, `publication`, `software`, `presentation`, `poster`. The card meta label is the localized version of this type pulled from `t.pageContent.results.filters[type]`. `image` is optional.
 
 ## Recent Activity section
 
-`src/components/mainPage/RecentActivity.astro` pulls the newest items from configured sources and shows them on the homepage. To change which sources are included, edit the `ENABLED_SOURCES` array near the top of that file:
+[src/components/mainPage/RecentActivity.astro](src/components/mainPage/RecentActivity.astro) pulls the newest items from the enabled collections and shows them on the homepage. To hide a source, remove it from the `ENABLED_SOURCES` array near the top of that file:
 
 ```ts
 const ENABLED_SOURCES = [
   "news",
-  // "events",   // uncomment when events become a content collection
-  // "results",  // uncomment when results become a content collection
+  "events",
+  "results",
 ] as const satisfies ReadonlyArray<"news" | "events" | "results">;
 ```
+
+Entries from all enabled sources are merged, sorted by date (descending), and the top `MAX_ITEMS` (default 4) are rendered. Each enabled source also gets its own "view all" button linking to the corresponding listing page.
 
 ## Adding a new page
 
