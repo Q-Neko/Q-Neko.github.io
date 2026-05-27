@@ -171,6 +171,8 @@ export const en: Translations = {
     consortium: "Consortium",
     results: "Results",
     media: "Media",
+    codeOfConduct: "Code of Conduct",
+    privacyPolicy: "Privacy Policy",
     newsletter: "Newsletter",
     contact: "Contact",
     events: "Events",

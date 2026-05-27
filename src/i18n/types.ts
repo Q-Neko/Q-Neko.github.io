@@ -98,6 +98,8 @@ export interface Translations {
     media: string;
     newsletter: string;
     contact: string;
+    codeOfConduct: string;
+    privacyPolicy: string;
     events: string;
   };
   recentActivity: {

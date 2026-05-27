@@ -88,19 +88,19 @@ export const ContactFormCard = ({ t }) => {
                 <div>
                     <label className="form-label">{t.pageContent.contact.form.nameLabel}</label>
                     <input type="text" className="form-input" placeholder={t.pageContent.contact.form.nameLabel} value={formData.name} onChange={(e) => handleFormDataChange('name', e.target.value)} />
-                    {formErrors.name && <p className="fomr-error">{formErrors.name}</p>}
+                    {formErrors.name && <p className="form-error">{formErrors.name}</p>}
                 </div>
 
                 <div>
                     <label className="form-label">{t.pageContent.contact.form.emailLabel}</label>
                     <input type="text" className="form-input" placeholder={t.pageContent.contact.form.emailLabel} value={formData.email} onChange={(e) => handleFormDataChange('email', e.target.value)} />
-                    {formErrors.email && <p className="fomr-error">{formErrors.email}</p>}
+                    {formErrors.email && <p className="form-error">{formErrors.email}</p>}
                 </div>
 
                 <div>
                     <label className="form-label">{t.pageContent.contact.form.messageLabel}</label>
                     <textarea className="form-input" placeholder={t.pageContent.contact.form.messageLabel} value={formData.message} onChange={(e) => handleFormDataChange('message', e.target.value)} />
-                    {formErrors.message && <p className="fomr-error">{formErrors.message}</p>}
+                    {formErrors.message && <p className="form-error">{formErrors.message}</p>}
                 </div>
 
                 <div>
@@ -111,7 +111,7 @@ export const ContactFormCard = ({ t }) => {
                             {t.pageContent.contact.form.privacyPolicyLinkText}
                         </a></p>
                     </div>
-                    {formErrors.privacyPolicyAccepted && <p className="fomr-error">{formErrors.privacyPolicyAccepted}</p>}
+                    {formErrors.privacyPolicyAccepted && <p className="form-error">{formErrors.privacyPolicyAccepted}</p>}
                 </div>
 
                 <button type="submit" className="btn-primary self-start">{t.pageContent.contact.form.submitCta}</button>

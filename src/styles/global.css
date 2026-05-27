@@ -756,7 +756,7 @@
     @apply w-5 h-5 text-blue border-ink/20 rounded-lg focus:ring-blue focus:ring-2;
   }
 
-  .fomr-error {
+  .form-error {
     @apply text-crimson text-sm mt-1;
   }
 
