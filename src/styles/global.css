@@ -559,6 +559,10 @@
     @apply max-w-[1500px] mx-auto px-16 pb-24 font-sans text-[1.05rem] leading-[1.85] text-ink;
   }
 
+  .post-lead {
+    @apply text-[1.2rem] leading-[1.7] text-ink/75 italic border-l-4 border-blue/40 pl-6 mt-6;
+  }
+
   .post-content h1 {
     @apply font-serif-en leading-[1.1] text-ink mt-10 mb-3;
     font-size: clamp(2rem, 4vw, 3rem);
