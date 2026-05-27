@@ -31,6 +31,9 @@ const dateStr = event.data.startDate
                 {event.data.location && <span class="post-meta-author">{event.data.location}</span>}
             </div>
         </div>
+        {event.data.description && (
+            <p class="post-lead">{event.data.description}</p>
+        )}
         <Content />
     </div>
 </div>

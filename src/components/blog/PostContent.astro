@@ -33,6 +33,9 @@ const searchBase = post.id.startsWith("ja/") ? "/ja/search" : "/search";
                 {post.data.author && <span class="post-meta-author">{post.data.author}</span>}
             </div>
         </div>
+        {post.data.description && (
+            <p class="post-lead">{post.data.description}</p>
+        )}
         <Content />
     </div>
 </div>
