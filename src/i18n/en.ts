@@ -309,7 +309,7 @@ export const en: Translations = {
       coordinatorLabel: "Project Coordinator",
       coordinator: "CSC – IT Center for Science, Finland", //TODO: replace with coordinator's name
       emailLabel: "Email",
-      email: "info@q-neko.eu", //TODO: replace with actual email address
+      email: "mikael.johansson@csc.fi", //TODO: replace with actual email address
       pmoLabel: "Project Management Office",
       pmo: "PMO Contact", //TODO: replace with PMO contact's name
       pmoEmail: "pmo@q-neko.eu", //TODO: replace with actual PMO email address
