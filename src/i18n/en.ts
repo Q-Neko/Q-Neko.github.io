@@ -312,7 +312,7 @@ export const en: Translations = {
       email: "mikael.johansson@csc.fi", //TODO: replace with actual email address
       pmoLabel: "Project Management Office",
       pmo: "PMO Contact", //TODO: replace with PMO contact's name
-      pmoEmail: "pmo@q-neko.eu", //TODO: replace with actual PMO email address
+      pmoEmail: "pmo.qneko@postit.csc.fi", //TODO: replace with actual PMO email address
       form: {
         nameLabel: "Name",
         emailLabel: "Email",
