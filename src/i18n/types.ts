@@ -104,6 +104,12 @@ export interface Translations {
     cookies: string;
     events: string;
   };
+  privacyPolicy: {
+    content: string; //TODO replace with actual content
+  },
+  codeOfConduct: {
+    content: string; //TODO replace with actual content
+  },
   cookies: {
     banner: {
       title: string;

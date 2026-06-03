@@ -1,0 +1,21 @@
+---
+import { useTranslations } from "../../i18n/index";
+
+interface Props {
+    lang: string;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<div class="default-bg">
+    <div class="newsletter">
+        <div class="">
+            <div class="section-label">
+                {t.pages.codeOfConduct}
+            </div>
+            <h2 class="section-h2">{t.pages.codeOfConduct}</h2>
+            <p>{t.codeOfConduct.content}</p>
+        </div>
+    </div>
+</div>

@@ -182,6 +182,12 @@ export const en: Translations = {
     contact: "Contact",
     events: "Events",
   },
+  privacyPolicy: {
+    content: "Privacy Policy content will be displayed here." //TODO replace with actual content
+  },
+  codeOfConduct: {
+    content: "Code of Conduct content will be displayed here." //TODO replace with actual content
+  },
   cookies: {
     banner: {
       title: "We respect your privacy",

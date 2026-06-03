@@ -1,5 +1,6 @@
 ---
 import PageLayout from "../../layouts/PageLayout.astro";
+import PrivacyPolicyPage from "../../components/pages/PrivacyPolicyPage.astro";
 import { useTranslations } from "../../i18n/index";
 
 const lang = Astro.currentLocale ?? "en";
@@ -7,15 +8,5 @@ const t = useTranslations(lang);
 ---
 
 <PageLayout title={t.pages.privacyPolicy}>
-    <div class="default-bg">
-        <div class="newsletter">
-            <div class="">
-                <div class="section-label">
-                    {t.pages.privacyPolicy}
-                </div>
-                <h2 class="section-h2">{t.pages.privacyPolicy}</h2>
-                <p>Privacy Policy content will be displayed here.</p>
-            </div>
-        </div>
-    </div>
+    <PrivacyPolicyPage lang={lang} />
 </PageLayout>
