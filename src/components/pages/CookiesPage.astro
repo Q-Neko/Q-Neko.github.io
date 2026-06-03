@@ -1,0 +1,44 @@
+---
+import { useTranslations } from "../../i18n/index";
+
+interface Props {
+  lang: string;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const c = t.cookies.page;
+---
+
+<div class="default-bg">
+    <div class="newsletter">
+        <div class="section-label">{t.pages.cookies}</div>
+        <h3 class="h3-label">{t.pages.cookies}</h3>
+        <p class="max-w-3xl text-ink/80 leading-relaxed mb-12">{c.intro}</p>
+
+        {
+            c.sections.map((section) => (
+                <section class="max-w-3xl mb-10">
+                    <h3 class="h3-label">{section.heading}</h3>
+                    {section.body && (
+                        <p class="text-ink/80 leading-relaxed">{section.body}</p>
+                    )}
+                    {section.items && (
+                        <ul class="list-disc pl-6 mt-3 space-y-1.5 text-ink/80 leading-relaxed">
+                            {section.items.map((item) => (
+                                <li>{item}</li>
+                            ))}
+                        </ul>
+                    )}
+                </section>
+            ))
+        }
+
+        <section class="max-w-3xl mb-4">
+            <h3 class="h3-label">{c.manageHeading}</h3>
+            <p class="text-ink/80 leading-relaxed mb-6">{c.manageBody}</p>
+            <button type="button" data-cookie-settings class="btn-primary">
+                {c.manageCta}
+            </button>
+        </section>
+    </div>
+</div>

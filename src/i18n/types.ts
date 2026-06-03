@@ -73,6 +73,7 @@ export interface Translations {
       linkedIn: { label: string; href: string };
       privacyPolicy: { label: string; href: string };
       codeOfConduct: { label: string; href: string };
+      cookies: { label: string; href: string };
     };
   };
   news: {
@@ -100,7 +101,31 @@ export interface Translations {
     contact: string;
     codeOfConduct: string;
     privacyPolicy: string;
+    cookies: string;
     events: string;
+  };
+  cookies: {
+    banner: {
+      title: string;
+      body: string;
+      learnMore: string;
+      necessaryTitle: string;
+      necessaryDesc: string;
+      alwaysOn: string;
+      analyticsTitle: string;
+      analyticsDesc: string;
+      acceptAll: string;
+      rejectAll: string;
+      save: string;
+      settingsLabel: string;
+    };
+    page: {
+      intro: string;
+      sections: Array<{ heading: string; body?: string; items?: string[] }>;
+      manageHeading: string;
+      manageBody: string;
+      manageCta: string;
+    };
   };
   recentActivity: {
     sectionLabel: string;

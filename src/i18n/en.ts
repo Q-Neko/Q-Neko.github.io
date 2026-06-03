@@ -147,6 +147,10 @@ export const en: Translations = {
         label: "Code of Conduct",
         href: "/code-of-conduct",
       },
+      cookies: {
+        label: "Cookies",
+        href: "/cookies",
+      },
     },
   },
   news: {
@@ -173,9 +177,64 @@ export const en: Translations = {
     media: "Media",
     codeOfConduct: "Code of Conduct",
     privacyPolicy: "Privacy Policy",
+    cookies: "Cookies & Visitor Statistics",
     newsletter: "Newsletter",
     contact: "Contact",
     events: "Events",
+  },
+  cookies: {
+    banner: {
+      title: "We respect your privacy",
+      body: "This site uses a few necessary cookies to work, and, only with your consent, anonymous Matomo analytics to help us understand how the site is used. We never use your data for advertising.",
+      learnMore: "Read more about cookies and visitor statistics",
+      necessaryTitle: "Necessary",
+      necessaryDesc: "Required for the site to function, such as remembering your language and consent choice.",
+      alwaysOn: "Always on",
+      analyticsTitle: "Anonymous analytics",
+      analyticsDesc: "Anonymised usage statistics via Matomo, hosted within the EU. Helps us improve the site.",
+      acceptAll: "Accept all",
+      rejectAll: "Reject",
+      save: "Save choices",
+      settingsLabel: "Cookie settings",
+    },
+    page: {
+      intro:
+        "This page explains how the Q-Neko website uses cookies and collects anonymous visitor statistics. We keep tracking to a minimum: the only optional processing is privacy-friendly, anonymised analytics, and we never use your data for advertising or share it with third parties.",
+      sections: [
+        {
+          heading: "Necessary cookies",
+          body: "The website uses a small number of necessary cookies and local storage entries required for basic functionality, such as remembering your language selection and your cookie consent choice. These cannot be switched off, and they do not track you across other sites.",
+        },
+        {
+          heading: "Visitor statistics",
+          body: "With your consent, we collect anonymised usage data to understand how the site is used and to improve it. This data is processed exclusively in Matomo, a privacy-friendly analytics tool hosted within the EU. No data is transferred or stored outside the EU region at any stage. We do not use the data for advertising and we do not share it with third parties.",
+        },
+        {
+          heading: "What is collected",
+          items: [
+            "Pages visited (URLs and titles)",
+            "Device type, brand, and screen resolution",
+            "Browser type and selected language",
+            "An anonymous visit identifier",
+            "Referring website and search terms",
+            "Interactions such as clicked links",
+            "Visit timestamps and an anonymised IP address (final blocks removed)",
+            "Approximate, country-level location",
+          ],
+        },
+        {
+          heading: "Stored in your browser",
+          items: [
+            "consentAnalytics: your cookie consent choice, stored locally so we can remember it on your next visit (necessary).",
+            "tracking: a cookie set only after you accept analytics. It marks that anonymous analytics are enabled. Declining or withdrawing consent deletes it.",
+          ],
+        },
+      ],
+      manageHeading: "Managing your consent",
+      manageBody:
+        "You can change or withdraw your consent at any time. Withdrawing analytics consent immediately deletes the analytics cookie from your browser.",
+      manageCta: "Open cookie settings",
+    },
   },
   recentActivity: {
     sectionLabel: "Latest",

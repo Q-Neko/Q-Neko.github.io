@@ -11,7 +11,7 @@ import { z } from 'astro/zod';
 //
 // Language is encoded in the directory: each collection has `en/` and `ja/`
 // subdirectories, e.g. `src/content/news/en/foo.md`. Routes filter entries by
-// `entry.id` starting with `"en/"` or `"ja/"` — no `lang` frontmatter needed.
+// `entry.id` starting with `"en/"` or `"ja/"` - no `lang` frontmatter needed.
 
 const news = defineCollection({
   loader: glob({
