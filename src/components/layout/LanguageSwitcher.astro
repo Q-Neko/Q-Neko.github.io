@@ -6,6 +6,7 @@ const t = useTranslations(lang);
 
 const currentPath = Astro.url.pathname;
 const isJa = currentPath.startsWith("/ja");
+const currentLang = isJa ? "ja" : "en";
 
 let alternatePath: string;
 if (isJa) {
@@ -13,8 +14,42 @@ if (isJa) {
 } else {
   alternatePath = "/ja" + currentPath;
 }
+const alternateLang = isJa ? "en" : "ja";
 ---
 
-<a href={alternatePath} class="lang-switch" aria-label={t.langSwitch.ariaLabel}>
+<a
+  href={alternatePath}
+  class="lang-switch"
+  data-lang={alternateLang}
+  aria-label={t.langSwitch.ariaLabel}
+>
   {t.langSwitch.label}
 </a>
+
+<script is:inline define:vars={{ currentLang }}>
+  const STORAGE_KEY = "preferred-lang";
+
+  // Persist the user's choice when they switch languages.
+  document.querySelectorAll(".lang-switch").forEach((link) => {
+    link.addEventListener("click", () => {
+      try {
+        localStorage.setItem(STORAGE_KEY, link.dataset.lang);
+      } catch {}
+    });
+  });
+
+  // Redirect returning visitors to their previously chosen language.
+  try {
+    const preferred = localStorage.getItem(STORAGE_KEY);
+    if (preferred && preferred !== currentLang) {
+      const path = window.location.pathname;
+      let target;
+      if (preferred === "ja") {
+        target = "/ja" + path;
+      } else {
+        target = path.replace(/^\/ja/, "") || "/";
+      }
+      window.location.replace(target + window.location.search + window.location.hash);
+    }
+  } catch {}
+</script>
