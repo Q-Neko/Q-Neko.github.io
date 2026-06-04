@@ -279,7 +279,7 @@ export const ja: Translations = {
       heading: "Media Corner",
       intro: "Welcome to the Q-Neko Media Corner. Here you can find official communication materials, press releases, and media coverage related to the Q-Neko project.",
       pressLabel: "Press contact",
-      pressEmail: "communications@q-neko.eu", //TODO: replace with actual email address
+      pressEmail: "comms.qneko@postit.csc.fi", //TODO: replace with actual email address
       tabs: {
         communicationMaterials: "広報資料",
         pressReleases: "プレスリリース",
@@ -309,7 +309,7 @@ export const ja: Translations = {
       coordinatorLabel: "Project Coordinator",
       coordinator: "CSC – IT Center for Science, Finland", //TODO: replace with coordinator's name
       emailLabel: "Email",
-      email: "info@q-neko.eu", //TODO: replace with actual email address
+      email: "comms.qneko@postit.csc.fi", //TODO: replace with actual email address
       pmoLabel: "Project Management Office",
       pmo: "PMO Contact", //TODO: replace with PMO contact's name
       pmoEmail: "pmo.qneko@postit.csc.fi", //TODO: replace with actual PMO email address

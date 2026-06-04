@@ -279,7 +279,7 @@ export const en: Translations = {
       heading: "Media Corner",
       intro: "Welcome to the Q-Neko Media Corner. Here you can find official communication materials, press releases, and media coverage related to the Q-Neko project",
       pressLabel: "Press contact",
-      pressEmail: "communications@q-neko.eu", //TODO: replace with actual email address
+      pressEmail: "comms.qneko@postit.csc.fi", //TODO: replace with actual email address
       tabs: {
         communicationMaterials: "Communication materials",
         pressReleases: "Press releases",
