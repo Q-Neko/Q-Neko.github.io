@@ -186,7 +186,36 @@ export const en: Translations = {
     content: "Privacy Policy content will be displayed here." //TODO replace with actual content
   },
   codeOfConduct: {
-    content: "Code of Conduct content will be displayed here." //TODO replace with actual content
+    intro:
+      "The primary goal of Q-Neko is to enhance collaboration between Europe and Japan. This Code of Conduct sets out the values and principles that guide our work and the way we treat one another, our partners, and the wider community.",
+    sections: [
+      {
+        heading: "Our commitment",
+        body: "Q-Neko is committed to transparency, honesty, and responsibility. We strive to keep our promises and to act ethically and sustainably in everything we do, translating our shared values into practical guidelines for scientific practice and for our interactions with all stakeholders.",
+      },
+      {
+        heading: "Our values",
+        body: "Our decisions are guided by a set of core values that underpin every collaboration:",
+        items: [
+          "Responsible action in how we conduct research and manage resources",
+          "Care and respect for the people we work with and the communities we serve",
+          "Collaboration across institutions, disciplines, and cultures",
+          "Expertise, applied with rigour and intellectual honesty",
+        ],
+      },
+      {
+        heading: "Rights and laws",
+        body: "We respect human rights as set out in the UN Universal Declaration of Human Rights and uphold international labour standards, including the principles of the International Labour Organization and the UN Global Compact. Discrimination, harassment, and intimidation in any form are not tolerated.",
+      },
+      {
+        heading: "Ethics and conduct",
+        body: "Members are expected to maintain relationships based on mutual respect and trust. No member will face retaliation for raising an ethical concern in good faith or for refusing to take part in an unethical act. A confidential mechanism is available for reporting threats to the public interest or the common good.",
+      },
+      {
+        heading: "Scientific integrity",
+        body: "Beyond organisational conduct, we are committed to the genuineness and rigour of our research. Scientific integrity rests on honesty, reliability, transparency, and responsibility — to one another, to future generations of scientists, and to society as a whole.",
+      },
+    ],
   },
   cookies: {
     banner: {

@@ -108,7 +108,8 @@ export interface Translations {
     content: string; //TODO replace with actual content
   },
   codeOfConduct: {
-    content: string; //TODO replace with actual content
+    intro: string;
+    sections: Array<{ heading: string; body?: string; items?: string[] }>;
   },
   cookies: {
     banner: {
