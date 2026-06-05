@@ -2,8 +2,11 @@
 import "../styles/global.css";
 import Footer from "../components/layout/Footer.astro";
 import Nav from "../components/layout/Nav.astro";
+import { CookieConsent } from "../components/layout/CookieConsent.jsx";
+import { useTranslations } from "../i18n/index";
 
 const lang = Astro.currentLocale ?? "en";
+const t = useTranslations(lang);
 ---
 
 <!doctype html>
@@ -27,6 +30,7 @@ const lang = Astro.currentLocale ?? "en";
 			<slot />
 		</main>
 		<Footer lang={lang} />
+		<CookieConsent client:load t={{ cookies: t.cookies }} />
 		<script>
 			// Scroll reveal
 			const observer = new IntersectionObserver(

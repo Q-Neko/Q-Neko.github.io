@@ -6,10 +6,12 @@ export const NewsletterFormCard = ({ t }) => {
 
     const [formData, setFormData] = useState({
         email: '',
+        privacyPolicyAccepted: false,
     });
 
     const [formErrors, setFormErrors] = useState({
         email: null,
+        privacyPolicyAccepted: null,
     });
 
     const [submittedNotification, setSubmittedNotification] = useState(false);
@@ -19,6 +21,7 @@ export const NewsletterFormCard = ({ t }) => {
         if (formErrors[field]) {
             setFormErrors(prev => ({ ...prev, [field]: null }));
         }
+
     }
 
     const validateForm = () => {
@@ -30,7 +33,9 @@ export const NewsletterFormCard = ({ t }) => {
         } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
             errors.email = t.pageContent.newsletter.emailInvalid;
         }
-
+        if (!formData.privacyPolicyAccepted) {
+            errors.privacyPolicyAccepted = t.pageContent.contact.form.errors.privacyRequired;
+        }
         setFormErrors(errors);
 
         return Object.keys(errors).length === 0;
@@ -45,6 +50,7 @@ export const NewsletterFormCard = ({ t }) => {
 
             setFormData({
                 email: '',
+                privacyPolicyAccepted: false,
             });
 
             setSubmittedNotification(true);
@@ -73,6 +79,14 @@ export const NewsletterFormCard = ({ t }) => {
                         onChange={(e) => handleFormDataChange('email', e.target.value)}
                     />
                     {formErrors.email && <p className="form-error">{formErrors.email}</p>}
+
+                    <div className="flex mt-2 gap-2 items-center">
+                        <input type="checkbox" className="form-checkbox" checked={formData.privacyPolicyAccepted} onChange={(e) => handleFormDataChange('privacyPolicyAccepted', e.target.checked)} />
+                        <p>{t.pageContent.contact.form.privacyPolicyText} <a href={t.pageContent.contact.form.privacyPolicyLink} className="text-blue hover:underline">
+                            {t.pageContent.contact.form.privacyPolicyLinkText}
+                        </a></p>
+                    </div>
+                    {formErrors.privacyPolicyAccepted && <p className="form-error">{formErrors.privacyPolicyAccepted}</p>}
                 </div>
                 
                 <button disabled className="btn-primary self-start disabled:cursor-not-allowed">{t.pageContent.newsletter.subscribeCta}</button>

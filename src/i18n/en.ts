@@ -147,6 +147,10 @@ export const en: Translations = {
         label: "Code of Conduct",
         href: "/code-of-conduct",
       },
+      cookies: {
+        label: "Cookies",
+        href: "/cookies",
+      },
     },
   },
   news: {
@@ -173,9 +177,99 @@ export const en: Translations = {
     media: "Media",
     codeOfConduct: "Code of Conduct",
     privacyPolicy: "Privacy Policy",
+    cookies: "Cookies & Visitor Statistics",
     newsletter: "Newsletter",
     contact: "Contact",
     events: "Events",
+  },
+  privacyPolicy: {
+    content: "Privacy Policy content will be displayed here." //TODO replace with actual content
+  },
+  codeOfConduct: {
+    intro:
+      "The primary goal of Q-Neko is to enhance collaboration between Europe and Japan. This Code of Conduct sets out the values and principles that guide our work and the way we treat one another, our partners, and the wider community.",
+    sections: [
+      {
+        heading: "Our commitment",
+        body: "Q-Neko is committed to transparency, honesty, and responsibility. We strive to keep our promises and to act ethically and sustainably in everything we do, translating our shared values into practical guidelines for scientific practice and for our interactions with all stakeholders.",
+      },
+      {
+        heading: "Our values",
+        body: "Our decisions are guided by a set of core values that underpin every collaboration:",
+        items: [
+          "Responsible action in how we conduct research and manage resources",
+          "Care and respect for the people we work with and the communities we serve",
+          "Collaboration across institutions, disciplines, and cultures",
+          "Expertise, applied with rigour and intellectual honesty",
+        ],
+      },
+      {
+        heading: "Rights and laws",
+        body: "We respect human rights as set out in the UN Universal Declaration of Human Rights and uphold international labour standards, including the principles of the International Labour Organization and the UN Global Compact. Discrimination, harassment, and intimidation in any form are not tolerated.",
+      },
+      {
+        heading: "Ethics and conduct",
+        body: "Members are expected to maintain relationships based on mutual respect and trust. No member will face retaliation for raising an ethical concern in good faith or for refusing to take part in an unethical act. A confidential mechanism is available for reporting threats to the public interest or the common good.",
+      },
+      {
+        heading: "Scientific integrity",
+        body: "Beyond organisational conduct, we are committed to the genuineness and rigour of our research. Scientific integrity rests on honesty, reliability, transparency, and responsibility — to one another, to future generations of scientists, and to society as a whole.",
+      },
+    ],
+  },
+  cookies: {
+    banner: {
+      title: "We respect your privacy",
+      body: "This site uses a few necessary cookies to work, and, only with your consent, anonymous Matomo analytics to help us understand how the site is used. We never use your data for advertising.",
+      learnMore: "Read more about cookies and visitor statistics",
+      necessaryTitle: "Necessary",
+      necessaryDesc: "Required for the site to function, such as remembering your language and consent choice.",
+      alwaysOn: "Always on",
+      analyticsTitle: "Anonymous analytics",
+      analyticsDesc: "Anonymised usage statistics via Matomo, hosted within the EU. Helps us improve the site.",
+      acceptAll: "Accept all",
+      rejectAll: "Reject",
+      save: "Save choices",
+      settingsLabel: "Cookie settings",
+    },
+    page: {
+      intro:
+        "This page explains how the Q-Neko website uses cookies and collects anonymous visitor statistics. We keep tracking to a minimum: the only optional processing is privacy-friendly, anonymised analytics, and we never use your data for advertising or share it with third parties.",
+      sections: [
+        {
+          heading: "Necessary cookies",
+          body: "The website uses a small number of necessary cookies and local storage entries required for basic functionality, such as remembering your language selection and your cookie consent choice. These cannot be switched off, and they do not track you across other sites.",
+        },
+        {
+          heading: "Visitor statistics",
+          body: "With your consent, we collect anonymised usage data to understand how the site is used and to improve it. This data is processed exclusively in Matomo, a privacy-friendly analytics tool hosted within the EU. No data is transferred or stored outside the EU region at any stage. We do not use the data for advertising and we do not share it with third parties.",
+        },
+        {
+          heading: "What is collected",
+          items: [
+            "Pages visited (URLs and titles)",
+            "Device type, brand, and screen resolution",
+            "Browser type and selected language",
+            "An anonymous visit identifier",
+            "Referring website and search terms",
+            "Interactions such as clicked links",
+            "Visit timestamps and an anonymised IP address (final blocks removed)",
+            "Approximate, country-level location",
+          ],
+        },
+        {
+          heading: "Stored in your browser",
+          items: [
+            "consentAnalytics: your cookie consent choice, stored locally so we can remember it on your next visit (necessary).",
+            "tracking: a cookie set only after you accept analytics. It marks that anonymous analytics are enabled. Declining or withdrawing consent deletes it.",
+          ],
+        },
+      ],
+      manageHeading: "Managing your consent",
+      manageBody:
+        "You can change or withdraw your consent at any time. Withdrawing analytics consent immediately deletes the analytics cookie from your browser.",
+      manageCta: "Open cookie settings",
+    },
   },
   recentActivity: {
     sectionLabel: "Latest",
@@ -214,7 +308,7 @@ export const en: Translations = {
       heading: "Media Corner",
       intro: "Welcome to the Q-Neko Media Corner. Here you can find official communication materials, press releases, and media coverage related to the Q-Neko project",
       pressLabel: "Press contact",
-      pressEmail: "communications@q-neko.eu", //TODO: replace with actual email address
+      pressEmail: "comms.qneko@postit.csc.fi", //TODO: replace with actual email address
       tabs: {
         communicationMaterials: "Communication materials",
         pressReleases: "Press releases",
@@ -244,10 +338,10 @@ export const en: Translations = {
       coordinatorLabel: "Project Coordinator",
       coordinator: "CSC – IT Center for Science, Finland", //TODO: replace with coordinator's name
       emailLabel: "Email",
-      email: "info@q-neko.eu", //TODO: replace with actual email address
+      email: "mikael.johansson@csc.fi", //TODO: replace with actual email address
       pmoLabel: "Project Management Office",
       pmo: "PMO Contact", //TODO: replace with PMO contact's name
-      pmoEmail: "pmo@q-neko.eu", //TODO: replace with actual PMO email address
+      pmoEmail: "pmo.qneko@postit.csc.fi", //TODO: replace with actual PMO email address
       form: {
         nameLabel: "Name",
         emailLabel: "Email",
