@@ -2,7 +2,8 @@
 import { defineCollection } from 'astro:content';
 
 // 2. Import loader(s)
-import { glob } from 'astro/loaders';
+import { glob, file } from 'astro/loaders';
+import { readdirSync } from 'node:fs';
 
 // 3. Import Zod
 import { z } from 'astro/zod';
@@ -69,5 +70,55 @@ const partners = defineCollection({
   loader: glob({ base: './src/content/partners', pattern: '**/*.json' }),
 });
 
+// Media corner. These items are language-neutral (article headlines stay in
+// their original language and the same real-world items appear on both the EN
+// and JA pages), so each is a single JSON array file rather than per-language
+// folders. `language` is the original language of the piece (e.g. "FI", "EN");
+// `date` is optional so undated entries can be added and filled in later.
+const mediaItemSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  source: z.string(),
+  language: z.string(),
+  date: z.coerce.date().optional(),
+  url: z.string().url(),
+  order: z.number().default(0),
+});
+
+const pressReleases = defineCollection({
+  loader: file('./src/content/media/press-releases.json'),
+  schema: mediaItemSchema,
+});
+
+const mediaCoverage = defineCollection({
+  loader: file('./src/content/media/media-coverage.json'),
+  schema: mediaItemSchema,
+});
+
+// Downloadable logo / brand assets. Auto-discovered from `public/logos/media`:
+// to add a logo, just drop the file in that folder — no entry to maintain here.
+// The page shows the filename, so no descriptions/translations are needed.
+const LOGO_DIR = './public/logos/media';
+const brandAssets = defineCollection({
+  loader: {
+    name: 'brand-assets-dir',
+    load: async ({ store, parseData }) => {
+      store.clear();
+      const files = readdirSync(LOGO_DIR)
+        .filter((f) => /\.(png|svg|jpe?g|webp)$/i.test(f))
+        .sort();
+      for (let i = 0; i < files.length; i++) {
+        const id = files[i];
+        const data = await parseData({ id, data: { file: files[i], order: i } });
+        store.set({ id, data });
+      }
+    },
+  },
+  schema: z.object({
+    file: z.string(),
+    order: z.number().default(0),
+  }),
+});
+
 // 5. Export a single `collections` object to register your collection(s)
-export const collections = { news, events, results, partners };
+export const collections = { news, events, results, partners, pressReleases, mediaCoverage, brandAssets };

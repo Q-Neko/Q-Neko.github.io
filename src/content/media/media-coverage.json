@@ -1,0 +1,26 @@
+[
+  {
+    "id": "hpcwire-new-era",
+    "title": "Q-Neko Project Drives EU-Japan Quantum Collaboration Into a New Era",
+    "source": "HPCwire",
+    "language": "EN",
+    "url": "https://www.hpcwire.com/off-the-wire/q-neko-project-drives-eu-japan-quantum-collaboration-into-a-new-era/",
+    "order": 0
+  },
+  {
+    "id": "kauppalehti-new-era",
+    "title": "Q-Neko-hanke vie EU:n ja Japanin kvanttiyhteistyön uudelle aikakaudelle",
+    "source": "Kauppalehti",
+    "language": "FI",
+    "url": "https://www.kauppalehti.fi/lehdistotiedotteet/a/0ed96c60-a7e6-5a98-ac57-45f1652c43f9",
+    "order": 1
+  },
+  {
+    "id": "sciencebusiness-new-era",
+    "title": "CSC: Q-Neko project drives EU-Japan quantum collaboration into a new era",
+    "source": "Science|Business",
+    "language": "EN",
+    "url": "https://sciencebusiness.net/network-updates/csc-q-neko-project-drives-eu-japan-quantum-collaboration-new-era",
+    "order": 2
+  }
+]

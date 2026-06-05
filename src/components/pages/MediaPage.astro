@@ -1,10 +1,14 @@
 ---
 import { useTranslations } from "../../i18n/index";
+import type { CollectionEntry } from "astro:content";
 
 interface Props {
   lang: string;
+  pressReleases: CollectionEntry<"pressReleases">[];
+  mediaCoverage: CollectionEntry<"mediaCoverage">[];
+  brandAssets: CollectionEntry<"brandAssets">[];
 }
-const { lang } = Astro.props;
+const { lang, pressReleases, mediaCoverage, brandAssets } = Astro.props;
 const t = useTranslations(lang);
 
 const tabs = [
@@ -13,6 +17,30 @@ const tabs = [
     { key: "clipping", label: t.pageContent.media.tabs.clipping },
 ] as const;
 
+const logoBase = "/logos/media";
+const logoZip = `${logoBase}/qneko-logo-pack.zip`;
+
+// Newest first (undated entries last), then by explicit `order`.
+const byDateThenOrder = <T extends { data: { date?: Date; order: number } }>(a: T, b: T) => {
+    const ta = a.data.date ? a.data.date.getTime() : -Infinity;
+    const tb = b.data.date ? b.data.date.getTime() : -Infinity;
+    return tb - ta || a.data.order - b.data.order;
+};
+
+const pressItems = [...pressReleases].sort(byDateThenOrder);
+const coverageItems = [...mediaCoverage].sort(byDateThenOrder);
+const logos = [...brandAssets].sort((a, b) => a.data.order - b.data.order);
+
+// e.g. "CSC · 11 Feb 2026 · FI" — date and language omitted when not set.
+const dateFmt = new Intl.DateTimeFormat(lang === "ja" ? "ja-JP" : "en-GB", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+});
+const formatMeta = (data: { source: string; date?: Date; language: string }) =>
+    [data.source, data.date ? dateFmt.format(data.date) : "", data.language]
+        .filter(Boolean)
+        .join(" · ");
 ---
 
 <div class="default-bg">
@@ -45,21 +73,97 @@ const tabs = [
         </div>
 
         <section data-tab="communication_materials" role="tabpanel">
-            <div class="reveal base-card opacity-0 animate-fadeUp1 max-w-2xl">
-                <p class="entry-card-empty">{t.pageContent.media.comingSoonCommunicationMaterials}</p>
+            <div class="reveal recent-header mb-8">
+                <div>
+                    <h3 class="h3-label mb-2">{t.pageContent.media.logos.heading}</h3>
+                    <p class="max-w-2xl text-ink/80 leading-relaxed">{t.pageContent.media.logos.intro}</p>
+                </div>
+                <a href={logoZip} download class="btn-primary">{t.pageContent.media.logos.downloadAll}</a>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+                {logos.map((logo) => {
+                    const src = `${logoBase}/${logo.data.file}`;
+                    return (
+                        <div class="reveal base-card opacity-0 animate-fadeUp1">
+                            <div class="flex items-center justify-center bg-off-white h-32 -m-7 mb-0 p-6">
+                                <img
+                                    src={src}
+                                    alt={logo.data.file}
+                                    class="max-h-full max-w-full object-contain"
+                                    loading="lazy"
+                                />
+                            </div>
+                            <div class="flex items-center justify-between gap-3">
+                                <span class="font-mono text-[0.72rem] text-ink/70 leading-tight break-all">
+                                    {logo.data.file}
+                                </span>
+                                <a
+                                    href={src}
+                                    download
+                                    class="font-mono text-[0.78rem] tracking-widest uppercase text-blue hover:underline shrink-0"
+                                >
+                                    {t.pageContent.media.logos.download} ↓
+                                </a>
+                            </div>
+                        </div>
+                    );
+                })}
             </div>
         </section>
 
         <section data-tab="press_releases" class="pagination-hidden" role="tabpanel">
-            <div class="reveal base-card opacity-0 animate-fadeUp1 max-w-2xl">
-                <p class="entry-card-empty">{t.pageContent.media.comingSoonPressReleases}</p>
-            </div>
+            {pressItems.length === 0 ? (
+                <div class="reveal base-card opacity-0 animate-fadeUp1 max-w-2xl">
+                    <p class="entry-card-empty">{t.pageContent.media.comingSoonPressReleases}</p>
+                </div>
+            ) : (
+                <div class="grid sm:grid-cols-2 gap-6">
+                    {pressItems.map((item) => (
+                        <a
+                            href={item.data.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="reveal base-card entry-card opacity-0 animate-fadeUp1"
+                        >
+                            <div class="entry-card-body">
+                                <div class="entry-card-meta">{formatMeta(item.data)}</div>
+                                <h2>{item.data.title}</h2>
+                                <span class="recent-view-all text-blue font-mono text-[0.78rem] tracking-[0.12em] uppercase mt-1">
+                                    {t.pageContent.media.readArticle} <span>↗</span>
+                                </span>
+                            </div>
+                        </a>
+                    ))}
+                </div>
+            )}
         </section>
 
         <section data-tab="clipping" class="pagination-hidden" role="tabpanel">
-            <div class="reveal base-card opacity-0 animate-fadeUp1 max-w-2xl">
-                <p class="entry-card-empty">{t.pageContent.media.comingSoonClipping}</p>
-            </div>
+            {coverageItems.length === 0 ? (
+                <div class="reveal base-card opacity-0 animate-fadeUp1 max-w-2xl">
+                    <p class="entry-card-empty">{t.pageContent.media.comingSoonClipping}</p>
+                </div>
+            ) : (
+                <div class="grid sm:grid-cols-2 gap-6">
+                    {coverageItems.map((item) => (
+                        <a
+                            href={item.data.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="reveal base-card entry-card opacity-0 animate-fadeUp1"
+                        >
+                            <div class="entry-card-body">
+                                <div class="entry-card-meta">{formatMeta(item.data)}</div>
+                                <h2>{item.data.title}</h2>
+                                <span class="recent-view-all text-blue font-mono text-[0.78rem] tracking-[0.12em] uppercase mt-1">
+                                    {t.pageContent.media.readArticle} <span>↗</span>
+                                </span>
+                            </div>
+                        </a>
+                    ))}
+                </div>
+            )}
         </section>
     </div>
 </div>
