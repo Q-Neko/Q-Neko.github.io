@@ -854,8 +854,11 @@
   }
 
   /* FOOTER */
-  footer {
+  .footer-root {
     @apply relative bg-ink w-full z-1;
+  }
+  footer {
+    @apply relative w-full z-1;
   }
 
   .footer-content {
@@ -892,23 +895,39 @@
   }
   
   .footer-middle {
-    @apply flex flex-row items-center py-8 border-t border-[rgba(255,255,255,0.06)] gap-12 px-16 w-full;
+    @apply max-w-[3000px] mx-auto text-cream
+           px-16 py-12
+           grid grid-cols-[2fr_1fr_1fr_1fr] gap-12 items-start
+           border-t border-[rgba(255,255,255,0.06)];
+  }
+
+  /* funders block sits under the brand column (2fr), legal under the link columns (3fr) */
+  .footer-funders {
+    @apply flex flex-col gap-6;
+  }
+  .footer-legal {
+    @apply col-span-3;
+  }
+
+  .footer-funder-logos {
+    @apply flex flex-wrap items-center gap-6;
   }
 
   .footer-middle img {
-    @apply h-auto max-w-full object-contain shrink-0;
-    width: clamp(90px, 10vw, 260px);
+    @apply h-auto max-w-full;
+    width: clamp(120px, 11vw, 220px);
   }
 
   .footer-middle p {
-    @apply font-mono text-[0.68rem] tracking-[0.08em]
-           text-cream max-w-[60ch]; 
+    @apply font-mono text-[0.68rem] leading-[1.7] tracking-[0.08em]
+           text-cream max-w-[70ch];
   }
 
   .footer-bottom {
-    @apply relative bg-ink border-t border-[rgba(255,255,255,0.06)]
+    @apply relative w-full bg-ink
+           border-t border-[rgba(255,255,255,0.06)]
            px-16 py-6 z-1
-           flex justify-between items-center;
+           flex flex-wrap justify-between items-center gap-4;
   }
   .footer-bottom p {
     @apply font-mono text-[0.68rem] tracking-[0.08em]
@@ -1024,9 +1043,10 @@
     .funding          { @apply px-6 py-12; }
     .timeline         { @apply grid-cols-2; }
     .timeline-section { @apply px-6 py-16; }
-    .footer-content            { @apply grid-cols-2 px-6 py-12; }
-    .footer-middle    { @apply flex-col px-6 py-8 gap-6 items-start text-left; }
-    .footer-middle img { width: clamp(140px, 40vw, 240px); }
+    .footer-content   { @apply grid-cols-2 px-6 py-12; }
+    .footer-middle    { @apply grid-cols-1 px-6 py-8 gap-8; }
+    .footer-legal     { @apply col-span-1; }
+    .footer-middle img { width: clamp(140px, 38vw, 220px); }
     .footer-middle p  { @apply max-w-[60ch]; }
     .footer-bottom    { @apply px-6 flex-col gap-3 text-center; }
     .post-grid        { @apply grid-cols-2; }

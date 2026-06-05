@@ -1,80 +1,152 @@
 ---
-import qnekoLogo from '../../assets/qneko_notext.jpg';
+import qnekoLogo from "../../assets/qneko_notext.jpg";
 import { useTranslations } from "../../i18n/index";
 
 interface Props {
-  lang: string;
+    lang: string;
 }
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 const base = lang === "ja" ? "/ja" : "";
 ---
 
- <!-- TODO: replace with actual content and add eurohpc etc acknowledgements etc -->
-<div>
-<footer>
-    <div class="footer-content">
-    <div class="footer-brand">
-        <img src={qnekoLogo.src} alt={t.footer.logoAlt} />
-        <p>{t.footer.tagline}</p>
+<!-- TODO: replace with actual content and add eurohpc etc acknowledgements etc -->
+<div class="footer-root">
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <img src={qnekoLogo.src} alt={t.footer.logoAlt} />
+                <p>{t.footer.tagline}</p>
+            </div>
+            <div class="footer-col">
+                <h4>{t.footer.projectCol}</h4>
+                <ul>
+                    <li>
+                        <a href={t.footer.links.mission.href}
+                            >{t.footer.links.mission.label}</a
+                        >
+                    </li>
+                    <li>
+                        <a href={t.footer.links.consortium.href}
+                            >{t.footer.links.consortium.label}</a
+                        >
+                    </li>
+                    <li>
+                        <a href={t.footer.links.news.href}
+                            >{t.footer.links.news.label}</a
+                        >
+                    </li>
+                    <li>
+                        <a href={t.footer.links.results.href}
+                            >{t.footer.links.results.label}</a
+                        >
+                    </li>
+                    <li>
+                        <a href={t.footer.links.events.href}
+                            >{t.footer.links.events.label}</a
+                        >
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>{t.footer.fundingCol}</h4>
+                <ul>
+                    <li>
+                        <a href={t.footer.links.horizonEurope.href}
+                            >{t.footer.links.horizonEurope.label}</a
+                        >
+                    </li>
+                    <li>
+                        <a href={t.footer.links.euroHPC.href}
+                            >{t.footer.links.euroHPC.label}</a
+                        >
+                    </li>
+                    <li>
+                        <a href={t.footer.links.japanSIP.href}
+                            >{t.footer.links.japanSIP.label}</a
+                        >
+                    </li>
+                    <li>
+                        <a href={t.footer.links.partnership.href}
+                            >{t.footer.links.partnership.label}</a
+                        >
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>{t.footer.contactCol}</h4>
+                <ul>
+                    <li>
+                        <a href={t.footer.links.contacts.href}
+                            >{t.footer.links.contacts.label}</a
+                        >
+                    </li>
+                    <li>
+                        <a href={t.footer.links.media.href}
+                            >{t.footer.links.media.label}</a
+                        >
+                    </li>
+                    <li>
+                        <a href={t.footer.links.newsletter.href}
+                            >{t.footer.links.newsletter.label}</a
+                        >
+                    </li>
+                    <li>
+                        <a href={t.footer.links.linkedIn.href}
+                            >{t.footer.links.linkedIn.label}</a
+                        >
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <footer class="footer-middle">
+        <div class="footer-funders">
+            <div class="footer-funder-logos">
+                <img
+                    src="/logos/funders/co_funded_by_eu.png"
+                    alt={t.footer.fundedByEuAlt}
+                />
+                <img
+                    src="/logos/funders/eurohpc.png"
+                    alt={t.footer.eurohpcAlt}
+                />
+            </div>
+            <p>{t.footer.fundingStatement}</p>
+            <p>{t.footer.disclaimer}</p>
+        </div>
+        <div class="footer-col footer-legal">
+            <p>{t.footer.developedBy}</p>
+            <p>{t.footer.developedCopyright}</p>
+            <p>
+                <a href={t.footer.links.privacyPolicy.href}
+                    >{t.footer.links.privacyPolicy.label}</a
+                >
+            </p>
+            <p>
+                <a href={t.footer.links.codeOfConduct.href}
+                    >{t.footer.links.codeOfConduct.label}</a
+                >
+            </p>
+            <p>
+                <a href={t.footer.links.cookies.href}
+                    >{t.footer.links.cookies.label}</a
+                >
+            </p>
+            <p>
+                <button
+                    type="button"
+                    data-cookie-settings
+                    class="font-sans text-[0.82rem] text-cream no-underline bg-transparent border-0 p-0 cursor-pointer text-left transition-colors duration-200 hover:text-white hover:underline"
+                    >{t.cookies.banner.settingsLabel}</button
+                >
+            </p>
+        </div>
+    </footer>
+    <div class="footer-bottom">
+        <p>{t.footer.copyright}</p>
+        <div class="footer-flags">🇪🇺 🇯🇵</div>
+        <p>{t.footer.coordinatedBy}</p>
     </div>
-    <div class="footer-col">
-        <h4>{t.footer.projectCol}</h4>
-        <ul>
-            <li><a href={t.footer.links.mission.href}>{t.footer.links.mission.label}</a></li>
-            <li><a href={t.footer.links.consortium.href}>{t.footer.links.consortium.label}</a></li>
-            <li><a href={t.footer.links.news.href}>{t.footer.links.news.label}</a></li>
-            <li><a href={t.footer.links.results.href}>{t.footer.links.results.label}</a></li>
-            <li><a href={t.footer.links.events.href}>{t.footer.links.events.label}</a></li>
-        </ul>
-    </div>
-    <div class="footer-col">
-        <h4>{t.footer.fundingCol}</h4>
-        <ul>
-            <li><a href={t.footer.links.horizonEurope.href}>{t.footer.links.horizonEurope.label}</a></li>
-            <li><a href={t.footer.links.euroHPC.href}>{t.footer.links.euroHPC.label}</a></li>
-            <li><a href={t.footer.links.japanSIP.href}>{t.footer.links.japanSIP.label}</a></li>
-            <li><a href={t.footer.links.partnership.href}>{t.footer.links.partnership.label}</a></li>
-        </ul>
-    </div>
-    <div class="footer-col">
-        <h4>{t.footer.contactCol}</h4>
-        <ul>
-            <li><a href={t.footer.links.contacts.href}>{t.footer.links.contacts.label}</a></li>
-            <li><a href={t.footer.links.media.href}>{t.footer.links.media.label}</a></li>
-            <li><a href={t.footer.links.newsletter.href}>{t.footer.links.newsletter.label}</a></li>
-            <li><a href={t.footer.links.linkedIn.href}>{t.footer.links.linkedIn.label}</a></li>
-        </ul>
-    </div>
-    </div>
-</footer>
-<footer class="footer-middle">
-    <img src="/logos/funders/funded_by_eu.png" alt={t.footer.fundedByEuAlt} />
-    <img src="/logos/funders/eurohpc.png" alt={t.footer.eurohpcAlt} />
-
-    <p>{t.footer.fundingStatement}</p>
-
-    <p>{t.footer.disclaimer}</p>
-
-    <div class="footer-col">
-        <p>{t.footer.developedBy}</p>
-        <p>{t.footer.developedCopyright}</p>
-        <p><a href={t.footer.links.privacyPolicy.href}>{t.footer.links.privacyPolicy.label}</a></p>
-        <p><a href={t.footer.links.codeOfConduct.href}>{t.footer.links.codeOfConduct.label}</a></p>
-        <p><a href={t.footer.links.cookies.href}>{t.footer.links.cookies.label}</a></p>
-        <p>
-            <button
-                type="button"
-                data-cookie-settings
-                class="font-sans text-[0.82rem] text-cream no-underline bg-transparent border-0 p-0 cursor-pointer text-left transition-colors duration-200 hover:text-white hover:underline"
-            >{t.cookies.banner.settingsLabel}</button>
-        </p>
-    </div>
-
-</footer>
-<div class="footer-bottom">
-    <p>{t.footer.copyright}</p>
-    <div class="footer-flags">🇪🇺 🇯🇵</div>
-    <p>{t.footer.coordinatedBy}</p>
+    <div></div>
 </div>
-<div/>
