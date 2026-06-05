@@ -35,9 +35,7 @@ export interface Translations {
     sectionLabel: string;
     heading: string;
     body: string;
-    pill1: string;
-    pill2: string;
-    pill3: string;
+    pills: string[];
   };
   partners: {
     sectionLabel: string;
@@ -57,9 +55,7 @@ export interface Translations {
     developedBy: string;
     developedCopyright: string;
     logoAlt: string;
-    fundedByEuAlt: string;
-    eurohpcAlt: string;
-    japanSIPAlt: string;
+    funderLogos: Array<{ src: string; alt: string }>;
   };
   news: {
     sectionLabel: string;

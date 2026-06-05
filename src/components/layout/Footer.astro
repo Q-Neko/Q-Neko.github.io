@@ -37,18 +37,11 @@ const base = lang === "ja" ? "/ja" : "";
     <footer class="footer-middle">
         <div class="footer-funders">
             <div class="footer-funder-logos">
-                <img
-                    src="/logos/funders/co_funded_by_eu.png"
-                    alt={t.footer.fundedByEuAlt}
-                />
-                <img
-                    src="/logos/funders/eurohpc.png"
-                    alt={t.footer.eurohpcAlt}
-                />
-                <img
-                    src="/logos/funders/sip.png"
-                    alt={t.footer.japanSIPAlt}
-                />
+                {
+                    t.footer.funderLogos.map((logo) => (
+                        <img src={logo.src} alt={logo.alt} />
+                    ))
+                }
             </div>
             <p>{t.footer.fundingStatement}</p>
             <p>{t.footer.disclaimer}</p>

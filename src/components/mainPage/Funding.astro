@@ -16,9 +16,7 @@ const t = useTranslations(lang);
             <p>{t.funding.body}</p>
         </div>
         <div class="funding-pills reveal">
-            <div class="pill">{t.funding.pill1}</div>
-            <div class="pill">{t.funding.pill2}</div>
-            <div class="pill">{t.funding.pill3}</div>
+            {t.funding.pills.map((pill) => <div class="pill">{pill}</div>)}
         </div>
     </div>
 </section>
