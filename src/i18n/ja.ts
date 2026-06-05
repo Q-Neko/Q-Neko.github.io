@@ -86,6 +86,7 @@ export const ja: Translations = {
     logoAlt: "Q-Neko",
     fundedByEuAlt: "欧州連合により資金提供",
     eurohpcAlt: "EuroHPC",
+    japanSIPAlt: "Japan SIP",
     links: {
       mission: {
         label: "Mission",
@@ -118,10 +119,6 @@ export const ja: Translations = {
       japanSIP: {
         label: "Japan SIP",
         href: "https://www.mext.go.jp/en/a_top/strategic_innovation.htm",
-      },
-      partnership: {
-        label: "EU-Japan Partnership",
-        href: "https://www.eujapan.org/",
       },
       contacts: {
         label: "Contacts",
@@ -317,6 +314,13 @@ export const ja: Translations = {
       comingSoonCommunicationMaterials: "広報資料は準備が整い次第こちらに掲載されます。",
       comingSoonPressReleases: "プレスリリースは準備が整い次第こちらに掲載されます。",
       comingSoonClipping: "メディア掲載は準備が整い次第こちらに掲載されます。",
+      readArticle: "記事を読む",
+      logos: {
+        heading: "ロゴ・ブランド素材",
+        intro: "Q-Nekoのロゴをカラー、モノクロ、シンボルのみの各バリエーションでダウンロードできます。ご使用の際はロゴの比率と配色を変更しないでください。",
+        downloadAll: "すべてのロゴをダウンロード（ZIP）",
+        download: "ダウンロード",
+      },
     },
     newsletter: {
       sectionLabel: "Newsletter - Coming Soon",

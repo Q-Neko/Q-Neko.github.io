@@ -78,14 +78,15 @@ export const en: Translations = {
     copyright: "© 2026 Q-Neko Consortium · Nippon-Europe Quantum Koraborēshon",
     coordinatedBy: "Coordinated by CSC - IT Center for Science, Finland",
     fundingStatement:
-      "This project received funding from the European High Performance Computing Joint Undertaking (EuroHPC JU) under the European Union's Horizon Europe framework program for research and innovation and Grant Agreement No. TODO.",
+      "The project is supported by the EuroHPC Joint Undertaking (Grant Agreement No. 101241875.) and its members including top-up funding by the Government of Japan.",
     disclaimer:
-      "Views and opinions expressed are, however, those of the author(s) only and do not necessarily reflect those of the European Union or EuroHPC Joint Undertaking. Neither the European Union nor the granting authority can be held responsible for them.",
+      "Co-funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or EuroHPC JU. Neither the European Union nor the granting authority can be held responsible for them.",
     developedBy: "Developed By Q-Neko",
     developedCopyright: "Copyright © Q-Neko 2026",
     logoAlt: "Q-Neko",
     fundedByEuAlt: "Funded by the European Union",
     eurohpcAlt: "EuroHPC",
+    japanSIPAlt: "Japan SIP",
     links: {
       mission: {
         label: "Mission",
@@ -118,10 +119,6 @@ export const en: Translations = {
       japanSIP: {
         label: "Japan SIP",
         href: "https://www.mext.go.jp/en/a_top/strategic_innovation.htm",
-      },
-      partnership: {
-        label: "EU-Japan Partnership",
-        href: "https://www.eujapan.org/",
       },
       contacts: {
         label: "Contacts",
@@ -317,6 +314,13 @@ export const en: Translations = {
       comingSoonCommunicationMaterials: "Communication materials will appear here as they become available.",
       comingSoonPressReleases: "Press releases will appear here as they become available.",
       comingSoonClipping: "Media coverage will appear here as it becomes available.",
+      readArticle: "Read the article",
+      logos: {
+        heading: "Logos & brand assets",
+        intro: "Download the Q-Neko logo in colour, monochrome, and symbol-only variants. Please keep the logo's proportions and colours intact when using it.",
+        downloadAll: "Download all logos (ZIP)",
+        download: "Download",
+      },
     },
     newsletter: {
       sectionLabel: "Newsletter - Coming Soon",

@@ -57,6 +57,7 @@ export interface Translations {
     logoAlt: string;
     fundedByEuAlt: string;
     eurohpcAlt: string;
+    japanSIPAlt: string;
     links: {
       mission: { label: string; href: string };
       news: { label: string; href: string };
@@ -66,7 +67,6 @@ export interface Translations {
       horizonEurope: { label: string; href: string };
       euroHPC: { label: string; href: string };
       japanSIP: { label: string; href: string };
-      partnership: { label: string; href: string };
       contacts: { label: string; href: string };
       media: { label: string; href: string };
       newsletter: { label: string; href: string };
@@ -180,6 +180,13 @@ export interface Translations {
       comingSoonCommunicationMaterials: string;
       comingSoonPressReleases: string;
       comingSoonClipping: string;
+      readArticle: string;
+      logos: {
+        heading: string;
+        intro: string;
+        downloadAll: string;
+        download: string;
+      };
     };
     newsletter: {
       sectionLabel: string;
