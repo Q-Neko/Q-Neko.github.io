@@ -72,9 +72,40 @@ export const en: Translations = {
   footer: {
     tagline:
       "The Nippon-Europe Quantum Koraborēshon - advancing quantum-accelerated computing for a better society through trusted EU-Japan collaboration.",
-    projectCol: "Project",
-    fundingCol: "Funding",
-    contactCol: "Contact",
+    columns: [
+      {
+        heading: "Project",
+        links: [
+          { label: "Mission", href: "/#mission" },
+          { label: "Consortium", href: "/#consortium" },
+          { label: "News", href: "/news" },
+          { label: "Results", href: "/results" },
+          { label: "Events", href: "/events" },
+        ],
+      },
+      {
+        heading: "Funding",
+        links: [
+          { label: "Horizon Europe", href: "https://ec.europa.eu/horizonEurope/" },
+          { label: "EuroHPC JU", href: "https://www.eurohpc-ju.eu/" },
+          { label: "Japan SIP", href: "https://www.mext.go.jp/en/a_top/strategic_innovation.htm" },
+        ],
+      },
+      {
+        heading: "Contact",
+        links: [
+          { label: "Contacts", href: "/contact" },
+          { label: "Media Corner", href: "/media" },
+          { label: "Newsletter", href: "/newsletter" },
+          { label: "LinkedIn", href: "https://www.linkedin.com/company/q-neko/" },
+        ],
+      },
+    ],
+    legalLinks: [
+      { label: "Privacy Policy", href: "/privacy-policy" },
+      { label: "Code of Conduct", href: "/code-of-conduct" },
+      { label: "Cookies", href: "/cookies" },
+    ],
     copyright: "© 2026 Q-Neko Consortium · Nippon-Europe Quantum Koraborēshon",
     coordinatedBy: "Coordinated by CSC - IT Center for Science, Finland",
     fundingStatement:
@@ -87,68 +118,6 @@ export const en: Translations = {
     fundedByEuAlt: "Funded by the European Union",
     eurohpcAlt: "EuroHPC",
     japanSIPAlt: "Japan SIP",
-    links: {
-      mission: {
-        label: "Mission",
-        href: "/#mission",
-      },
-      consortium: {
-        label: "Consortium",
-        href: "/#consortium",
-      },
-      news: {
-        label: "News",
-        href: "/news",
-      },
-      results: {
-        label: "Results",
-        href: "/results",
-      },
-      events: {
-        label: "Events",
-        href: "/events",
-      },
-      horizonEurope: {
-        label: "Horizon Europe",
-        href: "https://ec.europa.eu/horizonEurope/",
-      },
-      euroHPC: {
-        label: "EuroHPC JU",
-        href: "https://www.eurohpc-ju.eu/",
-      },
-      japanSIP: {
-        label: "Japan SIP",
-        href: "https://www.mext.go.jp/en/a_top/strategic_innovation.htm",
-      },
-      contacts: {
-        label: "Contacts",
-        href: "/contact",
-      },
-      media: {
-        label: "Media Corner",
-        href: "/media",
-      },
-      newsletter: {
-        label: "Newsletter",
-        href: "/newsletter",
-      },
-      linkedIn: {
-        label: "LinkedIn",
-        href: "https://www.linkedin.com/company/q-neko/",
-      },
-      privacyPolicy: {
-        label: "Privacy Policy",
-        href: "/privacy-policy",
-      },
-      codeOfConduct: {
-        label: "Code of Conduct",
-        href: "/code-of-conduct",
-      },
-      cookies: {
-        label: "Cookies",
-        href: "/cookies",
-      },
-    },
   },
   news: {
     sectionLabel: "News",

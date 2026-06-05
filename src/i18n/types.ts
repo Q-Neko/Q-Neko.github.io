@@ -45,9 +45,11 @@ export interface Translations {
   };
   footer: {
     tagline: string;
-    projectCol: string;
-    fundingCol: string;
-    contactCol: string;
+    columns: Array<{
+      heading: string;
+      links: Array<{ label: string; href: string }>;
+    }>;
+    legalLinks: Array<{ label: string; href: string }>;
     copyright: string;
     coordinatedBy: string;
     fundingStatement: string;
@@ -58,23 +60,6 @@ export interface Translations {
     fundedByEuAlt: string;
     eurohpcAlt: string;
     japanSIPAlt: string;
-    links: {
-      mission: { label: string; href: string };
-      news: { label: string; href: string };
-      results: { label: string; href: string };
-      events: { label: string; href: string };
-      consortium: { label: string; href: string };
-      horizonEurope: { label: string; href: string };
-      euroHPC: { label: string; href: string };
-      japanSIP: { label: string; href: string };
-      contacts: { label: string; href: string };
-      media: { label: string; href: string };
-      newsletter: { label: string; href: string };
-      linkedIn: { label: string; href: string };
-      privacyPolicy: { label: string; href: string };
-      codeOfConduct: { label: string; href: string };
-      cookies: { label: string; href: string };
-    };
   };
   news: {
     sectionLabel: string;

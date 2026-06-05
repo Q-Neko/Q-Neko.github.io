@@ -18,81 +18,20 @@ const base = lang === "ja" ? "/ja" : "";
                 <img src={qnekoLogo.src} alt={t.footer.logoAlt} />
                 <p>{t.footer.tagline}</p>
             </div>
-            <div class="footer-col">
-                <h4>{t.footer.projectCol}</h4>
-                <ul>
-                    <li>
-                        <a href={t.footer.links.mission.href}
-                            >{t.footer.links.mission.label}</a
-                        >
-                    </li>
-                    <li>
-                        <a href={t.footer.links.consortium.href}
-                            >{t.footer.links.consortium.label}</a
-                        >
-                    </li>
-                    <li>
-                        <a href={t.footer.links.news.href}
-                            >{t.footer.links.news.label}</a
-                        >
-                    </li>
-                    <li>
-                        <a href={t.footer.links.results.href}
-                            >{t.footer.links.results.label}</a
-                        >
-                    </li>
-                    <li>
-                        <a href={t.footer.links.events.href}
-                            >{t.footer.links.events.label}</a
-                        >
-                    </li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>{t.footer.fundingCol}</h4>
-                <ul>
-                    <li>
-                        <a href={t.footer.links.horizonEurope.href}
-                            >{t.footer.links.horizonEurope.label}</a
-                        >
-                    </li>
-                    <li>
-                        <a href={t.footer.links.euroHPC.href}
-                            >{t.footer.links.euroHPC.label}</a
-                        >
-                    </li>
-                    <li>
-                        <a href={t.footer.links.japanSIP.href}
-                            >{t.footer.links.japanSIP.label}</a
-                        >
-                    </li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>{t.footer.contactCol}</h4>
-                <ul>
-                    <li>
-                        <a href={t.footer.links.contacts.href}
-                            >{t.footer.links.contacts.label}</a
-                        >
-                    </li>
-                    <li>
-                        <a href={t.footer.links.media.href}
-                            >{t.footer.links.media.label}</a
-                        >
-                    </li>
-                    <li>
-                        <a href={t.footer.links.newsletter.href}
-                            >{t.footer.links.newsletter.label}</a
-                        >
-                    </li>
-                    <li>
-                        <a href={t.footer.links.linkedIn.href}
-                            >{t.footer.links.linkedIn.label}</a
-                        >
-                    </li>
-                </ul>
-            </div>
+            {
+                t.footer.columns.map((col) => (
+                    <div class="footer-col">
+                        <h4>{col.heading}</h4>
+                        <ul>
+                            {col.links.map((link) => (
+                                <li>
+                                    <a href={link.href}>{link.label}</a>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                ))
+            }
         </div>
     </footer>
     <footer class="footer-middle">
@@ -117,21 +56,13 @@ const base = lang === "ja" ? "/ja" : "";
         <div class="footer-col footer-legal">
             <p>{t.footer.developedBy}</p>
             <p>{t.footer.developedCopyright}</p>
-            <p>
-                <a href={t.footer.links.privacyPolicy.href}
-                    >{t.footer.links.privacyPolicy.label}</a
-                >
-            </p>
-            <p>
-                <a href={t.footer.links.codeOfConduct.href}
-                    >{t.footer.links.codeOfConduct.label}</a
-                >
-            </p>
-            <p>
-                <a href={t.footer.links.cookies.href}
-                    >{t.footer.links.cookies.label}</a
-                >
-            </p>
+            {
+                t.footer.legalLinks.map((link) => (
+                    <p>
+                        <a href={link.href}>{link.label}</a>
+                    </p>
+                ))
+            }
             <p>
                 <button
                     type="button"
