@@ -74,8 +74,8 @@ export const NewsletterFormCard = ({ t }) => {
                     />
                     {formErrors.email && <p className="form-error">{formErrors.email}</p>}
                 </div>
-
-                <button className="btn-primary self-start">{t.pageContent.newsletter.subscribeCta}</button>
+                
+                <button disabled className="btn-primary self-start disabled:cursor-not-allowed">{t.pageContent.newsletter.subscribeCta}</button>
                 {submittedNotification && <p className="text-green-600 mt-2">{t.pageContent.newsletter.submitSuccess}</p>}
             </form>
         </div>

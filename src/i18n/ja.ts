@@ -225,7 +225,7 @@ export const ja: Translations = {
       comingSoonClipping: "メディア掲載は準備が整い次第こちらに掲載されます。",
     },
     newsletter: {
-      sectionLabel: "Newsletter",
+      sectionLabel: "Newsletter - Coming Soon",
       heading: "Stay in the Loop",
       intro: "Subscribe to the Q-Neko newsletter to receive updates on our research progress, upcoming events, and consortium news directly in your inbox.",
       subscribeCta: "Subscribe",
