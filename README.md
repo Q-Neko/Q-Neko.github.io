@@ -12,7 +12,7 @@ Built with [Astro 6](https://astro.build), Tailwind CSS v4, React, and Pagefind 
 
 ## Quick start
 
-Requires Node.js ≥ 22.12.0. It is recommended to use [nvm linux/mac](https://github.com/nvm-sh/nvm#installing-and-updating) or [nvm windows](https://www.freecodecamp.org/news/node-version-manager-nvm-install-guide/) to install node.
+Requires Node.js 24. It is recommended to use [nvm linux/mac](https://github.com/nvm-sh/nvm#installing-and-updating) or [nvm windows](https://www.freecodecamp.org/news/node-version-manager-nvm-install-guide/) to install node.
 
 Once nvm is installed run:
 
@@ -78,13 +78,15 @@ src/
 │   ├── events.astro
 │   ├── events/[slug].astro
 │   ├── results.astro
-│   ├── results/[slug].astro
+│   ├── results/[slug].astro      # per-item PDF landing pages (also Pagefind search records)
 │   ├── media.astro
+│   ├── media/[slug].astro        # per-item landing pages so media entries appear individually in search
 │   ├── newsletter.astro
 │   ├── contact.astro
 │   ├── privacy-policy.astro
 │   ├── code-of-conduct.astro
-│   └── search/
+│   ├── cookies.astro
+│   └── search/                   # Pagefind search UI (/search)
 └── pages/ja/          # Japanese routes (/ja/...)
     └── (mirrors pages/ structure)
 ```
@@ -267,6 +269,27 @@ const ENABLED_SOURCES = [
 
 Entries from all enabled sources are merged, sorted by date (descending), and the top `MAX_ITEMS` (default 4) are rendered. Each enabled source also gets its own "view all" button linking to the corresponding listing page.
 
+## Search
+
+Site search is powered by [Pagefind](https://pagefind.app/) via the `astro-pagefind` integration. Pagefind runs **at build time**: after Astro emits the static site, it crawls the generated HTML in `dist/` and produces a search index under `dist/pagefind/`.
+
+The search UI lives at [/search](src/pages/search/index.astro) (and `/ja/search`). A query can be deep-linked with `?q=...`, which auto-populates the box.
+
+> [!Note]
+> Search only works against a **production build** — `npm run build && npm run preview`, not `npm run dev`. There is no index during `astro dev`. If a previous build exists `npm run dev` will use that to provide search, this does not update live with changes.
+
+**One page = one search result.** Pagefind indexes each built HTML page as a single record, and builds a **separate index per language** keyed off the page's `<html lang>` (so `/search` returns EN pages and `/ja/search` returns JA pages). Two conventions control what gets indexed:
+
+- `data-pagefind-ignore="all"` — excludes an element from the index. Used to keep chrome and listing grids out of results (nav, the homepage Recent Activity, the post/event listing grids). The **footer is indexed only on the home page** — on every other page it carries `data-pagefind-ignore` so its text doesn't pollute every result's excerpt.
+- `data-pagefind-meta="key:value"` — attaches metadata (e.g. `title`, `type`, `date`, `image`) that the search UI can display.
+
+**Per-item landing pages.** Because each page is one result, content that lives entirely inside one page (PDF results, media articles) needs its own thin URL to appear as an individual search result. Two routes generate one `noindex` redirect page per entry, each carrying Pagefind metadata:
+
+- [results/[slug].astro](src/pages/results/[slug].astro) — one page per result, redirecting to its PDF.
+- [media/[slug].astro](src/pages/media/[slug].astro) — one page per press release / media-coverage item, redirecting to the external article.
+
+Each has a `ja/` twin so the items land in both language indexes. Adding a result or media item therefore makes it individually searchable automatically — no extra step.
+
 ## Images and static assets
 
 There are two places to put images, and the right one depends on how you'll reference it.
@@ -318,3 +341,18 @@ const lang = Astro.currentLocale ?? "en";
 
 3. Add the nav link to `src/components/layout/Nav.astro`
 4. Add the page title string to the `Translations` interface and both locale files
+
+## Deployment
+
+The site is a fully static build hosted on **GitHub Pages**, served from the org-root repository [`Q-Neko/Q-Neko.github.io`](https://github.com/Q-Neko/Q-Neko.github.io) at `https://q-neko.github.io`. Because it's an org-root site (served at the domain root), no Astro `base` is needed; `site` is set in [astro.config.mjs](astro.config.mjs).
+
+Two GitHub Actions workflows drive it:
+
+- **[deploy.yml](.github/workflows/deploy.yml)** — on every push to `master` (or manual run from the Actions tab), [`withastro/action`](https://github.com/withastro/action) installs deps, runs the build, and uploads the `dist/` output as a Pages artifact, which the `deploy` job publishes via `actions/deploy-pages`. **Pushing to `master` is the deploy** — there is no separate release step.
+- **[ci.yml](.github/workflows/ci.yml)** — on pull requests targeting `master`, runs the same build as a check (no deploy), so a PR that breaks the build fails CI before merge.
+
+Pages must be configured once in the repository settings with **Source: GitHub Actions**.
+
+### Custom domain
+
+When a custom domain is set up, point `site` in [astro.config.mjs](astro.config.mjs) at it and add a `public/CNAME` file containing the domain (it gets copied to the site root, which is how Pages picks up the domain).
