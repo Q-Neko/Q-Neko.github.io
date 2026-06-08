@@ -1,21 +1,113 @@
 ---
 import { useTranslations } from "../../i18n/index";
+import type { RichInline, RichParagraph } from "../../i18n/types";
 
 interface Props {
     lang: string;
 }
 const { lang } = Astro.props;
 const t = useTranslations(lang);
+const c = t.privacyPolicy;
+
+// Normalise a paragraph (plain string, single link, or mixed array) into a
+// flat list of inline parts so the template can map over it uniformly.
+const toParts = (p: RichParagraph): RichInline[] =>
+    Array.isArray(p) ? p : [p];
+
+// External links open in a new tab; internal anchors (#id) and mailto: don't.
+const isExternal = (href: string) => /^https?:\/\//.test(href);
 ---
 
 <div class="default-bg">
     <div class="newsletter">
-        <div class="">
-            <div class="section-label">
-                {t.pages.privacyPolicy}
-            </div>
-            <h2 class="section-h2">{t.pages.privacyPolicy}</h2>
-            <p>{t.privacyPolicy.content}</p>
+        <div class="section-label">{t.pages.privacyPolicy}</div>
+        <h3 class="h3-label">{t.pages.privacyPolicy}</h3>
+        <div class="max-w-3xl mb-12 space-y-4">
+            {
+                c.intro.map((paragraph) => (
+                    <p class="text-ink/80 leading-relaxed">
+                        {toParts(paragraph).map((part) =>
+                            typeof part === "string" ? (
+                                part
+                            ) : (
+                                <a
+                                    href={part.href}
+                                    class="text-blue hover:underline"
+                                    {...(isExternal(part.href)
+                                        ? {
+                                              target: "_blank",
+                                              rel: "noopener noreferrer",
+                                          }
+                                        : {})}
+                                >
+                                    {part.text}
+                                </a>
+                            ),
+                        )}
+                    </p>
+                ))
+            }
         </div>
+
+        {
+            c.sections.map((section, i) => (
+                <section id={section.id} class="max-w-3xl mb-10 scroll-mt-28">
+                    <h3 class="h3-label">{`${i + 1}. ${section.heading}`}</h3>
+                    {section.body?.map((paragraph) => (
+                        <p class="text-ink/80 leading-relaxed mt-3">
+                            {toParts(paragraph).map((part) =>
+                                typeof part === "string" ? (
+                                    part
+                                ) : (
+                                    <a
+                                        href={part.href}
+                                        class="text-blue hover:underline"
+                                        {...(isExternal(part.href)
+                                            ? {
+                                                  target: "_blank",
+                                                  rel: "noopener noreferrer",
+                                              }
+                                            : {})}
+                                    >
+                                        {part.text}
+                                    </a>
+                                ),
+                            )}
+                        </p>
+                    ))}
+                    {section.items && (
+                        <ul class="list-disc pl-6 mt-3 space-y-1.5 text-ink/80 leading-relaxed">
+                            {section.items.map((item) => (
+                                <li>
+                                    {toParts(item).map((part) =>
+                                        typeof part === "string" ? (
+                                            part
+                                        ) : (
+                                            <a
+                                                href={part.href}
+                                                class="text-blue hover:underline"
+                                                {...(isExternal(part.href)
+                                                    ? {
+                                                          target: "_blank",
+                                                          rel: "noopener noreferrer",
+                                                      }
+                                                    : {})}
+                                            >
+                                                {part.text}
+                                            </a>
+                                        ),
+                                    )}
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                    {section.postBody && (
+                        <p class="text-ink/80 leading-relaxed mt-3">
+                            {section.postBody}
+                        </p>
+                    )}
+                </section>
+            ))
+        }
     </div>
 </div>

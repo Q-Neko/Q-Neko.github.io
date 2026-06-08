@@ -1,3 +1,11 @@
+// A single inline run of text, optionally a link. `href` may be an internal
+// anchor (e.g. "#contact-person" to link to another section), an external URL,
+// or a mailto:. Used by rich-text bodies like the privacy policy.
+export type RichInline = string | { text: string; href: string };
+
+// A paragraph is either plain text, a single link, or a mix of text and links.
+export type RichParagraph = RichInline | RichInline[];
+
 export interface Translations {
   nav: {
     mission: string;
@@ -86,7 +94,14 @@ export interface Translations {
     events: string;
   };
   privacyPolicy: {
-    content: string; //TODO replace with actual content
+    intro: RichParagraph[];
+    sections: Array<{
+      id: string;
+      heading: string;
+      body?: RichParagraph[];
+      items?: RichParagraph[];
+      postBody?: string;
+    }>;
   },
   codeOfConduct: {
     intro: string;

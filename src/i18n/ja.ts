@@ -149,7 +149,127 @@ export const ja: Translations = {
     events: "Events",
   },
   privacyPolicy: {
-    content: "Privacy Policy content will be displayed here." //TODO replace with actual content
+    intro: [
+      "Q-Neko is committed to respecting your privacy. This policy explains how we collect, use, and protect your personal data when you interact with our website and services.",
+      "Edited on 8th of June 2026.",
+    ],
+    sections: [
+      {
+        id: "controller-information",
+        heading: "Controller Information",
+        body: ["The data controller for the Q-Neko project is CSC – IT Center for Science, Finland."],
+        items: [
+          "CSC - IT Center for Science Ltd",
+          "P.O. Box 405 (Keilaranta 14)",
+          "02101 Espoo, Finland",
+          "Tel. +358 (0)9 457 2821 (operator)",
+          { text: "servicedesk(at)csc.fi", href: "mailto:servicedesk@csc.fi" },
+          "Business ID: 0920632-0",
+          { text: "www.csc.fi", href: "https://www.csc.fi" },
+        ],
+        postBody: '(Hereinafter referred to as "we" or "CSC")',
+      },
+      {
+        id: "contact-person",
+        heading: "Contact person for data protection",
+        body: ["For any questions regarding this privacy policy or our data processing practices, please contact our Data Protection Officer."],
+        items: [
+          ["Data asset owner: ", { text: "comms.qneko(at)postit.csc.fi", href: "mailto:comms.qneko@postit.csc.fi" }],
+          ["Data Protection Officer: ", { text: "privacy(at)csc.fi", href: "mailto:privacy@csc.fi" }],
+        ],
+      },
+      {
+        id: "legal-basis",
+        heading: "Legal basis for processing",
+        body: [
+          "The data subjects whose personal data is processed are newsletter subscribers and recipients.",
+          "The processing of personal data is based on your consent when you subscribe to the newsletter.",
+          "You can always withdraw your consent or remove yourself from the mailing list.",
+        ],
+      },
+      {
+        id: "purposes",
+        heading: "Purposes of processing",
+        body: ["The purpose of processing personal data is to enable project communications and dissemination, as well as to share updates on Q-Neko project’s current topics."],
+      },
+      {
+        id: "automated-decision-making",
+        heading: "Automated decision-making and profiling",
+        body: ["Data is not used for profiling purposes or automated decision-making."],
+      },
+      {
+        id: "processed-data",
+        heading: "Processed data",
+        body: ["We are processing the following personal data:"],
+        items: [
+          "Email address",
+          "Given consents",
+          "Name",
+          "Subscriber newsletter reading activity",
+        ],
+      },
+      {
+        id: "data-source",
+        heading: "Where do we get your data from?",
+        body: ["When you subscribe to the newsletter, we collect the information directly from you."],
+      },
+      {
+        id: "data-sharing",
+        heading: "Data sharing and transfers",
+        body: [
+          "We can hand over your personal data to others to the extent required by law and as necessary for the provision of services and compliance with agreements.",
+          "CSC uses a service provided by Liana Technologies Oy to manage newsletter subscriptions and to send newsletters. In addition, access to the personal data of registered individuals is restricted to designated CSC employees according to their work duties.",
+          "In these cases, the service providers process personal data only in accordance with the instructions of CSC and on behalf of CSC. CSC has ensured that the processing of personal data is then agreed upon as required by data protection legislation.",
+        ],
+      },
+      {
+        id: "data-transfers-outside-eu",
+        heading: "Data transfers outside the EU/EEA",
+        body: ["Personal data is not transferred outside the European Union (EU) or the European Economic Area (EEA)."],
+      },
+      {
+        id: "data-retention",
+        heading: "Data retention",
+        body: [
+          "The data is stored only as long as it is necessary for this processing of personal data as defined in this privacy notice or according to the statutory retention periods.",
+          "Personal data is stored for the duration of the Q-Neko project. The project ends in December 2028. In addition, for the reporting reasons some data can be stored until February 2029.",
+          "Once the retention period for personal data has expired and there are no longer grounds for processing them within the limits permitted by data protection legislation, the personal data will be deleted.",
+        ],
+      },
+      {
+        id: "data-protection",
+        heading: "How do we protect your data?",
+        body: [
+          "Only persons who have the right to process the personal data on behalf of CSC can access the data files in accordance with their job descriptions. Access to personal data is restricted and users are identified by a username and password.",
+          "With outsourced service providers, CSC has agreed on the necessary data protection obligations in accordance with the General Data Protection Regulation.",
+        ],
+      },
+      {
+        id: "your-rights",
+        heading: "Your rights",
+        body: [
+          "Data subjects have the rights under the General Data Protection Regulation to, among other things, inspect their own data, access personal data and demand the correction of incorrect data concerning them. The right of inspection or access to data is carried out according to resources without undue delay, but always within the time limit required by the General Data Protection Regulation at the latest. The identity of the data subject is checked before providing the information. On request, the information is provided in written form.",
+          "The controller must, independently or at the request of the data subject, correct or supplement the incorrect or deficient information. The controller shall, independently or at the request of the data subject, remove unnecessary or outdated data, unless the law or the contract entitles or obligates the controller to retain data.",
+          "The data subject has the right to withdraw the consent he has given, if the processing is based on consent. Withdrawal of consent does not affect the processing that took place before the withdrawal.",
+          "The data subject has the right to request restriction of processing or to object to processing within the limits and in accordance with applicable data protection legislation.",
+          "Data subjects have the right to transfer data from one system to another, i.e., to receive the personal data concerning them in a structured and commonly used format, and to transfer it to another controller within the limits and in accordance with applicable data protection legislation.",
+          ["You can send the above requests and questions regarding this privacy policy and CSC's processing of personal data to ", { text: "privacy(at)csc.fi", href: "mailto:privacy@csc.fi" }, "."],
+          ["You also have the right to lodge a complaint with the Data Protection Ombudsman. The contact details of the Data Protection Ombudsman can be found on the Data Protection Ombudsman's website at ", { text: "tietosuoja.fi", href: "https://tietosuoja.fi" }, "."],
+        ],
+      },
+      {
+        id: "who-to-contact",
+        heading: "Who to contact?",
+        body: [
+          ["All communications and requests regarding this policy should be made in writing or in person to the contact person named in ", { text: "section two (2)", href: "#contact-person" }, "."],
+        ],
+      },
+      {
+        id: "changes",
+        heading: "Changes to this privacy policy",
+        body: ["Changes to this policy will be dated. We may inform you of any significant changes by email or notice on our website."],
+      },
+    ],
   },
   codeOfConduct: {
     intro:
