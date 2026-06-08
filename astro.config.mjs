@@ -15,6 +15,10 @@ import pagefind from "astro-pagefind";
 
 // https://astro.build/config
 export default defineConfig({
+  // GitHub Pages org root site (served at the domain root, so no `base` needed).
+  // TODO: change to the custom domain once it's set up.
+  site: 'https://q-neko.github.io',
+
   integrations: [
     react(), 
     pagefind(),
