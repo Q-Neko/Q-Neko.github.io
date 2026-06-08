@@ -68,6 +68,7 @@ src/
 │   ├── en.ts          # English strings
 │   ├── ja.ts          # Japanese strings (placeholders until translated)
 │   └── index.ts       # useTranslations(locale) helper
+├── integrations/      # Build integrations (logoZip — builds the Media Corner "Download all" ZIP)
 ├── layouts/           # Layout.astro, PageLayout.astro
 ├── styles/            # Global Tailwind / CSS
 ├── pages/             # English routes (no prefix)
@@ -235,7 +236,7 @@ The **Communication materials** tab lists downloadable logos. These are **auto-d
 
 To add a logo: drop a `.png`, `.svg`, `.jpg`/`.jpeg`, or `.webp` file into `public/logos/media/`. It appears automatically, sorted alphabetically by filename, and the filename is shown as the label (so name files sensibly, e.g. `Q-Neko-logo-text.png`).
 
-The "Download all" button serves a pre-built ZIP at `public/logos/media/qneko-logo-pack.zip`. This is **not** generated — when you add or change logos, regenerate the ZIP and commit it, otherwise it will be out of sync with the individual files. (The ZIP itself is skipped from the on-page grid since the grid filters to image extensions only.)
+The "Download all" button serves `qneko-logo-pack.zip`, which is **generated at build time** from the same logos by the [logoZip](src/integrations/logoZip.mjs) integration — there is **no archive to commit or keep in sync**. Drop a logo in `public/logos/media/` and it's in the next build's ZIP automatically. The integration also serves a freshly built archive during `astro dev`, so the button works locally too.
 
 The press-contact email shown above the tabs comes from `t.pageContent.media.pressEmail` in the locale files.
 
@@ -341,6 +342,37 @@ const lang = Astro.currentLocale ?? "en";
 
 3. Add the nav link to `src/components/layout/Nav.astro`
 4. Add the page title string to the `Translations` interface and both locale files
+
+## Analytics & environment variables
+
+Environment variables are read via `import.meta.env`. Anything that must reach the browser needs the **`PUBLIC_`** prefix (Vite only exposes `PUBLIC_*` to client code). These values are **baked into the bundle at build time**, so they're public — define them as repository **Variables**, never Secrets.
+
+| Variable                     | Purpose                                                        |
+| ---------------------------- | ------------------------------------------------------------- |
+| `PUBLIC_MATOMO_URL`          | Matomo host, **without scheme** (e.g. `analytics.example.org`) |
+| `PUBLIC_MATOMO_CONTAINER_ID` | Matomo Tag Manager container id                                |
+
+Set them locally in a `.env` file at the project root:
+
+```sh
+PUBLIC_MATOMO_URL=analytics.example.org
+PUBLIC_MATOMO_CONTAINER_ID=abc123
+```
+
+**Consent-gated analytics.** Matomo (loaded via its Tag Manager container) is wired through the cookie banner in [CookieConsent.jsx](src/components/layout/CookieConsent.jsx). The container script is injected **only after the visitor opts in** to analytics — nothing is loaded and no Matomo cookies are set before consent, and withdrawing consent stops tracking and clears its `_pk_*` cookies. When the two variables are **unset, analytics is simply off** (the [matomo loader](src/components/layout/matomo.js) no-ops), so local and preview builds run without it.
+
+> [!Note]
+> IP anonymization, cookieless mode, and Do-Not-Track handling are configured **inside the Matomo / Tag Manager container**, not in this repo. The cookies page promises anonymized analytics, so make sure the container reflects that.
+
+For production, define the variables in **Settings → Secrets and variables → Actions → Variables** and pass them to the build step in [deploy.yml](.github/workflows/deploy.yml):
+
+```yaml
+      - name: Install, build, and upload your site
+        uses: withastro/action@v5
+        env:
+          PUBLIC_MATOMO_URL: ${{ vars.PUBLIC_MATOMO_URL }}
+          PUBLIC_MATOMO_CONTAINER_ID: ${{ vars.PUBLIC_MATOMO_CONTAINER_ID }}
+```
 
 ## Deployment
 
