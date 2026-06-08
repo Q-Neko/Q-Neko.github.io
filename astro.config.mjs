@@ -13,6 +13,8 @@ import rehypeKatex from 'rehype-katex';
 
 import pagefind from "astro-pagefind";
 
+import logoZip from "./src/integrations/logoZip.mjs";
+
 // https://astro.build/config
 export default defineConfig({
   // GitHub Pages org root site (served at the domain root, so no `base` needed).
@@ -20,8 +22,9 @@ export default defineConfig({
   site: 'https://q-neko.github.io',
 
   integrations: [
-    react(), 
+    react(),
     pagefind(),
+    logoZip(),
     astroNoIndex({
       allow: []
     })
