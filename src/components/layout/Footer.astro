@@ -4,14 +4,15 @@ import { useTranslations } from "../../i18n/index";
 
 interface Props {
     lang: string;
+    pagefindIgnore?: boolean;
 }
-const { lang } = Astro.props;
+const { lang, pagefindIgnore = false } = Astro.props;
 const t = useTranslations(lang);
 const base = lang === "ja" ? "/ja" : "";
 ---
 
 <!-- TODO: replace with actual content and add eurohpc etc acknowledgements etc -->
-<div class="footer-root">
+<div class="footer-root" data-pagefind-ignore={pagefindIgnore ? "all" : undefined}>
     <footer>
         <div class="footer-content">
             <div class="footer-brand">

@@ -7,6 +7,11 @@ import { useTranslations } from "../i18n/index";
 
 const lang = Astro.currentLocale ?? "en";
 const t = useTranslations(lang);
+
+// Footer is the same on every page, so only let Pagefind index it on the home
+// page — otherwise its text pollutes the excerpt of every search result.
+const path = Astro.url.pathname.replace(/\/$/, "");
+const isHome = path === "" || path === "/ja";
 ---
 
 <!doctype html>
@@ -29,7 +34,7 @@ const t = useTranslations(lang);
 		<main class="grow z-1 flex flex-col">
 			<slot />
 		</main>
-		<Footer lang={lang} />
+		<Footer lang={lang} pagefindIgnore={!isHome} />
 		<CookieConsent client:load t={{ cookies: t.cookies }} />
 		<script>
 			// Scroll reveal

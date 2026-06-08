@@ -84,9 +84,9 @@ export const en: Translations = {
       {
         heading: "Funding",
         links: [
-          { label: "Horizon Europe", href: "https://ec.europa.eu/horizonEurope/" },
-          { label: "EuroHPC JU", href: "https://www.eurohpc-ju.eu/" },
-          { label: "Japan SIP", href: "https://www.mext.go.jp/en/a_top/strategic_innovation.htm" },
+          { label: "Horizon Europe", href: "https://research-and-innovation.ec.europa.eu/funding/funding-opportunities/funding-programmes-and-open-calls/horizon-europe_en" },
+          { label: "EuroHPC JU", href: "https://www.eurohpc-ju.europa.eu/index_en" },
+          { label: "Japan SIP", href: "https://www.jst.go.jp/sip/en/index.html" },
         ],
       },
       {

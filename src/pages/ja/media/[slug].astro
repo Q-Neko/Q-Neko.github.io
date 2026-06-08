@@ -1,0 +1,47 @@
+---
+import { getCollection } from 'astro:content';
+
+// JA twin of `media/[slug].astro` — media items are language-neutral, but
+// Pagefind builds a separate index per `<html lang>`, so each item needs a
+// `lang="ja"` page to appear in `/ja/search` too.
+export async function getStaticPaths() {
+  const KINDS = [
+    { name: 'pressReleases', type: 'Press release' },
+    { name: 'mediaCoverage', type: 'Media coverage' },
+  ] as const;
+  const paths = [];
+  for (const { name, type } of KINDS) {
+    for (const entry of await getCollection(name)) {
+      paths.push({
+        params: { slug: `${name}-${entry.id}` },
+        props: { entry, type },
+      });
+    }
+  }
+  return paths;
+}
+
+const { entry, type } = Astro.props;
+const { title, source, date, language, url } = entry.data;
+const dateStr = date
+  ? new Intl.DateTimeFormat('ja-JP', { year: 'numeric', month: 'short', day: 'numeric' }).format(date)
+  : '';
+const meta = [source, dateStr, language].filter(Boolean).join(' · ');
+---
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="robots" content="noindex" />
+  <title>{title}</title>
+  <meta http-equiv="refresh" content={`0; url=${url}`} />
+  <link rel="canonical" href={url} />
+</head>
+<body>
+  <main data-pagefind-meta={`type:${type}`}>
+    <h1>{title}</h1>
+    <p>{meta}</p>
+    <p><a href={url}>{title}</a></p>
+  </main>
+</body>
+</html>
