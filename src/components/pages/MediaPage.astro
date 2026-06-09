@@ -1,4 +1,5 @@
 ---
+import Pagination from "../ui/Pagination.astro";
 import { useTranslations } from "../../i18n/index";
 import type { CollectionEntry } from "astro:content";
 
@@ -19,6 +20,9 @@ const tabs = [
 
 const logoBase = "/logos/media";
 const logoZip = `${logoBase}/qneko-logo-pack.zip`;
+
+const LOGO_PAGE_SIZE = 8;
+const ENTRY_PAGE_SIZE = 6;
 
 // Newest first (undated entries last), then by explicit `order`.
 const byDateThenOrder = <T extends { data: { date?: Date; order: number } }>(a: T, b: T) => {
@@ -45,7 +49,7 @@ const formatMeta = (data: { source: string; date?: Date; language: string }) =>
 
 <div class="default-bg">
     <div class="default">
-        <div class="reveal">
+        <div id="media-heading" class="reveal scroll-mt-24">
             <div class="section-label">{t.pageContent.media.sectionLabel}</div>
             <h2 class="section-h2">{t.pageContent.media.heading}</h2>
             <p class="max-w-2xl text-ink/80 leading-relaxed mb-6">{t.pageContent.media.intro}</p>
@@ -81,7 +85,7 @@ const formatMeta = (data: { source: string; date?: Date; language: string }) =>
                 <a href={logoZip} download class="btn-primary">{t.pageContent.media.logos.downloadAll}</a>
             </div>
 
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div id="logos-grid" class="grid grid-cols-2 max-[400px]:grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-6">
                 {logos.map((logo) => {
                     const src = `${logoBase}/${logo.data.file}`;
                     return (
@@ -94,14 +98,14 @@ const formatMeta = (data: { source: string; date?: Date; language: string }) =>
                                     loading="lazy"
                                 />
                             </div>
-                            <div class="flex items-center justify-between gap-3">
+                            <div class="flex flex-col gap-2">
                                 <span class="font-mono text-[0.72rem] text-ink/70 leading-tight break-all">
                                     {logo.data.file}
                                 </span>
                                 <a
                                     href={src}
                                     download
-                                    class="font-mono text-[0.78rem] tracking-widest uppercase text-blue hover:underline shrink-0"
+                                    class="font-mono text-[0.78rem] tracking-widest uppercase text-blue hover:underline self-start"
                                 >
                                     {t.pageContent.media.logos.download}
                                 </a>
@@ -110,6 +114,15 @@ const formatMeta = (data: { source: string; date?: Date; language: string }) =>
                     );
                 })}
             </div>
+            {logos.length > LOGO_PAGE_SIZE && (
+                <Pagination
+                    containerId="logos-grid"
+                    paginationId="communication_materials"
+                    pageSize={LOGO_PAGE_SIZE}
+                    scrollTargetId="media-heading"
+                    labels={{ ...t.pagination }}
+                />
+            )}
         </section>
 
         <section data-tab="press_releases" class="pagination-hidden" role="tabpanel">
@@ -118,24 +131,35 @@ const formatMeta = (data: { source: string; date?: Date; language: string }) =>
                     <p class="entry-card-empty">{t.pageContent.media.comingSoonPressReleases}</p>
                 </div>
             ) : (
-                <div class="grid sm:grid-cols-2 gap-6">
-                    {pressItems.map((item) => (
-                        <a
-                            href={item.data.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="reveal base-card entry-card opacity-0 animate-fadeUp1"
-                        >
-                            <div class="entry-card-body">
-                                <div class="entry-card-meta">{formatMeta(item.data)}</div>
-                                <h2>{item.data.title}</h2>
-                                <span class="recent-view-all text-blue font-mono text-[0.78rem] tracking-[0.12em] uppercase mt-1">
-                                    {t.pageContent.media.readArticle} <span>↗</span>
-                                </span>
-                            </div>
-                        </a>
-                    ))}
-                </div>
+                <>
+                    <div id="press-grid" class="grid sm:grid-cols-2 gap-6">
+                        {pressItems.map((item) => (
+                            <a
+                                href={item.data.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="reveal base-card entry-card opacity-0 animate-fadeUp1"
+                            >
+                                <div class="entry-card-body">
+                                    <div class="entry-card-meta">{formatMeta(item.data)}</div>
+                                    <h2>{item.data.title}</h2>
+                                    <span class="recent-view-all text-blue font-mono text-[0.78rem] tracking-[0.12em] uppercase mt-1">
+                                        {t.pageContent.media.readArticle} <span>↗</span>
+                                    </span>
+                                </div>
+                            </a>
+                        ))}
+                    </div>
+                    {pressItems.length > ENTRY_PAGE_SIZE && (
+                        <Pagination
+                            containerId="press-grid"
+                            paginationId="press_releases"
+                            pageSize={ENTRY_PAGE_SIZE}
+                            scrollTargetId="media-heading"
+                            labels={{ ...t.pagination }}
+                        />
+                    )}
+                </>
             )}
         </section>
 
@@ -145,24 +169,35 @@ const formatMeta = (data: { source: string; date?: Date; language: string }) =>
                     <p class="entry-card-empty">{t.pageContent.media.comingSoonClipping}</p>
                 </div>
             ) : (
-                <div class="grid sm:grid-cols-2 gap-6">
-                    {coverageItems.map((item) => (
-                        <a
-                            href={item.data.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="reveal base-card entry-card opacity-0 animate-fadeUp1"
-                        >
-                            <div class="entry-card-body">
-                                <div class="entry-card-meta">{formatMeta(item.data)}</div>
-                                <h2>{item.data.title}</h2>
-                                <span class="recent-view-all text-blue font-mono text-[0.78rem] tracking-[0.12em] uppercase mt-1">
-                                    {t.pageContent.media.readArticle} <span>↗</span>
-                                </span>
-                            </div>
-                        </a>
-                    ))}
-                </div>
+                <>
+                    <div id="clipping-grid" class="grid sm:grid-cols-2 gap-6">
+                        {coverageItems.map((item) => (
+                            <a
+                                href={item.data.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="reveal base-card entry-card opacity-0 animate-fadeUp1"
+                            >
+                                <div class="entry-card-body">
+                                    <div class="entry-card-meta">{formatMeta(item.data)}</div>
+                                    <h2>{item.data.title}</h2>
+                                    <span class="recent-view-all text-blue font-mono text-[0.78rem] tracking-[0.12em] uppercase mt-1">
+                                        {t.pageContent.media.readArticle} <span>↗</span>
+                                    </span>
+                                </div>
+                            </a>
+                        ))}
+                    </div>
+                    {coverageItems.length > ENTRY_PAGE_SIZE && (
+                        <Pagination
+                            containerId="clipping-grid"
+                            paginationId="clipping"
+                            pageSize={ENTRY_PAGE_SIZE}
+                            scrollTargetId="media-heading"
+                            labels={{ ...t.pagination }}
+                        />
+                    )}
+                </>
             )}
         </section>
     </div>

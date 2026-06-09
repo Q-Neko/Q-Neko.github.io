@@ -3,6 +3,10 @@ interface Props {
   containerId: string;
   paginationId?: string;
   pageSize: number;
+  /** Element to scroll to the top of when the page changes. Defaults to the
+   *  paginated container; set to a heading/section wrapper so navigating keeps
+   *  the section heading and first row in view (esp. on small screens). */
+  scrollTargetId?: string;
   labels: {
     first: string;
     previous: string;
@@ -11,7 +15,7 @@ interface Props {
     pageOf: string;
   };
 }
-const { containerId, paginationId, pageSize, labels } = Astro.props;
+const { containerId, paginationId, pageSize, scrollTargetId, labels } = Astro.props;
 const pid = paginationId ?? containerId;
 ---
 
@@ -22,6 +26,7 @@ const pid = paginationId ?? containerId;
     data-pagination-id={pid}
     data-page-size={pageSize}
     data-page-of={labels.pageOf}
+    data-scroll-target-id={scrollTargetId}
 >
     <a class="page-first max-[400px]:hidden" data-action="first" href="#">{labels.first}</a>
     <a class="page-prev" data-action="prev" href="#">{labels.previous}</a>
@@ -145,7 +150,12 @@ const pid = paginationId ?? containerId;
             next = Math.min(Math.max(next, 1), lastPage);
             setPageInUrl(urlParam, next);
             render(next);
-            container.scrollIntoView({ behavior: "smooth", block: "start" });
+            // Scroll to the configured target (e.g. the section heading) so the
+            // heading and first row stay in view; fall back to the grid itself.
+            const scrollTarget =
+                (el.dataset.scrollTargetId && document.getElementById(el.dataset.scrollTargetId)) ||
+                container;
+            scrollTarget.scrollIntoView({ behavior: "smooth", block: "start" });
         });
 
         container.addEventListener("pagination:refresh", ((e: CustomEvent) => {

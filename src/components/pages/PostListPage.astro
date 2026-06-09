@@ -19,7 +19,7 @@ const gridId = "news-grid";
 
 <div class="default-bg">
     <div class="default" id="news">
-        <div class="reveal">
+        <div id="news-heading" class="reveal scroll-mt-24">
             <div class="section-label">{t.news.sectionLabel}</div>
             <h2 class="section-h2">{t.news.heading}</h2>
             <p class="max-w-2xl text-ink/80 leading-relaxed mb-12">{t.news.pageIntro}</p>
@@ -51,6 +51,7 @@ const gridId = "news-grid";
                         containerId={gridId}
                         paginationId="news"
                         pageSize={PAGE_SIZE}
+                        scrollTargetId="news-heading"
                         labels={{ ...t.pagination }}
                     />
                 )}
