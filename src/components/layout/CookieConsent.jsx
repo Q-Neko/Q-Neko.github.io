@@ -1,10 +1,15 @@
 import { useState, useEffect } from "react";
+import { loadMatomo, clearMatomoConsent } from "./matomo";
 
-// Consent choice is stored in localStorage; the actual tracker (anonymous Matomo)
-// is represented for now by a placeholder `tracking` cookie that is set when
-// analytics consent is given and deleted when it is withdrawn.
+// Consent choice is stored in localStorage; analytics (anonymous Matomo) is only
+// loaded once consent is given, and a `tracking` cookie mirrors the choice so it
+// is visible to the user/inspectable.
 const CONSENT_KEY = "consentAnalytics";
 const TRACKING_COOKIE = "tracking";
+
+// Host + container id for Matomo Tag Manager. Loader no-ops when unset.
+const MATOMO_URL = import.meta.env.PUBLIC_MATOMO_URL;
+const MATOMO_CONTAINER_ID = import.meta.env.PUBLIC_MATOMO_CONTAINER_ID;
 const ONE_YEAR = 60 * 60 * 24 * 365;
 
 function setTrackingCookie() {
@@ -35,6 +40,8 @@ export const CookieConsent = ({ t }) => {
 
         const stored = readStoredConsent();
         setAnalytics(stored === "true");
+        // Returning visitor who already opted in: load Matomo for this page.
+        if (stored === "true") loadMatomo(MATOMO_URL, MATOMO_CONTAINER_ID);
         // Show automatically on first visit (no choice recorded yet).
         if (stored !== "true" && stored !== "false") setOpen(true);
 
@@ -63,8 +70,13 @@ export const CookieConsent = ({ t }) => {
         } catch {
             /* storage may be unavailable; cookie still reflects the choice */
         }
-        if (accepted) setTrackingCookie();
-        else deleteTrackingCookie();
+        if (accepted) {
+            setTrackingCookie();
+            loadMatomo(MATOMO_URL, MATOMO_CONTAINER_ID);
+        } else {
+            deleteTrackingCookie();
+            clearMatomoConsent();
+        }
         setAnalytics(accepted);
         setOpen(false);
     };
