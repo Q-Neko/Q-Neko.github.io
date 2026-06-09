@@ -94,14 +94,14 @@ const formatMeta = (data: { source: string; date?: Date; language: string }) =>
                                     loading="lazy"
                                 />
                             </div>
-                            <div class="flex items-center justify-between gap-3">
+                            <div class="flex flex-col gap-2">
                                 <span class="font-mono text-[0.72rem] text-ink/70 leading-tight break-all">
                                     {logo.data.file}
                                 </span>
                                 <a
                                     href={src}
                                     download
-                                    class="font-mono text-[0.78rem] tracking-widest uppercase text-blue hover:underline shrink-0"
+                                    class="font-mono text-[0.78rem] tracking-widest uppercase text-blue hover:underline self-start"
                                 >
                                     {t.pageContent.media.logos.download}
                                 </a>
