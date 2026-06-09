@@ -26,7 +26,7 @@ const filters: { key: FilterKey; label: string }[] = FILTER_KEYS.map(k => ({
 
 <div class="default-bg">
     <div class="default" id="results">
-        <div class="reveal">
+        <div id="results-heading" class="reveal scroll-mt-24">
             <div class="section-label">{t.pageContent.results.sectionLabel}</div>
             <h2 class="section-h2">{t.pageContent.results.heading}</h2>
             <p class="max-w-2xl text-ink/80 leading-relaxed mb-8">{t.pageContent.results.intro}</p>
@@ -76,6 +76,7 @@ const filters: { key: FilterKey; label: string }[] = FILTER_KEYS.map(k => ({
                     containerId={gridId}
                     paginationId="results"
                     pageSize={PAGE_SIZE}
+                    scrollTargetId="results-heading"
                     labels={{ ...t.pagination }}
                 />
             </div>
