@@ -18,26 +18,20 @@ export function loadMatomo(matomoUrl, containerId) {
     injected = true;
 
     const src = new URL(`/js/container_${containerId}.js`, `https://${matomoUrl}`).toString();
-    window._mtm = window._mtm || [];
-    window._mtm.push({ "mtm.startTime": Date.now(), event: "mtm.Start" });
-    // Tell any tracker the container creates that consent is granted.
-    window._paq = window._paq || [];
-    window._paq.push(["setConsentGiven"]);
 
-    const g = document.createElement("script");
-    g.async = true;
-    g.src = src;
-    const s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(g, s);
+    var _mtm = window._mtm = window._mtm || [];
+    _mtm.push({ "mtm.startTime": new Date().getTime(), event: "mtm.Start" });
+    (function () {
+        var d = document, g = d.createElement("script"), s = d.getElementsByTagName("script")[0];
+        g.async = true; g.src = src; s.parentNode.insertBefore(g, s);
+    })();
 }
 
-// Called when consent is withdrawn: stop a running tracker and drop Matomo's
-// own cookies (`_pk_*`, `mtm_*`). Full removal of an already-loaded container
-// only completes on the next navigation; clearing cookies + forgetConsentGiven
-// stops tracking immediately.
+// Called when consent is withdrawn: drop Matomo's own cookies (`_pk_*`,
+// `mtm_*`). Full removal of an already-loaded container only completes on the
+// next navigation; clearing the cookies stops tracking from persisting.
 export function clearMatomoConsent() {
     if (typeof document === "undefined") return;
-    if (window._paq) window._paq.push(["forgetConsentGiven"]);
     for (const pair of document.cookie.split(";")) {
         const name = pair.split("=")[0].trim();
         if (name.startsWith("_pk_") || name.startsWith("mtm_")) {
