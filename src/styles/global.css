@@ -940,6 +940,7 @@
   /* COOKIE CONSENT */
   .cookie-banner {
     @apply fixed bottom-0 left-0 right-0 z-[200]
+           max-h-[100dvh]
            border-t border-[rgba(13,43,110,0.15)]
            shadow-[0_-8px_40px_rgba(13,43,110,0.13)]
            opacity-0 animate-fadeUp1;
@@ -949,6 +950,7 @@
 
   .cookie-inner {
     @apply max-w-[1100px] mx-auto px-6 py-7
+           max-h-[100dvh] overflow-y-auto overscroll-contain
            flex flex-col gap-6;
   }
 
@@ -1002,6 +1004,18 @@
 
   @media (max-width: 700px) {
     .cookie-options { @apply grid-cols-1; }
+  }
+
+  /* Short / small screens (e.g. iPhone SE): tighten spacing and pin
+     actions so the banner stays within the viewport. Inner area scrolls
+     if content still overflows. */
+  @media (max-height: 700px), (max-width: 480px) {
+    .cookie-inner { @apply px-5 py-4 gap-4; }
+    .cookie-option { @apply p-3; }
+    .cookie-actions {
+      @apply sticky bottom-0 -mx-5 -mb-4 px-5 pt-3 pb-4
+             bg-[rgba(250,248,244,0.97)];
+    }
   }
 
   /* SCROLL REVEAL */
