@@ -102,7 +102,6 @@ export const ja: Translations = {
     legalLinks: [
       { label: "Privacy Policy", href: "/privacy-policy" },
       { label: "Code of Conduct", href: "/code-of-conduct" },
-      { label: "Cookie", href: "/cookies" },
     ],
     copyright: "© 2026 Q-Neko Consortium · Nippon-Europe Quantum Koraborēshon",
     coordinatedBy: "Coordinated by CSC - IT Center for Science, Finland",
