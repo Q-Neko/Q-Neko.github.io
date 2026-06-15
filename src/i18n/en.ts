@@ -59,7 +59,7 @@ export const en: Translations = {
   },
   funding: {
     sectionLabel: "Funding & Governance",
-    heading: "Open by Design.",
+    heading: "Co-Funded, Jointly Governed.",
     body: "Q-Neko is co-funded under Horizon Europe and the EuroHPC Joint Undertaking on the European side, and Japan's Cross-ministerial Strategic Innovation Promotion Program (SIP). It is the first concrete outcome of the EU-Japan Letter of Intent on Quantum Science and Technology, signed in May 2025.",
     pills: ["Horizon Europe", "EuroHPC JU", "Japan SIP"],
   },
