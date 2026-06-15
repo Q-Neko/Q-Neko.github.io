@@ -12,6 +12,7 @@ const t = useTranslations(lang);
 const base = lang === "ja" ? "/ja" : "";
 
 const navLinks = [
+    { label: t.nav.home, href: `${base}/` },
     { label: t.nav.results, href: `${base}/results` },
     { label: t.nav.news, href: `${base}/news` },
     { label: t.nav.events, href: `${base}/events` },
@@ -44,7 +45,7 @@ const langSwitchLabel = t.langSwitch.label;
             ))
         }
     </ul>
-    <span class="max-[1000px]:hidden"><LanguageSwitcher /></span>
+    <span class="max-[1100px]:hidden"><LanguageSwitcher /></span>
     <NavMobile
         client:load
         navLinks={navLinks}

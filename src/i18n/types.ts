@@ -8,6 +8,7 @@ export type RichParagraph = RichInline | RichInline[];
 
 export interface Translations {
   nav: {
+    home: string;
     mission: string;
     events: string;
     media: string;

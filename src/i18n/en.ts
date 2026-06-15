@@ -3,6 +3,7 @@ import type { Translations } from "./types";
 // TODO: verify content
 export const en: Translations = {
   nav: {
+    home: "Home",
     mission: "Mission",
     events: "Events",
     media: "Media",

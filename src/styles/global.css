@@ -1036,7 +1036,7 @@
     .post-grid-recent > :nth-child(n+4) { @apply hidden; }
   }
 
-  @media (max-width: 1000px) {
+  @media (max-width: 1100px) {
     nav               { @apply px-6; }
     .nav-links        { @apply hidden; }
     .nav-mobile       { @apply block; }

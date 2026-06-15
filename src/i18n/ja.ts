@@ -3,6 +3,7 @@ import type { Translations } from "./types";
 //TODO: Translate content to Japanese and verify correctness
 export const ja: Translations = {
   nav: {
+    home: "自宅",
     mission: "ミッション",
     events: "イベント",
     media: "メディア",
