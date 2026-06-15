@@ -7,6 +7,13 @@
             "long_name": "CSC - IT Center for Science",
             "logo": "/logos/Roll-up-logos/csc_se.svg"
         },
+                {
+            "country": "Japan",
+            "region": "JP",
+            "name": "AIST",
+            "long_name": "Japan's National Institute of Advanced Industrial Science and Technology",
+            "logo": "/logos/Roll-up-logos/aist_logo_en_t_se.svg"
+        },
         {
             "country": "Finland",
             "region": "EU",
@@ -76,13 +83,6 @@
             "name": "Aalto University",
             "long_name": "Aalto University",
             "logo": "/logos/Roll-up-logos/Aalto_se.svg"
-        },
-        {
-            "country": "Japan",
-            "region": "JP",
-            "name": "AIST",
-            "long_name": "Japan's National Institute of Advanced Industrial Science and Technology",
-            "logo": "/logos/Roll-up-logos/aist_logo_en_t_se.svg"
         },
         {
             "country": "Japan",
