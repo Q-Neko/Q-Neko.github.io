@@ -855,32 +855,31 @@
 
   /* FOOTER */
   .footer-root {
-    @apply relative bg-ink w-full z-1;
+    @apply relative bg-white w-full z-1;
   }
   footer {
-    @apply relative w-full z-1;
+    @apply relative w-full z-1 text-ink;
   }
 
   .footer-content {
-    @apply max-w-[3000px] mx-auto text-cream
+    @apply max-w-[3000px] mx-auto
            p-16 grid grid-cols-[2fr_1fr_1fr_1fr] gap-12
   }
 
   /* white chip so the transparent logo (incl. its black "Neko" text) stays
      legible on the dark footer, matching the funder logos */
   .footer-brand img {
-    @apply h-[64px] mb-5 shrink-0 w-auto bg-white object-contain
-           border border-[rgba(13,43,110,0.08)];
+    @apply h-[64px] mb-5 shrink-0 w-auto bg-white object-contain;
     padding: 0.5rem 0.75rem;
   }
   .footer-brand p {
     @apply font-sans text-[0.82rem] leading-[1.7]
-           text-cream max-w-[280px];
+          max-w-[280px];
   }
   .footer-col h4 {
     @apply font-sans text-[0.78rem] font-bold
            tracking-[0.15em] uppercase
-           text-cream mb-5;
+            mb-5;
   }
   .footer-col ul {
     @apply list-none;
@@ -890,15 +889,15 @@
   }
   .footer-col a {
     @apply font-sans text-[0.82rem]
-           text-cream no-underline
+           no-underline
            transition-colors duration-200;
   }
   .footer-col a:hover {
-    @apply text-white underline decoration-white;
+    @apply underline decoration-white;
   }
   
   .footer-middle {
-    @apply max-w-[3000px] mx-auto text-cream
+    @apply max-w-[3000px] mx-auto
            px-16 py-12
            grid grid-cols-[2fr_1fr_1fr_1fr] gap-12 items-start
            border-t border-[rgba(255,255,255,0.06)];
@@ -920,26 +919,24 @@
      black text) stay legible on the dark footer; normalize by height so all
      logos share the same visual weight regardless of aspect ratio */
   .footer-funder-logos img {
-    @apply w-auto max-w-full bg-white object-contain
-           border border-[rgba(13,43,110,0.08)];
+    @apply w-auto max-w-full bg-white object-contain;
     height: clamp(48px, 5vw, 64px);
     padding: 0.5rem 0.75rem;
   }
 
   .footer-middle p {
     @apply font-mono text-[0.68rem] leading-[1.7] tracking-[0.08em]
-           text-cream max-w-[70ch];
+          max-w-[70ch];
   }
 
   .footer-bottom {
-    @apply relative w-full bg-ink
+    @apply relative w-full bg-white
            border-t border-[rgba(255,255,255,0.06)]
            px-16 py-6 z-1
            flex flex-wrap justify-between items-center gap-4;
   }
   .footer-bottom p {
-    @apply font-mono text-[0.68rem] tracking-[0.08em]
-           text-cream;
+    @apply font-mono text-[0.68rem] tracking-[0.08em];
   }
   .footer-flags {
     @apply flex gap-3 text-[1.4rem];
