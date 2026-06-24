@@ -23,7 +23,7 @@ export const ja: Translations = {
     jpLine2: "日本・欧州 量子コラボレーション",
     description:
       "Q-Nekoプロジェクトは、日本と欧州の一流の研究機関および産業界のパートナーを結集し、次世代の量子強化型コンピューティングソリューションを開発しています。スーパーコンピューティングと量子加速を組み合わせ、社会に真のインパクトをもたらすことを目指しています。",
-    exploreCta: "Q-Nekoを探索する",
+    exploreCta: "プロジェクトを見る",
     partnersCta: "パートナー",
     postsCta: "新着情報",
     logoAlt: "Q-Nekoロゴ",
@@ -31,7 +31,7 @@ export const ja: Translations = {
   mission: {
     sectionLabel: "私たちの使命",
     heading: "古典と量子の架け橋",
-    body: "Q-Nekoは、Horizon EuropeとEuroHPC JU (欧州ハイパフォーマンス・コンピューティング共同事業)、及び日本の戦略的イノベーション創造プログラム（SIP）の資金提供を受けており、アルゴリズム開発から産業用レベルの導入に至るまで、ハイブリッドHPC+AI+QC分野における5つの目標を推進しています。",
+    body: "Q-Nekoは、Horizon EuropeとEuroHPC JU (欧州ハイパフォーマンス・コンピューティング共同事業)、及び日本の戦略的イノベーション創造プログラム（SIP）の資金提供を受けており、アルゴリズム開発から産業利用レベルでの実装に至るまで、ハイブリッドHPC+AI+QC分野における5つの目標を推進しています。",
     quote:
       "Q-Nekoは、従来のHPCと量子アクセラレーションを融合した次世代計算基盤を推進し、社会課題の解決に貢献します。",
     quoteAuthor: "- Mikael Johansson, プロジェクトコーディネーター, CSC",
@@ -42,7 +42,7 @@ export const ja: Translations = {
       },
       {
         title: "技術ロードマップ",
-        desc: "安全なサプライチェーンを強化する、長期的に両地域の戦略的連携を促進する将来のロードマップを作成",
+        desc: "安全なサプライチェーンの強化と、長期的に両地域の戦略的連携を支える将来のロードマップを策定",
       },
       {
         title: "量子ソリューションライブラリ",
@@ -70,7 +70,7 @@ export const ja: Translations = {
   },
   footer: {
     tagline:
-      "日本・欧州 量子コラボレーション　ー　信頼できる日欧連携を通じて、豊かな社会の実現に向けた量子加速コンピューティングを推進",
+      "日本・欧州 量子コラボレーション。信頼できる日欧連携を通じて、豊かな社会の実現に向けた量子加速コンピューティングを推進",
     columns: [
       {
         heading: "プロジェクト",
@@ -211,7 +211,7 @@ export const ja: Translations = {
       },
       {
         id: "data-source",
-        heading: "お客様のデータはどこから取得しているのですか？",
+        heading: "個人データの取得元",
         body: ["ニュースレターにご登録いただく際、当社はお客様から直接情報を収集いたします。"],
       },
       {
@@ -419,7 +419,7 @@ export const ja: Translations = {
       subscribeCta: "登録する",
       emailLabel: "メールアドレス",
       emailPlaceholder: "your@email.com",
-      submitSuccess: "メッセージを送信しました。",
+      submitSuccess: "登録を受け付けました。",
       emailRequired: "メールアドレスは必須",
       emailInvalid: "メールアドレスが無効",
       previousHeading: "過去のニュースレター",
