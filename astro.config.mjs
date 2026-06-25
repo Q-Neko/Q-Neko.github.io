@@ -1,9 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 
-//TODO: remove astro-noindex before launch, and make sure to set up proper SEO metadata for all pages
-import astroNoIndex from "astro-noindex";
-
 import react from '@astrojs/react';
 
 import tailwindcss from '@tailwindcss/vite';
@@ -25,9 +22,6 @@ export default defineConfig({
     react(),
     pagefind(),
     logoZip(),
-    astroNoIndex({
-      allow: []
-    })
   ],
 
   markdown: {
