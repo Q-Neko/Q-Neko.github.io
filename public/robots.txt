@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://q-neko.com/sitemap-index.xml
