@@ -28,6 +28,7 @@ const langSwitchHref = isJa
     ? currentPath.replace(/^\/ja/, "") || "/"
     : "/ja" + currentPath;
 const langSwitchLabel = t.langSwitch.label;
+const langSwitchLang = isJa ? "en" : "ja";
 ---
 
 <nav>
@@ -51,5 +52,6 @@ const langSwitchLabel = t.langSwitch.label;
         navLinks={navLinks}
         langSwitchHref={langSwitchHref}
         langSwitchLabel={langSwitchLabel}
+        langSwitchLang={langSwitchLang}
     />
 </nav>

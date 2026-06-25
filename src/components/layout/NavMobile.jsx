@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 
-export const NavMobile = ({ navLinks, langSwitchHref, langSwitchLabel }) => {
+export const NavMobile = ({ navLinks, langSwitchHref, langSwitchLabel, langSwitchLang }) => {
     const [isOpen, setIsOpen] = useState(false);
     const navRef = useRef(null);
 
@@ -29,7 +29,16 @@ export const NavMobile = ({ navLinks, langSwitchHref, langSwitchLabel }) => {
                     {navLinks.map(({ label, href }) => (
                         <a key={href} href={href}>{label}</a>
                     ))}
-                    <a href={langSwitchHref} className="lang-switch">{langSwitchLabel}</a>
+                    <a
+                        href={langSwitchHref}
+                        className="lang-switch"
+                        data-lang={langSwitchLang}
+                        onClick={() => {
+                            try {
+                                localStorage.setItem("preferred-lang", langSwitchLang);
+                            } catch {}
+                        }}
+                    >{langSwitchLabel}</a>
                 </div>
             )}
         </div>
