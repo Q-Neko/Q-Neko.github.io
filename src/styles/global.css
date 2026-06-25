@@ -876,7 +876,7 @@
     @apply font-sans text-[0.82rem] leading-[1.7]
           max-w-[280px];
   }
-  .footer-col h4 {
+  .footer-col h2 {
     @apply font-sans text-[0.78rem] font-bold
            tracking-[0.15em] uppercase
             mb-5;
@@ -909,6 +909,10 @@
   }
   .footer-legal {
     @apply col-span-3;
+  }
+  /* Give the legal links a large-enough touch target (min 24px) with spacing. */
+  .footer-legal a {
+    @apply inline-flex items-center min-h-[24px] py-1;
   }
 
   .footer-funder-logos {

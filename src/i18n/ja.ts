@@ -12,6 +12,7 @@ export const ja: Translations = {
     news: "ニュース",
     search: "検索",
     logoAlt: "Q-Nekoロゴ",
+    menuLabel: "メニュー",
   },
   hero: {
     label: "Q-Neko",

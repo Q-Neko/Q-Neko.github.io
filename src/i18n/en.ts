@@ -12,6 +12,7 @@ export const en: Translations = {
     news: "News",
     search: "Search",
     logoAlt: "Q-Neko",
+    menuLabel: "Menu",
   },
   hero: {
     label: "Q-Neko",

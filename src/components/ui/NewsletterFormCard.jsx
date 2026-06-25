@@ -108,8 +108,8 @@ export const NewsletterFormCard = ({ t }) => {
 
                     <div className="flex flex-col mt-2 gap-2">
                         <div className="flex gap-2">
-                            <input type="checkbox" name="consent[]" value="4665-1-en" className="form-checkbox" checked={formData.privacyPolicyAccepted} onChange={(e) => handleFormDataChange('privacyPolicyAccepted', e.target.checked)} />
-                            <p>{t.pageContent.contact.form.privacyPolicyText} <a href={t.pageContent.contact.form.privacyPolicyLink} className="text-blue hover:underline">
+                            <input type="checkbox" id="newsletter-consent" name="consent[]" value="4665-1-en" className="form-checkbox" aria-labelledby="newsletter-consent-label" checked={formData.privacyPolicyAccepted} onChange={(e) => handleFormDataChange('privacyPolicyAccepted', e.target.checked)} />
+                            <p id="newsletter-consent-label">{t.pageContent.contact.form.privacyPolicyText} <a href={t.pageContent.contact.form.privacyPolicyLink} className="text-blue hover:underline">
                                 {t.pageContent.contact.form.privacyPolicyLinkText}
                             </a></p>
                         </div>

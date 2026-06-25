@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 
-export const NavMobile = ({ navLinks, langSwitchHref, langSwitchLabel, langSwitchLang }) => {
+export const NavMobile = ({ navLinks, langSwitchHref, langSwitchLabel, langSwitchLang, menuLabel }) => {
     const [isOpen, setIsOpen] = useState(false);
     const navRef = useRef(null);
 
@@ -19,7 +19,13 @@ export const NavMobile = ({ navLinks, langSwitchHref, langSwitchLabel, langSwitc
 
     return (
         <div className="nav-mobile" ref={navRef}>
-            <button className={`nav-toggle${isOpen ? " open" : ""}`} onClick={() => setIsOpen(!isOpen)}>
+            <button
+                type="button"
+                className={`nav-toggle${isOpen ? " open" : ""}`}
+                onClick={() => setIsOpen(!isOpen)}
+                aria-label={menuLabel}
+                aria-expanded={isOpen}
+            >
                 <span className="hamburger"></span>
                 <span className="hamburger"></span>
                 <span className="hamburger"></span>

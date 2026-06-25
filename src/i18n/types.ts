@@ -18,6 +18,7 @@ export interface Translations {
     news: string;
     search: string;
     logoAlt: string;
+    menuLabel: string;
   };
   hero: {
     label: string;

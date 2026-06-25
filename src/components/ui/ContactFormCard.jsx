@@ -104,8 +104,8 @@ export const ContactFormCard = ({ t }) => {
                 <div>
                     <label className="form-label">{t.pageContent.contact.form.privacyPolicyLabel}</label>
                     <div className="flex gap-4 items-center">
-                        <input type="checkbox" className="form-checkbox" checked={formData.privacyPolicyAccepted} onChange={(e) => handleFormDataChange('privacyPolicyAccepted', e.target.checked)} />
-                        <p>{t.pageContent.contact.form.privacyPolicyText} <a href={t.pageContent.contact.form.privacyPolicyLink} className="text-blue hover:underline">
+                        <input type="checkbox" id="contact-consent" className="form-checkbox" aria-labelledby="contact-consent-label" checked={formData.privacyPolicyAccepted} onChange={(e) => handleFormDataChange('privacyPolicyAccepted', e.target.checked)} />
+                        <p id="contact-consent-label">{t.pageContent.contact.form.privacyPolicyText} <a href={t.pageContent.contact.form.privacyPolicyLink} className="text-blue hover:underline">
                             {t.pageContent.contact.form.privacyPolicyLinkText}
                         </a></p>
                     </div>
