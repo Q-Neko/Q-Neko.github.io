@@ -28,7 +28,6 @@ export const ContactFormCard = ({ t }) => {
     }
 
     const validateForm = () => {
-        //TODO: this is very basic validation, consider using a library for more complex forms
         const errors = {};
         const e = t.pageContent.contact.form.errors;
 
@@ -59,7 +58,6 @@ export const ContactFormCard = ({ t }) => {
         e.preventDefault();
 
         if (validateForm()) {
-            //TODO: handle form submission, e.g. send data to backend or email service
             console.log('Form submitted:', formData);
 
             setFormData({
