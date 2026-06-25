@@ -26,7 +26,6 @@ export const NewsletterFormCard = ({ t }) => {
     }
 
     const validateForm = () => {
-        //TODO: this is very basic validation, consider using a library for more complex forms
         const errors = {};
 
         if (!formData.email.trim()) {
