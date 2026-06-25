@@ -1,6 +1,5 @@
 import type { Translations } from "./types";
 
-// TODO: verify content
 export const en: Translations = {
   nav: {
     home: "Home",
@@ -396,7 +395,7 @@ export const en: Translations = {
       heading: "Media Corner",
       intro: "Welcome to the Q-Neko Media Corner. Here you can find official communication materials, press releases, and media coverage related to the Q-Neko project",
       pressLabel: "Press contact",
-      pressEmail: "comms.qneko@postit.csc.fi", //TODO: replace with actual email address
+      pressEmail: "comms.qneko@postit.csc.fi", 
       tabs: {
         communicationMaterials: "Communication materials",
         pressReleases: "Press releases",
@@ -431,12 +430,12 @@ export const en: Translations = {
       heading: "Get in Touch",
       intro: "For general inquiries about the Q-Neko project, partnerships, or collaboration opportunities, please reach out to us through these channels.",
       coordinatorLabel: "Project Coordinator",
-      coordinator: "CSC – IT Center for Science, Finland", //TODO: replace with coordinator's name
+      coordinator: "CSC – IT Center for Science, Finland",
       emailLabel: "Email",
-      email: "mikael.johansson@csc.fi", //TODO: replace with actual email address
+      email: "mikael.johansson@csc.fi",
       pmoLabel: "Project Management Office",
-      pmo: "PMO Contact", //TODO: replace with PMO contact's name
-      pmoEmail: "pmo.qneko@postit.csc.fi", //TODO: replace with actual PMO email address
+      pmo: "PMO Contact", 
+      pmoEmail: "pmo.qneko@postit.csc.fi",
       form: {
         nameLabel: "Name",
         emailLabel: "Email",

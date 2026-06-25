@@ -1,6 +1,5 @@
 import type { Translations } from "./types";
 
-//TODO: Translate content to Japanese and verify correctness
 export const ja: Translations = {
   nav: {
     home: "Q-Nekoについて",
@@ -395,7 +394,7 @@ export const ja: Translations = {
       heading: "メディアコーナー",
       intro: "Q-NekoメディアコーナーではQ-Nekoプロジェクトに関する広報資料、プレスリリース、メディア掲載をご覧いただけます。",
       pressLabel: "報道関係のお問い合わせ",
-      pressEmail: "comms.qneko@postit.csc.fi", //TODO: replace with actual email address
+      pressEmail: "comms.qneko@postit.csc.fi",
       tabs: {
         communicationMaterials: "広報資料",
         pressReleases: "プレスリリース",
@@ -430,12 +429,12 @@ export const ja: Translations = {
       heading: "お問い合わせ",
       intro: "Q-Nekoプロジェクトに関する一般的なお問い合わせ、パートナーシップ、または協業の機会については、プロジェクト調整事務局までご連絡ください。",
       coordinatorLabel: "プロジェクトコーディネーター",
-      coordinator: "CSC – IT Center for Science, Finland", //TODO: replace with coordinator's name
+      coordinator: "CSC – IT Center for Science, Finland",
       emailLabel: "メール",
-      email: "comms.qneko@postit.csc.fi", //TODO: replace with actual email address
+      email: "comms.qneko@postit.csc.fi",
       pmoLabel: "プロジェクト管理",
-      pmo: "PMO Contact", //TODO: replace with PMO contact's name
-      pmoEmail: "pmo.qneko@postit.csc.fi", //TODO: replace with actual PMO email address
+      pmo: "PMO Contact",
+      pmoEmail: "pmo.qneko@postit.csc.fi",
       form: {
         nameLabel: "名前",
         emailLabel: "メールアドレス",
