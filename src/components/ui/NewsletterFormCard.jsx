@@ -15,6 +15,8 @@ export const NewsletterFormCard = ({ t }) => {
 
     const [submittedNotification, setSubmittedNotification] = useState(false);
 
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
     const handleFormDataChange = (field, value) => {
         setFormData(prev => ({ ...prev, [field]: value }));
         if (formErrors[field]) {
@@ -44,23 +46,27 @@ export const NewsletterFormCard = ({ t }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (isSubmitting) return;
         if (!validateForm()) return;
 
-        const form = e.target;
+        const form = e.currentTarget;
+        setIsSubmitting(true);
         try {
-            // The subscription page enforces CSRF protection, so grab a fresh token from
-            // its JSON config before posting (the token is also exposed there alongside
-            // the list/consent config).
-            const config = await fetch(`${LIANA_BASE}/json`).then((res) => res.json());
+            // Mirrors LianaMailer's official embed flow (see the generated embed snippet):
+            // 1) GET a fresh CSRF token from the subscription page's JSON config, then
+            // 2) POST the url-encoded form to the `?ajax` endpoint with the token in the
+            //    `cfcfcfcfcf` field (the exact field name the embed uses — if Liana
+            //    regenerates the embed and this changes, update it here).
+            const config = await fetch(`${LIANA_BASE}/json?_=${Date.now()}`).then((res) => res.json());
 
-            // POST must target the subscription page with the `ajax` parameter; it
-            // responds with { success, error_key, error_msg }.
-            const body = new FormData(form);
-            body.set('csrf_token', config.csrf_token);
+            const body = new URLSearchParams(new FormData(form));
+            body.set('cfcfcfcfcf', config.csrf_token);
 
-            const data = await fetch(`${LIANA_BASE}/account/?ajax`, {
+            // Responds with { success, error_key, error_msg }.
+            const data = await fetch(`${LIANA_BASE}/account?ajax`, {
                 method: 'POST',
-                body,
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: body.toString(),
             }).then((res) => res.json());
 
             if (data.success) {
@@ -77,6 +83,8 @@ export const NewsletterFormCard = ({ t }) => {
             }
         } catch {
             setFormErrors((prev) => ({ ...prev, email: t.pageContent.newsletter.submitError }));
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -96,8 +104,6 @@ export const NewsletterFormCard = ({ t }) => {
                     />
                     {formErrors.email && <p className="form-error">{formErrors.email}</p>}
 
-                    <input type="hidden" name="join[]" value="1646430"></input>
-
                     {/* LianaMailer honeypot: must stay empty; hidden from real users. */}
                     <input type="text" name="lm-gtfo" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" defaultValue="" />
 
@@ -113,7 +119,7 @@ export const NewsletterFormCard = ({ t }) => {
                     {formErrors.privacyPolicyAccepted && <p className="form-error">{formErrors.privacyPolicyAccepted}</p>}
                 </div>
 
-                <input value={t.pageContent.newsletter.subscribeCta} type="submit" className="btn-primary self-start disabled:cursor-not-allowed" />
+                <input value={t.pageContent.newsletter.subscribeCta} type="submit" disabled={isSubmitting} className="btn-primary self-start disabled:cursor-not-allowed disabled:opacity-60" />
                 {submittedNotification && <p className="text-green-600 mt-2">{t.pageContent.newsletter.submitSuccess}</p>}
             </form>
         </div>
