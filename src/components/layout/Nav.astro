@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import qnekoLogo from "../../assets/qneko_nobg_notext.png";
 import { NavMobile } from "./NavMobile.jsx";
 import LanguageSwitcher from "./LanguageSwitcher.astro";
@@ -34,7 +35,7 @@ const langSwitchLang = isJa ? "en" : "ja";
 <nav>
     <div class="nav-logo">
         <a href={`${base}/`}>
-            <img src={qnekoLogo.src} alt={t.nav.logoAlt} />
+            <Image src={qnekoLogo} alt={t.nav.logoAlt} width={200} height={76} loading="eager" />
         </a>
     </div>
     <ul class="nav-links">
@@ -48,7 +49,7 @@ const langSwitchLang = isJa ? "en" : "ja";
     </ul>
     <span class="max-[1100px]:hidden"><LanguageSwitcher /></span>
     <NavMobile
-        client:load
+        client:idle
         navLinks={navLinks}
         langSwitchHref={langSwitchHref}
         langSwitchLabel={langSwitchLabel}

@@ -12,10 +12,10 @@
     --color-cream: #FAF8F4;
     --color-off-white: #F5F3F0;
 
-    --font-sans: 'Exo 2', sans-serif;
-    --font-serif-en: 'Exo 2', sans-serif;
-    --font-serif-jp: 'Exo 2', sans-serif;
-    --font-mono: 'Exo 2', sans-serif;
+    --font-sans: 'Exo 2 Variable', sans-serif;
+    --font-serif-en: 'Exo 2 Variable', sans-serif;
+    --font-serif-jp: 'Exo 2 Variable', sans-serif;
+    --font-mono: 'Exo 2 Variable', sans-serif;
 
     --animate-fadeUp1: fadeUp 0.7s 0.2s ease forwards;
     --animate-fadeUp2: fadeUp 0.7s 0.35s ease forwards;

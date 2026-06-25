@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import qnekoLogo from "../../assets/qneko_notext.png";
 import { useTranslations } from "../../i18n/index";
 
@@ -15,7 +16,7 @@ const base = lang === "ja" ? "/ja" : "";
     <footer>
         <div class="footer-content">
             <div class="footer-brand">
-                <img src={qnekoLogo.src} alt={t.footer.logoAlt} />
+                <Image src={qnekoLogo} alt={t.footer.logoAlt} width={324} height={128} loading="lazy" />
                 <p>{t.footer.tagline}</p>
             </div>
             {

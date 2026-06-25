@@ -4,6 +4,7 @@ import Footer from "../components/layout/Footer.astro";
 import Nav from "../components/layout/Nav.astro";
 import { CookieConsent } from "../components/layout/CookieConsent.jsx";
 import { useTranslations } from "../i18n/index";
+import "@fontsource-variable/exo-2";
 
 const lang = Astro.currentLocale ?? "en";
 const t = useTranslations(lang);
@@ -30,24 +31,38 @@ const isHome = path === "" || path === "/ja";
 			href="/qneko_notext_logo_only.jpg"
 		/>
 		<link rel="icon" href="/favicon.ico" />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<!-- Exo 2 is self-hosted via @fontsource-variable/exo-2 (imported in the
+		     frontmatter), so no third-party Google Fonts request is needed. -->
+		<!-- KaTeX only styles rendered math; load it off the critical render
+		     path so it never blocks first paint on non-math pages. -->
 		<link
-			href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap"
-			rel="stylesheet"
-		/>
-		<link
-			rel="stylesheet"
+			rel="preload"
+			as="style"
 			href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
+			onload="this.onload=null;this.rel='stylesheet'"
 		/>
+		<noscript>
+			<link
+				rel="stylesheet"
+				href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"
+			/>
+		</noscript>
 		<meta name="generator" content={Astro.generator} />
 		<title>Q-Neko</title>
 		<script>
 			import { loadMatomo } from "../components/layout/matomo.js";
-			loadMatomo(
-				import.meta.env.PUBLIC_MATOMO_URL,
-				import.meta.env.PUBLIC_MATOMO_CONTAINER_ID,
-			);
+			// Defer analytics until the browser is idle so it stays off the
+			// initial load's critical path (no main-thread contention during FCP/LCP).
+			const startMatomo = () =>
+				loadMatomo(
+					import.meta.env.PUBLIC_MATOMO_URL,
+					import.meta.env.PUBLIC_MATOMO_CONTAINER_ID,
+				);
+			if ("requestIdleCallback" in window) {
+				requestIdleCallback(startMatomo);
+			} else {
+				setTimeout(startMatomo, 1);
+			}
 		</script>
 	</head>
 	<body class="flex flex-col min-h-screen min-w-creen">

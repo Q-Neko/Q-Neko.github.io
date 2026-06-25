@@ -23,7 +23,7 @@ const t = useTranslations(lang);
             </p>
         </div>
 
-        <NewsletterFormCard t={t} client:load />
+        <NewsletterFormCard t={t} client:visible />
 
         {showPreviousNewsletters && <PreviousNewsletters t={t} />}
     </div>
