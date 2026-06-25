@@ -40,34 +40,55 @@ export const NewsletterFormCard = ({ t }) => {
         return Object.keys(errors).length === 0;
     }
 
-    const handleSubmit = (e) => {
-        if (!validateForm()) {
-            e.preventDefault();
-            return;
+    const LIANA_BASE = 'https://q-neko.mail-eur.net';
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (!validateForm()) return;
+
+        const form = e.target;
+        try {
+            // The subscription page enforces CSRF protection, so grab a fresh token from
+            // its JSON config before posting (the token is also exposed there alongside
+            // the list/consent config).
+            const config = await fetch(`${LIANA_BASE}/json`).then((res) => res.json());
+
+            // POST must target the subscription page with the `ajax` parameter; it
+            // responds with { success, error_key, error_msg }.
+            const body = new FormData(form);
+            body.set('csrf_token', config.csrf_token);
+
+            const data = await fetch(`${LIANA_BASE}/account/?ajax`, {
+                method: 'POST',
+                body,
+            }).then((res) => res.json());
+
+            if (data.success) {
+                setFormData({ email: '', privacyPolicyAccepted: false });
+                setSubmittedNotification(true);
+                setTimeout(() => setSubmittedNotification(false), 3000);
+            } else {
+                setFormErrors((prev) => ({
+                    ...prev,
+                    email: data.error_key === 'email-already-registered'
+                        ? t.pageContent.newsletter.alreadySubscribed
+                        : t.pageContent.newsletter.submitError,
+                }));
+            }
+        } catch {
+            setFormErrors((prev) => ({ ...prev, email: t.pageContent.newsletter.submitError }));
         }
-
-        setFormData({
-            email: '',
-            privacyPolicyAccepted: false,
-        });
-
-        setSubmittedNotification(true);
-
-        setTimeout(() => {
-            setSubmittedNotification(false);
-        }, 3000);
     };
 
     return (
         <div className="base-card opacity-0 animate-fadeUp1 max-w-2xl flex flex-col gap-4">
 
-            <iframe name="newsletter-frame" title="Newsletter subscription" style={{ display: 'none' }} />
-            <form method="post" action="https://uutiskirje.asiakkaandomain.fi/account" target="newsletter-frame" id="lianamailer" className='lianamailer flex flex-col gap-6' onSubmit={handleSubmit}>
+            <form method="post" action="https://q-neko.mail-eur.net/account" id="lianamailer" className='lianamailer flex flex-col gap-6' onSubmit={handleSubmit}>
                 <div>
                     <label className="form-label">{t.pageContent.newsletter.emailLabel}</label>
                     <input
                         name="email"
-                        type="text"
+                        type="email"
                         placeholder={t.pageContent.newsletter.emailPlaceholder}
                         className="form-input"
                         value={formData.email}
@@ -77,27 +98,22 @@ export const NewsletterFormCard = ({ t }) => {
 
                     <input type="hidden" name="join[]" value="1646430"></input>
 
+                    {/* LianaMailer honeypot: must stay empty; hidden from real users. */}
+                    <input type="text" name="lm-gtfo" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" defaultValue="" />
+
                     <div className="flex flex-col mt-2 gap-2">
                         <div className="flex gap-2">
-                            <input type="checkbox" className="form-checkbox" checked={formData.privacyPolicyAccepted} onChange={(e) => handleFormDataChange('privacyPolicyAccepted', e.target.checked)} />
+                            <input type="checkbox" name="consent[]" value="4665-1-en" className="form-checkbox" checked={formData.privacyPolicyAccepted} onChange={(e) => handleFormDataChange('privacyPolicyAccepted', e.target.checked)} />
                             <p>{t.pageContent.contact.form.privacyPolicyText} <a href={t.pageContent.contact.form.privacyPolicyLink} className="text-blue hover:underline">
                                 {t.pageContent.contact.form.privacyPolicyLinkText}
                             </a></p>
-                        </div>
-
-                        {
-                            //TODO: replace with actual consent from Liana. Translate
-                        }
-                        <div className="flex gap-2">
-                            <input type="checkbox" name="consent[]" value="45-2-fi" className="form-checkbox" />
-                            <p>Liana Technologies saa lähettää minulle digitaaliseen markkinointiin ja viestintään liittyvää sisältöä.</p>
                         </div>
 
                     </div>
                     {formErrors.privacyPolicyAccepted && <p className="form-error">{formErrors.privacyPolicyAccepted}</p>}
                 </div>
 
-                <input value={t.pageContent.newsletter.subscribeCta} type="submit" disabled className="btn-primary self-start disabled:cursor-not-allowed" />
+                <input value={t.pageContent.newsletter.subscribeCta} type="submit" className="btn-primary self-start disabled:cursor-not-allowed" />
                 {submittedNotification && <p className="text-green-600 mt-2">{t.pageContent.newsletter.submitSuccess}</p>}
             </form>
         </div>
