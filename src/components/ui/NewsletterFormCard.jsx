@@ -1,6 +1,5 @@
 
-import { set } from 'astro:schema';
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 
 export const NewsletterFormCard = ({ t }) => {
 
@@ -15,6 +14,8 @@ export const NewsletterFormCard = ({ t }) => {
     });
 
     const [submittedNotification, setSubmittedNotification] = useState(false);
+
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleFormDataChange = (field, value) => {
         setFormData(prev => ({ ...prev, [field]: value }));
@@ -41,38 +42,61 @@ export const NewsletterFormCard = ({ t }) => {
         return Object.keys(errors).length === 0;
     }
 
-    const handleSubmit = (e) => {
+    const LIANA_BASE = 'https://q-neko.mail-eur.net';
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        if (isSubmitting) return;
+        if (!validateForm()) return;
 
-        if (validateForm()) {
-            //TODO: handle form submission, e.g. send data to backend or email service
-            console.log('Form submitted:', formData);
+        const form = e.currentTarget;
+        setIsSubmitting(true);
+        try {
+            // Mirrors LianaMailer's official embed flow (see the generated embed snippet):
+            // 1) GET a fresh CSRF token from the subscription page's JSON config, then
+            // 2) POST the url-encoded form to the `?ajax` endpoint with the token in the
+            //    `cfcfcfcfcf` field (the exact field name the embed uses — if Liana
+            //    regenerates the embed and this changes, update it here).
+            const config = await fetch(`${LIANA_BASE}/json?_=${Date.now()}`).then((res) => res.json());
 
-            setFormData({
-                email: '',
-                privacyPolicyAccepted: false,
-            });
+            const body = new URLSearchParams(new FormData(form));
+            body.set('cfcfcfcfcf', config.csrf_token);
 
-            setSubmittedNotification(true);
+            // Responds with { success, error_key, error_msg }.
+            const data = await fetch(`${LIANA_BASE}/account?ajax`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: body.toString(),
+            }).then((res) => res.json());
 
-            setTimeout(() => {
-                setSubmittedNotification(false);
-            }, 3000);
-        }
-
-        else {
-            console.log('Form has errors:', formErrors);
+            if (data.success) {
+                setFormData({ email: '', privacyPolicyAccepted: false });
+                setSubmittedNotification(true);
+                setTimeout(() => setSubmittedNotification(false), 3000);
+            } else {
+                setFormErrors((prev) => ({
+                    ...prev,
+                    email: data.error_key === 'email-already-registered'
+                        ? t.pageContent.newsletter.alreadySubscribed
+                        : t.pageContent.newsletter.submitError,
+                }));
+            }
+        } catch {
+            setFormErrors((prev) => ({ ...prev, email: t.pageContent.newsletter.submitError }));
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
     return (
         <div className="base-card opacity-0 animate-fadeUp1 max-w-2xl flex flex-col gap-4">
 
-            <form className='flex flex-col gap-6' onSubmit={handleSubmit}>
+            <form method="post" action="https://q-neko.mail-eur.net/account" id="lianamailer" className='lianamailer flex flex-col gap-6' onSubmit={handleSubmit}>
                 <div>
                     <label className="form-label">{t.pageContent.newsletter.emailLabel}</label>
                     <input
-                        type="text"
+                        name="email"
+                        type="email"
                         placeholder={t.pageContent.newsletter.emailPlaceholder}
                         className="form-input"
                         value={formData.email}
@@ -80,16 +104,22 @@ export const NewsletterFormCard = ({ t }) => {
                     />
                     {formErrors.email && <p className="form-error">{formErrors.email}</p>}
 
-                    <div className="flex mt-2 gap-2 items-center">
-                        <input type="checkbox" className="form-checkbox" checked={formData.privacyPolicyAccepted} onChange={(e) => handleFormDataChange('privacyPolicyAccepted', e.target.checked)} />
-                        <p>{t.pageContent.contact.form.privacyPolicyText} <a href={t.pageContent.contact.form.privacyPolicyLink} className="text-blue hover:underline">
-                            {t.pageContent.contact.form.privacyPolicyLinkText}
-                        </a></p>
+                    {/* LianaMailer honeypot: must stay empty; hidden from real users. */}
+                    <input type="text" name="lm-gtfo" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" defaultValue="" />
+
+                    <div className="flex flex-col mt-2 gap-2">
+                        <div className="flex gap-2">
+                            <input type="checkbox" name="consent[]" value="4665-1-en" className="form-checkbox" checked={formData.privacyPolicyAccepted} onChange={(e) => handleFormDataChange('privacyPolicyAccepted', e.target.checked)} />
+                            <p>{t.pageContent.contact.form.privacyPolicyText} <a href={t.pageContent.contact.form.privacyPolicyLink} className="text-blue hover:underline">
+                                {t.pageContent.contact.form.privacyPolicyLinkText}
+                            </a></p>
+                        </div>
+
                     </div>
                     {formErrors.privacyPolicyAccepted && <p className="form-error">{formErrors.privacyPolicyAccepted}</p>}
                 </div>
-                
-                <button disabled className="btn-primary self-start disabled:cursor-not-allowed">{t.pageContent.newsletter.subscribeCta}</button>
+
+                <input value={t.pageContent.newsletter.subscribeCta} type="submit" disabled={isSubmitting} className="btn-primary self-start disabled:cursor-not-allowed disabled:opacity-60" />
                 {submittedNotification && <p className="text-green-600 mt-2">{t.pageContent.newsletter.submitSuccess}</p>}
             </form>
         </div>

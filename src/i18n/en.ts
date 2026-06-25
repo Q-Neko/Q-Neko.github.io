@@ -420,6 +420,8 @@ export const en: Translations = {
       emailLabel: "Email",
       emailPlaceholder: "your@email.com",
       submitSuccess: "Subscription successful!",
+      submitError: "Subscription failed. Please try again later.",
+      alreadySubscribed: "This email is already subscribed.",
       emailRequired: "Email is required",
       emailInvalid: "Email is invalid",
       previousHeading: "Previous Newsletters",
