@@ -420,6 +420,8 @@ export const ja: Translations = {
       emailLabel: "メールアドレス",
       emailPlaceholder: "your@email.com",
       submitSuccess: "メッセージを送信しました。",
+      submitError: "TODO 登録に失敗しました。後ほど再度お試しください。",
+      alreadySubscribed: "TODOこのメールアドレスはすでに登録されています。",
       emailRequired: "メールアドレスは必須",
       emailInvalid: "メールアドレスが無効",
       previousHeading: "過去のニュースレター",

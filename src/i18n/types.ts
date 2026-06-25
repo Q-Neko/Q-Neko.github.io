@@ -193,6 +193,8 @@ export interface Translations {
       emailLabel: string;
       emailPlaceholder: string;
       submitSuccess: string;
+      submitError: string;
+      alreadySubscribed: string;
       emailRequired: string;
       emailInvalid: string;
       previousHeading: string;
