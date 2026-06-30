@@ -25,6 +25,7 @@ const dateStr = event.data.startDate
     </span>
     <div class="post-content">
         <div class="post-meta" data-pagefind-ignore="all">
+            {event.data.title && <h1>{event.data.title}</h1>}
             <div class="post-meta-info">
                 {dateStr && <span class="post-meta-date">{dateStr}</span>}
                 {event.data.location && <span class="post-meta-sep">|</span>}
