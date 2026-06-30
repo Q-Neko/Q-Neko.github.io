@@ -644,7 +644,7 @@
   }
 
   .post-content img {
-    @apply w-full my-8;
+    @apply my-8;
   }
 
   .post-content table {
