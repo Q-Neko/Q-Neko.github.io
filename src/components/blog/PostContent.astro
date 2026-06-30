@@ -27,6 +27,7 @@ const searchBase = post.id.startsWith("ja/") ? "/ja/search" : "/search";
                     <a href={`${searchBase}?q=${encodeURIComponent(String(tag))}`} class="post-tag">{tag}</a>
                 ))}
             </div>
+            {post.data.title && <h1>{post.data.title}</h1>}
             <div class="post-meta-info">
                 {dateStr && <span class="post-meta-date">{dateStr}</span>}
                 {post.data.author && <span class="post-meta-sep">|</span>}
