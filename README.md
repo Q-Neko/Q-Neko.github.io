@@ -45,6 +45,31 @@ npm run build      # production build to ./dist/. Builds production-ready assets
 npm run preview    # preview the production build locally, no live changes
 ```
 
+## Running with Docker
+
+If you'd rather not install Node locally, you can run the dev server in a
+container. Requires [Docker](https://docs.docker.com/get-docker/) with Compose.
+
+```sh
+docker compose up      # build the image and start the dev server
+```
+
+The site is served at [localhost:4321](http://localhost:4321). The project
+directory is bind-mounted into the container, so edits to source files are
+reflected live with hot-module reloading.
+
+```sh
+docker compose up -d      # run in the background
+docker compose logs -f    # follow the dev-server logs
+docker compose down       # stop and remove the container
+```
+
+If you change dependencies (`package.json`), rebuild the image:
+
+```sh
+docker compose up --build
+```
+
 ## Project structure
 
 ```

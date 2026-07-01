@@ -9,6 +9,12 @@ nvm use v24
 npm run dev      # http://localhost:4321
 ```
 
+Or, without a local Node install, run it in Docker (see [README → Running with Docker](../README.md#running-with-docker)):
+
+```sh
+docker compose up      # http://localhost:4321
+```
+
 > [!Note]
 > Search results and the per-item search landing pages only exist in a **production build** (`npm run build && npm run preview`), not in `npm run dev`. See [README → Search](../README.md#search).
 
