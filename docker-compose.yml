@@ -14,6 +14,4 @@ services:
     environment:
       # Polling makes file-watching reliable across bind mounts / platforms.
       - CHOKIDAR_USEPOLLING=true
-    env_file:
-      - .env
     restart: unless-stopped
