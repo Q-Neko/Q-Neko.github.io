@@ -1,0 +1,16 @@
+# Development image for the Astro dev server with HMR/watch support.
+FROM node:24-bookworm-slim
+
+WORKDIR /app
+
+# Install dependencies first so this layer is cached until package files change.
+COPY package.json package-lock.json ./
+RUN npm ci
+
+# App source is bind-mounted at runtime (see docker-compose.yml), so nothing
+# else needs to be copied for development.
+
+EXPOSE 4321
+
+# --host binds to 0.0.0.0 so the server is reachable from outside the container.
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]

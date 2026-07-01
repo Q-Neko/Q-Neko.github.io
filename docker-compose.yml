@@ -1,0 +1,19 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "4321:4321"
+    volumes:
+      # Bind-mount the project so source edits are reflected live.
+      - .:/app
+      # Anonymous volume keeps the container's node_modules from being shadowed
+      # by the host directory.
+      - /app/node_modules
+    environment:
+      # Polling makes file-watching reliable across bind mounts / platforms.
+      - CHOKIDAR_USEPOLLING=true
+    env_file:
+      - .env
+    restart: unless-stopped
