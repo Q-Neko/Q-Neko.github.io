@@ -6,7 +6,7 @@ export const ja: Translations = {
     mission: "ミッション",
     events: "イベント",
     media: "メディア",
-    results: "結果",
+    results: "成果",
     newsletter: "ニュースレター",
     contact: "お問い合わせ",
     news: "ニュース",
@@ -23,7 +23,7 @@ export const ja: Translations = {
     jpLine2: "日本・欧州 量子コラボレーション",
     description:
       "Q-Nekoプロジェクトは、日本と欧州の一流の研究機関および産業界のパートナーを結集し、次世代の量子強化型コンピューティングソリューションを開発しています。スーパーコンピューティングと量子加速を組み合わせ、社会に真のインパクトをもたらすことを目指しています。",
-    exploreCta: "プロジェクトを見る",
+    exploreCta: "プロジェクト概要",
     partnersCta: "パートナー",
     postsCta: "新着情報",
     logoAlt: "Q-Nekoロゴ",
@@ -415,7 +415,7 @@ export const ja: Translations = {
     newsletter: {
       sectionLabel: "ニュースレター",
       heading: "最新情報を入手",
-      intro: "Q-Nekoのニュースレターにご登録いただくと、研究の進捗状況、今後のイベント、コンソーシアムからの最新情報をメールで直接お受け取りいただけます。",
+      intro: "Q-Nekoのニュースレターにご登録いただくと、研究の進捗状況、今後のイベント、コンソーシアムからの最新情報をメールでお届けします。",
       subscribeCta: "登録する",
       emailLabel: "メールアドレス",
       emailPlaceholder: "your@email.com",
