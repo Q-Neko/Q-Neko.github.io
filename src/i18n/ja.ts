@@ -31,7 +31,7 @@ export const ja: Translations = {
   mission: {
     sectionLabel: "私たちの使命",
     heading: "古典と量子の架け橋",
-    body: "Q-Nekoは、Horizon EuropeとEuroHPC JU (欧州ハイパフォーマンス・コンピューティング共同事業)、及び日本の戦略的イノベーション創造プログラム（SIP）の資金提供を受けており、アルゴリズム開発から産業利用レベルでの実装に至るまで、ハイブリッドHPC+AI+QC分野における5つの目標を推進しています。",
+    body: "Q-Nekoは、Horizon EuropeとEuroHPC JU (欧州ハイパフォーマンス・コンピューティング共同事業)と、日本の戦略的イノベーション創造プログラム（SIP）の支援を受け、アルゴリズム開発から産業応用レベルの実装まで、ハイブリッドHPC+AI+QC分野における5つの目標の実現に取り組んでいます。",
     quote:
       "Q-Nekoは、従来のHPCと量子アクセラレーションを融合した次世代計算基盤を推進し、社会課題の解決に貢献します。",
     quoteAuthor: "- Mikael Johansson, プロジェクトコーディネーター, CSC",
@@ -61,7 +61,7 @@ export const ja: Translations = {
   funding: {
     sectionLabel: "資金提供とガバナンス",
     heading: "共同出資・共同運営",
-    body: "Q-Nekoは、欧州側ではHorizon EuropeとEuroHPC JUから、日本側では戦略的イノベーション創造プログラム（SIP）から共同資金提供を受けています。2025年5月に署名された「日EU間の量子科学技術に関する協力趣意書」に基づく最初の具体的な成果です。",
+    body: "Q-Nekoは、欧州（Horizon EuropeとEuroHPC JU）と日本（戦略的イノベーション創造プログラム（SIP））からの共同資金提供を受けています。また本プロジェクトは2025年5月に締結された「日EU間の量子科学技術に関する協力趣意書」に基づく最初の具体的な成果です。",
     pills: ["Horizon Europe", "EuroHPC JU", "SIP"],
   },
   partners: {
@@ -70,7 +70,7 @@ export const ja: Translations = {
   },
   footer: {
     tagline:
-      "日本・欧州 量子コラボレーション。信頼できる日欧連携を通じて、豊かな社会の実現に向けた量子加速コンピューティングを推進",
+      "日本・欧州による量子コラボレーション。日欧の強固なパートナーシップのもと、豊かな社会の実現に向け、量子コンピューティングを推進します。",
     columns: [
       {
         heading: "プロジェクト",
@@ -78,7 +78,7 @@ export const ja: Translations = {
           { label: "ミッション", href: "/#mission" },
           { label: "パートナー", href: "/#consortium" },
           { label: "ニュース", href: "/news" },
-          { label: "結果", href: "/results" },
+          { label: "成果", href: "/results" },
           { label: "イベント", href: "/events" },
         ],
       },
@@ -94,7 +94,7 @@ export const ja: Translations = {
         heading: "お問い合わせ",
         links: [
           { label: "お問い合わせ", href: "/contact" },
-          { label: "メディアコーナー", href: "/media" },
+          { label: "メディア", href: "/media" },
           { label: "ニュースレター", href: "/newsletter" },
           { label: "LinkedIn", href: "https://www.linkedin.com/company/q-neko/" },
         ],
@@ -110,7 +110,7 @@ export const ja: Translations = {
     fundingStatement:
       "The project is supported by the EuroHPC Joint Undertaking (Grant Agreement No. 101241875.) and its members including top-up funding by the Government of Japan.",
     disclaimer:
-      "本事業は欧州連合（EU）の共同資金提供を受けています。ただし、表明された見解や意見は著者個人のものであり、必ずしも欧州連合またはEuroHPC JUの見解を反映するものではありません。欧州連合および資金提供者は、これらについて一切の責任を負いません。",
+      "本事業は欧州連合（EU）からの共同資金提供を受けて実施されています。なお、本資料に記載されている見解および意見は、プロジェクト参加機関に帰属するものであり、欧州連合またはEuroHPC JUの見解を反映するものではありません。欧州連合および資金提供機関は、本資料の内容について一切の責任を負いません。",
     developedBy: "Developed By Q-Neko",
     developedCopyright: "Copyright © Q-Neko 2026",
     logoAlt: "Q-Neko",
@@ -430,7 +430,7 @@ export const ja: Translations = {
     contact: {
       sectionLabel: "お問い合わせ",
       heading: "お問い合わせ",
-      intro: "Q-Nekoプロジェクトに関する一般的なお問い合わせ、パートナーシップ、または協業の機会については、プロジェクト調整事務局までご連絡ください。",
+      intro: "Q-Nekoプロジェクトに関する一般的なお問い合わせ、パートナーシップ、または協業の機会については、プロジェクト事務局までご連絡ください。",
       coordinatorLabel: "プロジェクトコーディネーター",
       coordinator: "CSC – IT Center for Science, Finland",
       emailLabel: "メール",

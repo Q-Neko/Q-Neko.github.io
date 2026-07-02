@@ -2,6 +2,8 @@
 import { useState } from 'react';
 
 export const NewsletterFormCard = ({ t }) => {
+    const privacyPolicy = t.pageContent.contact.form;
+    const isJapanesePrivacyPolicy = privacyPolicy.privacyPolicyLink.startsWith('/ja/');
 
     const [formData, setFormData] = useState({
         email: '',
@@ -109,9 +111,22 @@ export const NewsletterFormCard = ({ t }) => {
                     <div className="flex flex-col mt-2 gap-2">
                         <div className="flex gap-2">
                             <input type="checkbox" id="newsletter-consent" name="consent[]" value="4665-1-en" className="form-checkbox" aria-labelledby="newsletter-consent-label" checked={formData.privacyPolicyAccepted} onChange={(e) => handleFormDataChange('privacyPolicyAccepted', e.target.checked)} />
-                            <p id="newsletter-consent-label">{t.pageContent.contact.form.privacyPolicyText} <a href={t.pageContent.contact.form.privacyPolicyLink} className="text-blue hover:underline">
-                                {t.pageContent.contact.form.privacyPolicyLinkText}
-                            </a></p>
+                            <p id="newsletter-consent-label">
+                                {isJapanesePrivacyPolicy ? (
+                                    <>
+                                        <a href={privacyPolicy.privacyPolicyLink} className="text-blue hover:underline">
+                                            {privacyPolicy.privacyPolicyLinkText}
+                                        </a>
+                                        {privacyPolicy.privacyPolicyText}
+                                    </>
+                                ) : (
+                                    <>
+                                        {privacyPolicy.privacyPolicyText} <a href={privacyPolicy.privacyPolicyLink} className="text-blue hover:underline">
+                                            {privacyPolicy.privacyPolicyLinkText}
+                                        </a>
+                                    </>
+                                )}
+                            </p>
                         </div>
 
                     </div>
