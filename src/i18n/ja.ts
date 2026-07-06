@@ -425,7 +425,7 @@ export const ja: Translations = {
       emailRequired: "メールアドレスは必須",
       emailInvalid: "メールアドレスが無効",
       previousHeading: "過去のニュースレター",
-      previousComingSoon: "過去のニュースレターは公開され次第こちらに掲載。",
+      previousComingSoon: "過去のニュースレターは、順次こちらに掲載します。",
     },
     contact: {
       sectionLabel: "お問い合わせ",
