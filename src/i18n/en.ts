@@ -414,7 +414,7 @@ export const en: Translations = {
       },
     },
     newsletter: {
-      sectionLabel: "Newsletter",
+      sectionLabel: "Newsletter - Coming Soon",
       heading: "Stay in the Loop",
       intro: "Subscribe to the Q-Neko newsletter to receive updates on our research progress, upcoming events, and consortium news directly in your inbox.",
       subscribeCta: "Subscribe",
