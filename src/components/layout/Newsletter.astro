@@ -22,8 +22,9 @@ const t = useTranslations(lang);
                 {t.pageContent.newsletter.intro}
             </p>
         </div>
-
-        <NewsletterFormCard t={t} client:visible />
+        
+        {/* TODO show newsletter subscription form once newsletter is ready */}
+        {/* <NewsletterFormCard t={t} client:visible /> */}
 
         {showPreviousNewsletters && <PreviousNewsletters t={t} />}
     </div>

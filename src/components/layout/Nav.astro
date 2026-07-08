@@ -23,6 +23,13 @@ const navLinks = [
     { label: t.nav.search, href: `${base}/search` },
 ];
 
+// TODO: Add newsletter back to the Japanese site
+if (lang === "ja") {
+    const index = navLinks.findIndex(link => link.href === "/ja/newsletter");
+    navLinks.splice(index, 1);
+}
+
+
 const currentPath = Astro.url.pathname;
 const isJa = currentPath.startsWith("/ja");
 const langSwitchHref = isJa

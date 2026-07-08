@@ -10,6 +10,9 @@ interface Props {
   lang: string;
 }
 const { lang } = Astro.props;
+
+
+
 ---
 
 <Hero lang={lang} />
@@ -17,4 +20,7 @@ const { lang } = Astro.props;
 <Mission lang={lang} />
 <Partners lang={lang} />
 <Funding lang={lang} />
-<Newsletter lang={lang} showPreviousNewsletters={false} />
+{lang === "en" && <Newsletter lang={lang} showPreviousNewsletters={false} />}
+
+{/*TODO: Show newsletter subscription form once newsletter is ready */}
+{/*<Newsletter lang={lang} showPreviousNewsletters={false} /> */}
