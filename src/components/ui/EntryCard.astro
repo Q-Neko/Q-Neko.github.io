@@ -59,6 +59,7 @@ const imagePath = image ? image : "/placeholder-news.svg";
     <div class="entry-card-body">
         {!imagePath && meta && <div class="entry-card-meta">{meta}</div>}
         <h2>{title}</h2>
+        {/*
         {tags && tags.length > 0 && (
             <div class="post-card-tags">
                 {tags.map((tag: string) => (
@@ -66,6 +67,7 @@ const imagePath = image ? image : "/placeholder-news.svg";
                 ))}
             </div>
         )}
+        */}
         <p class="">{dateStr}</p>
         <p class="post-description">{descriptionShort}</p>
     </div>

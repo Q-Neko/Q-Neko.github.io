@@ -16,7 +16,7 @@ const dateStr = event.data.startDate
 ---
 
 <div class="posts-bg" data-pagefind-meta={`title:${event.data.title}`}>
-    {event.data.image && <span hidden data-pagefind-meta={`image:${event.data.image}`}></span>}
+    <span hidden data-pagefind-meta={`image:${event.data.image ?? "/news/introducing-q-neko/staytuned.jpg"}`}></span>
     <span hidden data-pagefind-meta="type:Event"></span>
     {dateStr && <span hidden data-pagefind-meta={`date:${dateStr}`}></span>}
     {event.data.location && <span hidden data-pagefind-meta={`location:${event.data.location}`}></span>}

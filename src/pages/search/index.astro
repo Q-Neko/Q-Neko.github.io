@@ -1,35 +1,12 @@
 ---
-import Search from "astro-pagefind/components/Search";
+import PagefindSearch from "../../components/ui/PagefindSearch.astro";
 import PageLayout from "../../layouts/PageLayout.astro";
 ---
 
 <PageLayout title="Search">
     <div class="default-bg">
         <div class="default">
-            <Search />
+            <PagefindSearch />
         </div>
     </div>
 </PageLayout>
-
-<script>
-  function tryPopulateSearch() {
-    const q = new URLSearchParams(window.location.search).get("q");
-    if (!q) return;
-    const container = document.querySelector("[data-pagefind-ui]");
-    if (!container) return;
-    const populate = () => {
-      const input = container.querySelector<HTMLInputElement>('input[type="text"]');
-      if (!input) return false;
-      input.value = q;
-      input.dispatchEvent(new Event("input", { bubbles: true }));
-      return true;
-    };
-    if (!populate()) {
-      const observer = new MutationObserver(() => { if (populate()) observer.disconnect(); });
-      observer.observe(container, { childList: true, subtree: true });
-    }
-  }
-  document.addEventListener("astro:page-load", tryPopulateSearch);
-  if (document.readyState !== "loading") tryPopulateSearch();
-  else document.addEventListener("DOMContentLoaded", tryPopulateSearch);
-</script>

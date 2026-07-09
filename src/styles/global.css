@@ -560,7 +560,8 @@
   }
 
   .post-lead {
-    @apply text-[1.2rem] leading-[1.7] text-ink/75 italic border-l-4 border-blue/40 pl-6 mt-6;
+    @apply text-[1.2rem] leading-[1.7] text-ink/75 italic mt-6;
+    white-space: pre-line;
   }
 
   .post-content h1 {
@@ -576,7 +577,7 @@
   }
 
   .post-content h3 {
-    @apply font-serif-en text-[1.3rem] text-ink mt-8 mb-2 font-bold;
+    @apply font-serif-en text-[1.3rem] text-ink mt-10 -mb-4 font-bold;
   }
 
   .post-content h4 {
@@ -587,7 +588,7 @@
     @apply mb-5;
   }
 
-  .post-content p:first-of-type {
+  .post-content {
     @apply text-[1.15rem] leading-[1.9] text-ink/75 mb-6 not-italic;
   }
 
@@ -597,6 +598,20 @@
 
   .post-content blockquote p {
     @apply mb-2;
+  }
+
+  .post-content .quote-speaker {
+    @apply flex items-center gap-3 font-mono text-[0.8rem] tracking-[0.15em] uppercase
+           font-bold not-italic mt-10 mb-0;
+  }
+
+  .post-content .quote-speaker::before {
+    content: '';
+    @apply inline-block w-6 h-px bg-black/30;
+  }
+
+  .post-content .quote-speaker + blockquote {
+    @apply mt-2;
   }
 
   .post-content hr {
@@ -644,7 +659,27 @@
   }
 
   .post-content img {
-    @apply my-8;
+    @apply my-8 max-w-full h-auto;
+  }
+
+  .post-content .post-figure {
+    @apply my-8 mx-auto w-full max-w-[380px];
+  }
+
+  .post-content .post-figure--left {
+    @apply ml-0 mr-auto;
+  }
+
+  .post-content .post-figure--right {
+    @apply mr-0 ml-auto;
+  }
+
+  .post-content .post-figure img {
+    @apply my-0 w-full h-auto rounded-sm;
+  }
+
+  .post-content .post-figure figcaption {
+    @apply mt-2 font-sans text-[0.8rem] leading-snug text-ink/60 italic text-center;
   }
 
   .post-content table {

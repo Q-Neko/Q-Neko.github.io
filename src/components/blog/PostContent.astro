@@ -5,15 +5,16 @@ import { render } from "astro:content";
 
 const { Content } = await render(post);
 
+const isJa = post.id.startsWith("ja/");
 const dateStr = post.data.date
-    ? new Date(post.data.date).toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric" })
+    ? new Date(post.data.date).toLocaleDateString(isJa ? "ja-JP" : "en-GB", { year: "numeric", month: "long", day: "numeric" })
     : null;
 
-const searchBase = post.id.startsWith("ja/") ? "/ja/search" : "/search";
+const searchBase = isJa ? "/ja/search" : "/search";
 ---
 
 <div class="posts-bg" data-pagefind-meta={`title:${post.data.title}`}>
-    {post.data.image && <span hidden data-pagefind-meta={`image:${post.data.image}`}></span>}
+    <span hidden data-pagefind-meta={`image:${post.data.image ?? "/news/introducing-q-neko/staytuned.jpg"}`}></span>
     {post.data.type && <span hidden data-pagefind-meta={`type:${post.data.type}`}></span>}
     {dateStr && <span hidden data-pagefind-meta={`date:${dateStr}`}></span>}
     {post.data.author && <span hidden data-pagefind-meta={`author:${post.data.author}`}></span>}
