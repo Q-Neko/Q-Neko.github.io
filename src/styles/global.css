@@ -560,7 +560,7 @@
   }
 
   .post-lead {
-    @apply text-[1.2rem] leading-[1.7] text-ink/75 italic mt-6;
+    @apply text-[1.2rem] leading-[1.5] text-ink/75 italic mt-6;
     white-space: pre-line;
   }
 
