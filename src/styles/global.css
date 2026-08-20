@@ -12,10 +12,13 @@
     --color-cream: #FAF8F4;
     --color-off-white: #F5F3F0;
 
-    --font-sans: 'Exo 2 Variable', sans-serif;
-    --font-serif-en: 'Exo 2 Variable', sans-serif;
-    --font-serif-jp: 'Exo 2 Variable', sans-serif;
-    --font-mono: 'Exo 2 Variable', sans-serif;
+    /* Exo 2 is listed first everywhere so Latin text keeps its brand face;
+       Noto Sans JP only ever supplies the glyphs Exo 2 lacks (CJK), which is
+       why it can sit in every stack without affecting English pages. */
+    --font-sans: 'Exo 2 Variable', 'Noto Sans JP Variable', sans-serif;
+    --font-serif-en: 'Exo 2 Variable', 'Noto Sans JP Variable', sans-serif;
+    --font-serif-jp: 'Exo 2 Variable', 'Noto Sans JP Variable', sans-serif;
+    --font-mono: 'Exo 2 Variable', 'Noto Sans JP Variable', sans-serif;
 
     --animate-fadeUp1: fadeUp 0.7s 0.2s ease forwards;
     --animate-fadeUp2: fadeUp 0.7s 0.35s ease forwards;
@@ -370,6 +373,11 @@
     @apply border-l-[3px] border-crimson-lt pl-6
            font-serif-jp italic text-[1.05rem]
            text-off-white leading-[1.7];
+    /* Latin gets Exo 2's real italic cut. Noto Sans JP ships no italic, so the
+       Japanese quote is deliberately left to the browser's synthesised oblique
+       — font-synthesis-style is pinned to auto so a UA that defaults to `none`
+       still slants it. */
+    font-synthesis-style: auto;
   }
   .mission-quote cite {
     @apply block mt-3 font-mono text-[0.7rem] tracking-[0.1em]
