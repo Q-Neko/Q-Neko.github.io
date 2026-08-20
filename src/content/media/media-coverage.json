@@ -30,5 +30,13 @@
     "language": "EN",
     "url": "https://www.movetheneedle.news/brands/why-europe-s-next-deep-tech-partnerships-increasingly-run-through-japan/",
     "order": 3
+  },
+   {
+    "id": "hpcwire-advances-collaboration",
+    "title": "EuroHPC: Q-Neko Project Advances Europe-Japan Quantum HPC Collaboration",
+    "source": "HPCwire",
+    "language": "EN",
+    "url": "https://www.hpcwire.com/off-the-wire/eurohpc-launches-q-neko-project-to-strengthen-eu-japan-collaboration-in-quantum-computing/",
+    "order": 4
   }
 ]
