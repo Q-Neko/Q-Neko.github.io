@@ -5,6 +5,10 @@ import Nav from "../components/layout/Nav.astro";
 import { CookieConsent } from "../components/layout/CookieConsent.jsx";
 import { useTranslations } from "../i18n/index";
 import "@fontsource-variable/exo-2";
+// The default entrypoint only ships the upright style, so italics would be
+// browser-synthesised slants without this second import.
+import "@fontsource-variable/exo-2/wght-italic.css";
+import "@fontsource-variable/noto-sans-jp";
 
 const lang = Astro.currentLocale ?? "en";
 const t = useTranslations(lang);
@@ -31,8 +35,10 @@ const isHome = path === "" || path === "/ja";
 			href="/qneko_notext_logo_only.jpg"
 		/>
 		<link rel="icon" href="/favicon.ico" />
-		<!-- Exo 2 is self-hosted via @fontsource-variable/exo-2 (imported in the
-		     frontmatter), so no third-party Google Fonts request is needed. -->
+		<!-- Exo 2 and Noto Sans JP are self-hosted via @fontsource-variable
+		     (imported in the frontmatter), so no third-party Google Fonts
+		     request is needed. Noto Sans JP ships ~124 unicode-range subsets,
+		     so a page only fetches the subsets its CJK glyphs actually need. -->
 		<!-- KaTeX only styles rendered math; load it off the critical render
 		     path so it never blocks first paint on non-math pages. -->
 		<link
