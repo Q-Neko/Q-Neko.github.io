@@ -2,7 +2,7 @@
 title: "Q-Neko and IEC/ISO JTC Workshop Explores Future Directions for Quantum-HPC Standards"
 slug: "qneko-jtc-standardization-workshop"               # the page lives at /news/<slug> (and /ja/news/<slug>)
 date: 2026-08-28
-description: "On 26 August 2026, Q-Neko organized a joint workshop with IEC/ISO JTC 3A WG2, connecting EU, Japan and the broader global quantum ecosystem. 57 participants from Europe, Japan, China and Australia gathered together to share achievements and current status of Quantum-HPC computing infrastructures and technologies, to exchange views between the R&D and standardization communities, and to discuss benchmarking, pre-standardization and future standardization activities."
+description: "On 26 August 2026, Q-Neko organized a joint workshop with IEC/ISO JTC 3A WG2, connecting EU, Japan and the broader global quantum ecosystem. 57 participants from around the globe gathered together to share achievements and current status of Quantum-HPC computing infrastructures and technologies, to exchange views between the R&D and standardization communities, and to discuss benchmarking, pre-standardization and future standardization activities."
 author: "Q-Neko"
 type: "News"
 tags: ["EU-JAPAN", "Quantum Computing", "Hybrid Computing", "Standardization", "Benchmarking"]
