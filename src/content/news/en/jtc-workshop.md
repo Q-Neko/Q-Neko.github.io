@@ -10,14 +10,14 @@ tags: ["EU-JAPAN", "Quantum Computing", "Hybrid Computing", "Standardization", "
 
 ### Future directions for Quantum-HPC standardization
 <br>
-The core aim of the workshop was to identify joint challenges and future directions for Quantum-HPC standardization via presentations of concrete research activities and use cases. The rapid evolution of quantum technologies was highlighted as one of the main challenges, showing how important it is to find a balance between advancing pre-standardization activities while still preserving innovation.
+The core aim of the workshop was to identify joint challenges and future directions for Quantum-HPC standardization via presentations of concrete research activities and use cases. The rapid evolution of quantum technologies was highlighted as one of the main challenges, showing how important it is to find a balance between advancing pre-standardization activities while still preserving innovation.<br>
 <br>
 Another major topic was the role of diverse hybrid HPC and quantum computing infrastructures and how developing a common terminology, reference models and architecture descriptions is vital for standardization efforts. The workshop also identified common benchmarking and interoperability challenges, recommending the establishment of common practical and real-world benchmarking methodologies and improving hardware- and vendor-independent integration frameworks to avoid fragmentation. 
 
 ### Q-Neko supports the definition of future international standards
 <br>
-Q-Neko contributed to the workshop by presenting its ongoing work on reliable hybrid infrastructures and providing various research highlights, including algorithm development in Q-Neko's various target application areas, hybrid software stack and integration, real-world benchmarks for hybrid workflows, and evidence-based contributions to pre-standardization activities.
+Q-Neko contributed to the workshop by presenting its ongoing work on reliable hybrid infrastructures and providing various research highlights, including algorithm development in Q-Neko's various target application areas, hybrid software stack and integration, real-world benchmarks for hybrid workflows, and evidence-based contributions to pre-standardization activities.<br>
 <br>
-Close cooperation between research projects and standards organizations was seen as key to bridging the gap between R&D and standardization activities. As an international collaboration initiative implementing practical research on hybrid infrastructures, the workshop confirmed the importance of Q-Neko's role in supporting future international standards.
-
+Close cooperation between research projects and standards organizations was seen as key to bridging the gap between R&D and standardization activities. As an international collaboration initiative implementing practical research on hybrid infrastructures, the workshop confirmed the importance of Q-Neko's role in supporting future international standards.<br>
+<br>
 Q-Neko thanks all the speakers and participants for the open and insightful discussions. We look forward to continuing the dialogue and collaboration.
