@@ -585,7 +585,7 @@
   }
 
   .post-content h3 {
-    @apply font-serif-en text-[1.3rem] text-ink mt-10 -mb-4 font-bold;
+    @apply font-serif-en text-[1.3rem] text-ink mt-10 mb-4 font-bold;
   }
 
   .post-content h4 {
