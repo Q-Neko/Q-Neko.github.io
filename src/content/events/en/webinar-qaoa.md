@@ -4,7 +4,7 @@ slug: "webinar-qaoa"               # page at /events/<slug>
 description: "How far can a shallow QAOA circuit be pushed on today's noisy quantum hardware? This Q-Neko webinar walks from a plain QAOA run to an iterative, warm-started solver loop and shows how a small reinforcement learning agent can take over the tuning of that loop. Everything is performed on the q-neko-qec framework developed at IT4Innovations."
 startDate: 2026-10-27          # real dates
 endDate: 2026-10-27
-location: "Online"       # optional, shown as the card meta label
+location: "Webinar"       # optional, shown as the card meta label
 ---
 
 **Time:** Tuesday 27 October 2026, 09:00-10:00 CET / 17:00-18:00 JST Tokyo
