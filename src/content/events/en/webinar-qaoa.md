@@ -11,6 +11,8 @@ location: "Online"       # optional, shown as the card meta label
 
 **Registration:** https://link.webropolsurveys.com/EP/626029970ED6AFAC
 
+### Abstract
+
 QAOA is the standard variational algorithm for combinatorial optimization on gate-based quantum computers, and on today's devices it rarely delivers a good solution on its own. The circuit has to stay shallow, every shot is expensive and noisy, and the parameter landscape gives the classical optimizer little to work with. This webinar presents one practical path to improving the situation. 
 
 We start from a QUBO problem and a plain depth-one QAOA run, and look at what it can and cannot do with a small shot budget per run. We then turn QAOA into an outer loop: each round runs a few short restarts, rescores every sampled bitstring classically, keeps the best one and uses it as the warm start of the next round. We show why the naive warm start collapses onto its own seed, and how the noise-directed adaptive warm start of Maciejewski, Hadfield, Wallis et al. (2026) repairs it. 
