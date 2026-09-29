@@ -69,7 +69,7 @@ Markdown, one file per post. Schema: [`news`](../src/content.config.ts#L17). Ref
 
 ## Events
 
-Markdown, one file per event. Schema: [`events`](../src/content.config.ts#L35). Reference example: [kickoff-workshop-2026.md](../src/content/events/en/kickoff-workshop-2026.md).
+Markdown, one file per event. Schema: [`events`](../src/content.config.ts#L35). Reference example: [webinar-qaoa.md](../src/content/events/en/webinar-qaoa.md).
 
 1. Create `src/content/events/en/<slug>.md` (and the `ja/` twin).
 2. Frontmatter (`location` and `image` optional, the rest required):
