@@ -1,9 +1,13 @@
 ---
 import PagefindSearch from "../../components/ui/PagefindSearch.astro";
 import PageLayout from "../../layouts/PageLayout.astro";
+import { useTranslations } from "../../i18n/index";
+
+const lang = Astro.currentLocale ?? "en";
+const t = useTranslations(lang);
 ---
 
-<PageLayout title="Search">
+<PageLayout title={t.pages.search}>
     <div class="default-bg">
         <div class="default">
             <PagefindSearch />
