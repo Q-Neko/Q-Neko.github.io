@@ -565,6 +565,7 @@
 
   .post-content {
     @apply max-w-[1500px] mx-auto px-16 pb-24 font-sans text-[1.05rem] leading-[1.85] text-ink;
+    overflow-wrap: break-word;
   }
 
   .post-lead {
