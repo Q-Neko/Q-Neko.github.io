@@ -20,7 +20,5 @@ const { lang } = Astro.props;
 <Mission lang={lang} />
 <Partners lang={lang} />
 <Funding lang={lang} />
-{lang === "en" && <Newsletter lang={lang} showPreviousNewsletters={false} />}
 
-{/*TODO: Show newsletter subscription form once newsletter is ready */}
-{/*<Newsletter lang={lang} showPreviousNewsletters={false} /> */}
+<Newsletter lang={lang} showPreviousNewsletters={false} />

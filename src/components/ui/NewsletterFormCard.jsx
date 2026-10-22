@@ -43,7 +43,7 @@ export const NewsletterFormCard = ({ t }) => {
         return Object.keys(errors).length === 0;
     }
 
-    const LIANA_BASE = 'https://q-neko.mail-eur.net';
+    const LIANA_BASE = 'https://q-neko.csc.fi';
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -92,8 +92,7 @@ export const NewsletterFormCard = ({ t }) => {
     return (
         <div className="base-card opacity-0 animate-fadeUp1 max-w-2xl flex flex-col gap-4">
 
-            {/* TODO add action="https://q-neko.mail-eur.net/account" */}
-            <form method="post"  id="lianamailer" className='lianamailer flex flex-col gap-6' onSubmit={handleSubmit}>
+            <form action={`${LIANA_BASE}/account`} method="post"  id="lianamailer" className='lianamailer flex flex-col gap-6' onSubmit={handleSubmit}>
                 <div>
                     <label className="form-label">{t.pageContent.newsletter.emailLabel}</label>
                     <input
@@ -134,8 +133,7 @@ export const NewsletterFormCard = ({ t }) => {
                     {formErrors.privacyPolicyAccepted && <p className="form-error">{formErrors.privacyPolicyAccepted}</p>}
                 </div>
 
-                {/* TODO: change disabled to disabled={isSubmitting} */}
-                <input value={t.pageContent.newsletter.subscribeCta} type="submit" disabled className="btn-primary self-start disabled:cursor-not-allowed disabled:opacity-60" />
+                <input value={t.pageContent.newsletter.subscribeCta} type="submit" disabled={isSubmitting} className="btn-primary self-start disabled:cursor-not-allowed disabled:opacity-60" />
                 {submittedNotification && <p className="text-green-600 mt-2">{t.pageContent.newsletter.submitSuccess}</p>}
             </form>
         </div>
