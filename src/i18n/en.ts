@@ -68,6 +68,51 @@ export const en: Translations = {
     sectionLabel: "Partners",
     heading: "16 Partners.\nTwo Continents.\nOne Vision.",
   },
+  eab: {
+    sectionLabel: "EAB",
+    heading: "External Advisory Board",
+    intro:
+      "The External Advisory Board will help ensure that Q-Neko remains closely connected to the wider European and Japanese quantum landscape, providing strategic insights and recommendations to maximize the relevance and impact of the project's activities and results.",
+    membersHeading: "Members of the External Advisory Board",
+    closeLabel: "Close",
+    members: [
+      {
+        id: "shunsuke-okada",
+        name: "Shunsuke Okada",
+        affiliation: "Q-STAR · Toshiba",
+        region: "jp",
+        bio: "Shunsuke Okada is Executive Committee Chair of Q-STAR (Quantum STrategic Industry Alliance for Revolution), an organization dedicated to the industrial development of quantum technologies. He also serves as Quantum Sub-Program Director for the Cabinet Office's Cross-ministerial Strategic Innovation Promotion Program (SIP). In addition, he is Corporate Senior Vice President and Chief Digital Officer (CDO) of Toshiba Corporation.",
+      },
+      {
+        id: "miwako-tsuji",
+        name: "Miwako Tsuji",
+        affiliation: "University of Tsukuba · RIKEN",
+        region: "jp",
+        bio: "Miwako Tsuji is a professor of Center for Computational Sciences, University of Tsukuba, and a unit leader at the RIKEN Center for Computational Science. She received master and PhD degrees from the Information Science and Technology department at Hokkaido University. From 2007 to 2013, she worked in multiple roles at the University of Hokkaido, University of Tokyo, University of Tsukuba, and Universite de Versailles Saint-Quentin-en-Yvelines. At RIKEN, she is a member of the Flagship 2020 project, which conducted the design and development of the supercomputer Fugaku. Her current research interests are programming and performance models for large-scale high-performance computing and quantum-HPC hybrid computing. She is a coauthor of the ACM Gordon Bell Prize in 2011. She is one of the Associate Directors of the Arm HPC User Group organization.",
+      },
+      {
+        id: "laure-le-bars",
+        name: "Laure Le Bars",
+        affiliation: "SAP · QuIC",
+        region: "eu",
+        bio: "Laure Le Bars is a Research Project Director at SAP and has been leading SAP’s quantum computing initiatives for the past decade. She also co-founded the European Quantum Industry Consortium (QuIC) and served as its first President.",
+      },
+      {
+        id: "gabriele-cavallaro",
+        name: "Gabriele Cavallaro",
+        affiliation: "University of Iceland · Jülich Supercomputing Centre",
+        region: "eu",
+        bio: "Gabriele Cavallaro is an Associate Professor with the Faculty of Electrical and Computer Engineering at the University of Iceland and Head of the “AI and ML for Remote Sensing” Simulation and Data Lab at the Jülich Supercomputing Centre, Forschungszentrum Jülich. Concurrently, he serves as a Visiting Professor at the European Space Agency (ESA) Φ-Lab and as Co-Chair of the IEEE Iceland Section.",
+      },
+      {
+        id: "goran-wendin",
+        name: "Göran Wendin",
+        affiliation: "Chalmers · RISE",
+        region: "eu",
+        bio: "Göran Wendin is Professor Emeritus of theoretical physics at Chalmers University of Technology in Gothenburg, Sweden, currently working at RISE on strategies for implementing quantum technologies. He was a member 2022-2026 of the EuroHPC JU infrastructure advisory group (INFRAG) contributing to building a European HPC+AI+QC federated ecosystem.",
+      },
+    ],
+  },
   footer: {
     tagline:
       "The Nippon-Europe Quantum Koraborēshon - advancing quantum-accelerated computing for a better society through trusted EU-Japan collaboration.",

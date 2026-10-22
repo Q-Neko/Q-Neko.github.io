@@ -51,6 +51,22 @@ export interface Translations {
     sectionLabel: string;
     heading: string;
   };
+  // Optional: the homepage hides the EAB section for locales without it.
+  eab?: {
+    sectionLabel: string;
+    heading: string;
+    intro: string;
+    membersHeading: string;
+    closeLabel: string;
+    // `id` matches an image in src/assets/eab (see EAB.astro).
+    members: Array<{
+      id: string;
+      name: string;
+      affiliation: string;
+      region: "eu" | "jp";
+      bio: string;
+    }>;
+  };
   footer: {
     tagline: string;
     columns: Array<{
