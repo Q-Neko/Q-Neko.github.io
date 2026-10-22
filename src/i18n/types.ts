@@ -52,7 +52,7 @@ export interface Translations {
     heading: string;
   };
   // Optional: the homepage hides the EAB section for locales without it.
-  eab?: {
+  eab?: { // TODO add japanese eab and make this mandatory
     sectionLabel: string;
     heading: string;
     intro: string;
