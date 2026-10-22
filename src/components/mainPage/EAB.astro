@@ -2,6 +2,11 @@
 import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
 import { useTranslations } from "../../i18n/index";
+import shunsukeOkada from "../../assets/eab/shunsuke-okada.jpg";
+import miwakoTsuji from "../../assets/eab/miwako-tsuji.png";
+import laureLeBars from "../../assets/eab/laure-le-bars.jpg";
+import gabrieleCavallaro from "../../assets/eab/gabriele-cavallaro.jpg";
+import goranWendin from "../../assets/eab/goran-wendin.png";
 
 interface Props {
   lang: string;
@@ -9,13 +14,14 @@ interface Props {
 const { lang } = Astro.props;
 const eab = useTranslations(lang).eab;
 
-// Photos live in src/assets/eab, named after each member's `id`.
-const photos = import.meta.glob<{ default: ImageMetadata }>(
-  "../../assets/eab/*.{jpg,jpeg,png,webp}",
-  { eager: true },
-);
-const photoFor = (id: string) =>
-  Object.entries(photos).find(([path]) => path.split("/").pop()!.replace(/\.\w+$/, "") === id)?.[1].default;
+// Keyed by each member's `id` in the translations.
+const photos: Record<string, ImageMetadata> = {
+  "shunsuke-okada": shunsukeOkada,
+  "miwako-tsuji": miwakoTsuji,
+  "laure-le-bars": laureLeBars,
+  "gabriele-cavallaro": gabrieleCavallaro,
+  "goran-wendin": goranWendin,
+};
 ---
 
 {eab && (
@@ -31,7 +37,7 @@ const photoFor = (id: string) =>
 
       <div class="eab-grid reveal" data-eab-grid>
         {eab.members.map((member) => {
-          const photo = photoFor(member.id);
+          const photo = photos[member.id];
           return (
             <button
               type="button"
