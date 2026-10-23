@@ -1,0 +1,146 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import { useTranslations } from "../../i18n/index";
+import shunsukeOkada from "../../assets/eab/shunsuke-okada.jpg";
+import miwakoTsuji from "../../assets/eab/miwako-tsuji.png";
+import laureLeBars from "../../assets/eab/laure-le-bars.jpg";
+import gabrieleCavallaro from "../../assets/eab/gabriele-cavallaro.jpg";
+import goranWendin from "../../assets/eab/goran-wendin.png";
+
+interface Props {
+  lang: string;
+}
+const { lang } = Astro.props;
+const eab = useTranslations(lang).eab;
+
+// Keyed by each member's `id` in the translations.
+const photos: Record<string, ImageMetadata> = {
+  "shunsuke-okada": shunsukeOkada,
+  "miwako-tsuji": miwakoTsuji,
+  "laure-le-bars": laureLeBars,
+  "gabriele-cavallaro": gabrieleCavallaro,
+  "goran-wendin": goranWendin,
+};
+---
+
+{eab && (
+  <section class="eab-bg" id="eab">
+    <div class="eab">
+      <div class="eab-header reveal">
+        <div class="section-label">{eab.sectionLabel}</div>
+        <h2 class="section-h2">{eab.heading}</h2>
+        <p class="eab-intro">{eab.intro}</p>
+      </div>
+
+      <h3 class="eab-members-heading reveal">{eab.membersHeading}</h3>
+
+      <div class="eab-grid reveal" data-eab-grid>
+        {eab.members.map((member) => {
+          const photo = photos[member.id];
+          return (
+            <button
+              type="button"
+              class="eab-card"
+              data-eab-card
+              data-id={member.id}
+              aria-expanded="false"
+              aria-controls="eab-panel"
+            >
+              {photo && (
+                <Image
+                  src={photo}
+                  alt=""
+                  widths={[176, 240, 480]}
+                  sizes="(max-width: 400px) 88px, 240px"
+                  class="eab-photo"
+                />
+              )}
+              <span class="eab-card-text">
+                <span class="eab-region">{member.region.toUpperCase()}</span>
+                <span class="eab-name">{member.name}</span>
+                <span class="eab-affiliation">{member.affiliation}</span>
+              </span>
+              <span class="eab-toggle" aria-hidden="true"></span>
+            </button>
+          );
+        })}
+
+        <div id="eab-panel" class="eab-panel" role="region" aria-labelledby="eab-panel-name" hidden>
+          <div class="eab-panel-head">
+            <h4 id="eab-panel-name" class="eab-panel-name"></h4>
+            <button type="button" class="eab-close" data-eab-close aria-label={eab.closeLabel}>×</button>
+          </div>
+          <p class="eab-panel-bio"></p>
+        </div>
+      </div>
+
+      {/* Bios are kept out of the cards so only one is ever shown; the script reads them from here. */}
+      <script is:inline type="application/json" id="eab-bios" set:html={JSON.stringify(
+        Object.fromEntries(eab.members.map((m) => [m.id, { name: m.name, bio: m.bio }]))
+      )} />
+    </div>
+  </section>
+)}
+
+<script>
+  const grid = document.querySelector<HTMLElement>("[data-eab-grid]");
+  const panel = document.getElementById("eab-panel");
+  const biosEl = document.getElementById("eab-bios");
+
+  if (grid && panel && biosEl) {
+    const bios: Record<string, { name: string; bio: string }> = JSON.parse(biosEl.textContent ?? "{}");
+    const cards = Array.from(grid.querySelectorAll<HTMLButtonElement>("[data-eab-card]"));
+    const nameEl = panel.querySelector<HTMLElement>(".eab-panel-name")!;
+    const bioEl = panel.querySelector<HTMLElement>(".eab-panel-bio")!;
+    let openCard: HTMLButtonElement | null = null;
+
+    // Place the panel straight after the last card in the open card's row,
+    // so it always appears beneath the clicked card whatever the column count.
+    const placePanel = () => {
+      if (!openCard) return;
+      const cols = getComputedStyle(grid).gridTemplateColumns.split(" ").length;
+      const index = cards.indexOf(openCard);
+      const rowEnd = Math.min(Math.ceil((index + 1) / cols) * cols, cards.length) - 1;
+      cards[rowEnd].after(panel);
+    };
+
+    const close = () => {
+      openCard?.setAttribute("aria-expanded", "false");
+      openCard = null;
+      panel.hidden = true;
+    };
+
+    const open = (card: HTMLButtonElement) => {
+      openCard?.setAttribute("aria-expanded", "false");
+      openCard = card;
+      card.setAttribute("aria-expanded", "true");
+      const { name, bio } = bios[card.dataset.id!];
+      nameEl.textContent = name;
+      bioEl.textContent = bio;
+      placePanel();
+      panel.hidden = false;
+      panel.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    };
+
+    cards.forEach((card) =>
+      card.addEventListener("click", () => (card === openCard ? close() : open(card))),
+    );
+
+    panel.querySelector("[data-eab-close]")?.addEventListener("click", () => {
+      const card = openCard;
+      close();
+      card?.focus();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && openCard) {
+        const card = openCard;
+        close();
+        card.focus();
+      }
+    });
+
+    window.addEventListener("resize", placePanel);
+  }
+</script>
