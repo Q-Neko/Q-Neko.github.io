@@ -409,7 +409,7 @@
 
   /* EXTERNAL ADVISORY BOARD */
   .eab-bg {
-    @apply w-full bg-blue;
+    @apply w-full bg-crimson;
   }
   .eab {
     @apply px-16 py-20 max-w-[3000px] mx-auto;
@@ -561,7 +561,7 @@
   }
 
   .funding-bg {
-    @apply w-full bg-crimson 
+    @apply w-full bg-blue
   }
 
   .funding-text .section-label {
