@@ -1,6 +1,3 @@
-> [!Warning]
-> The site is in active development. Some information is placeholder / wrong.
-
 # Q-Neko Website
 
 The public website for the Q-Neko project (Nippon-Europe Quantum Koraborēshon) — a Horizon Europe / EuroHPC JU / Japan SIP funded collaboration advancing hybrid HPC+AI+QC.
