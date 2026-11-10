@@ -9,7 +9,11 @@ location: "Webinar"       # optional, shown as the card meta label
 
 **Time:** Tuesday 27 October 2026, 09:00-10:00 CET / 17:00-18:00 JST Tokyo
 
-**Registration:** https://link.webropolsurveys.com/EP/626029970ED6AFAC
+**Webinar recording:** https://youtu.be/ZurcvX0nSFo
+
+**Presentation materials:**
+"pdf": "files/results/Kukulski_qneko_webinar_qaoa_talk.pdf"
+"pdf": "files/results/Bilek_Iterative_warm_started_QAOA.pdf"
 
 ### Abstract
 
