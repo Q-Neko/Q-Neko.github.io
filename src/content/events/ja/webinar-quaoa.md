@@ -11,7 +11,12 @@ location: "Webinar"       # optional, shown as the card meta label
 
 **日時:** 2026年10月27日（火） 17:00-18:00 JST / 09:00-10:00 CET
 
-**参加登録フォーム:** https://link.webropolsurveys.com/EP/626029970ED6AFAC
+**録画:** https://youtu.be/ZurcvX0nSFo
+
+**資料:**
+[Bilek_Iterative_warm_started_QAOA.pdf](/files/results/Bilek_Iterative_warm_started_QAOA.pdf)
+
+[Kukulski_qneko_webinar_qaoa_talk.pdf](/files/results/Kukulski_qneko_webinar_qaoa_talk.pdf)
 
 ### イベント概要
 
