@@ -12,8 +12,10 @@ location: "Webinar"       # optional, shown as the card meta label
 **Webinar recording:** https://youtu.be/ZurcvX0nSFo
 
 **Presentation materials:**
-"pdf": "files/results/Kukulski_qneko_webinar_qaoa_talk.pdf"
-"pdf": "files/results/Bilek_Iterative_warm_started_QAOA.pdf"
+
+[Bilek_Iterative_warm_started_QAOA.pdf](/files/results/Bilek_Iterative_warm_started_QAOA.pdf)
+
+[Kukulski_qneko_webinar_qaoa_talk.pdf](/files/results/Kukulski_qneko_webinar_qaoa_talk.pdf)
 
 ### Abstract
 
