@@ -39,12 +39,20 @@
     "url": "https://www.hpcwire.com/off-the-wire/eurohpc-launches-q-neko-project-to-strengthen-eu-japan-collaboration-in-quantum-computing/",
     "order": 4
   },
+   {
+    "id": "dxmagazine-qneko-kickoff",
+    "title": "【内閣府】日EU共同「量子プロジェクト」を本格始動！ 次世代スパコン×量子技術の融合を目指す『Q-Neko』がキックオフ。",
+    "source": "DX Magazine",
+    "language": "JP",
+    "url": "https://dxmagazine.jp/news/2617ko41/",
+    "order": 5
+  },
   {
   "id": "quantumspectator-qstar",
   "title": "The growth of Japan’s quantum industry: A Perspective from Q-STAR",
   "source": "Quantum Spectator",
   "language": "EN",
   "url": "https://quantumspectator.com/the-growth-of-japans-quantum-industry-a-perspective-from-q-star/",
-  "order": 5
+  "order": 6
 }
 ]
