@@ -51,8 +51,7 @@ export interface Translations {
     sectionLabel: string;
     heading: string;
   };
-  // Optional: the homepage hides the EAB section for locales without it.
-  eab?: { // TODO add japanese eab and make this mandatory
+  eab: {
     sectionLabel: string;
     heading: string;
     intro: string;
